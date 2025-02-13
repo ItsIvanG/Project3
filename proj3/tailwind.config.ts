@@ -10,20 +10,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        green: {
-          primary: '#2AB289', //buttons, titles
-          secondary: '#09A144', //input strokes,
-          dark: '#05665B', //middle page breaker, other elements
-          footer: '#014645',
-          lime: '#B3FC86', //bg gaussian blur 60%
-          emerald: '#058C29',
-          light: '#EEFFF9',
-        },
-        white: '#ffffff',
-        purple: '9847FF',
-        pink: 'FE5FAB',
-        orange: 'F76847',
-        mint: '4CDCC4',
+        // green: {
+        //   primary: '#2AB289', //buttons, titles
+        //   secondary: '#09A144', //input strokes,
+        //   dark: '#05665B', //middle page breaker, other elements
+        //   footer: '#014645',
+        //   lime: '#B3FC86', //bg gaussian blur 60%
+        //   emerald: '#058C29',
+        //   light: '#EEFFF9',
+        // },
+        // white: '#ffffff',
+        // purple: '9847FF',
+        // pink: 'FE5FAB',
+        // orange: 'F76847',
+        // mint: '4CDCC4',
 
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
@@ -85,6 +85,10 @@ export default {
         sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
+        'caret-blink': {
+          '0%,70%,100%': { opacity: '1' },
+          '20%,50%': { opacity: '0' },
+        },
         'accordion-down': {
           from: {
             height: '0',
@@ -105,6 +109,7 @@ export default {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'caret-blink': 'caret-blink 1.25s ease-out infinite',
       },
     },
   },

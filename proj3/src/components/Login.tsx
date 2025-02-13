@@ -1,5 +1,5 @@
 'use client';
-import { Register } from '@/lib/definitions';
+import { LoginAcc } from '@/lib/definitions';
 import React, { useState } from 'react';
 import { CiUser, CiLock } from 'react-icons/ci';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
@@ -9,9 +9,9 @@ import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
 import axios from 'axios';
 import { Checkbox } from './ui/checkbox';
 
-export default function SignUp() {
+export default function Login() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const methods = useForm<Register>({
+  const methods = useForm<LoginAcc>({
     mode: 'onSubmit',
   });
 
@@ -22,7 +22,7 @@ export default function SignUp() {
     formState: { errors },
   } = methods;
 
-  const onSubmit: SubmitHandler<Register> = async (data) => {
+  const onSubmit: SubmitHandler<LoginAcc> = async (data) => {
     // console.log('Form submitted:', data);
     // try {
     //   const response = await fetch("http://127.0.0.1:8000/api/accounts/", {
@@ -51,10 +51,9 @@ export default function SignUp() {
         </a>
       </div>
       <div className='relative flex flex-col justify-start items-start gap-2 pt-14'>
-        <p className='font-bold text-5xl text-primary'>Create your account.</p>
+        <p className='font-bold text-5xl text-primary'>Welcome back.</p>
         <p className='font-regular text-md text-primary ml-2'>
-          Build skills for today, tomorrow, and beyond. <br /> Education to
-          future-proof your career.
+          Continue learning and growing. Your future starts now.
         </p>
       </div>
       <div className='relative flex flex-col justify-start lg:justify-start items-start w-full gap-6'>
@@ -64,46 +63,6 @@ export default function SignUp() {
             className='flex flex-col gap-6 mt-8 w-full items-start'
             noValidate
           >
-            <div className='flex flex-row justify-start items-start w-full gap-8'>
-              {/* First Name */}
-              <div className='flex flex-col items-start relative'>
-                <CiUser className='absolute left-3 top-1/2 transform -translate-y-1/2 text-primary' />
-                <input
-                  className={`w-[314px] h-[44px] text-md border ${
-                    errors.first_name ? 'border-red-500' : 'border-primary'
-                  } focus:outline-none focus:border-2 bg-secondary text-primary placeholder-gray-400 rounded-xl p-4 pl-9`}
-                  placeholder='First Name'
-                  {...register('first_name', {
-                    required: 'First Name is required',
-                  })}
-                />
-                {errors.first_name && (
-                  <p className='absolute mt-0 text-[10px] text-red-500 top-full'>
-                    {errors.first_name.message}
-                  </p>
-                )}
-              </div>
-
-              {/* Last Name */}
-              <div className='flex flex-col items-start relative'>
-                <CiUser className='absolute left-3 top-1/2 transform -translate-y-1/2 text-primary' />
-                <input
-                  className={`w-[314px] h-[44px] text-md border ${
-                    errors.last_name ? 'border-red-500' : 'border-primary'
-                  } focus:outline-none focus:border-2 bg-secondary text-primary placeholder-gray-400 rounded-xl p-4 pl-9`}
-                  placeholder='Last Name'
-                  {...register('last_name', {
-                    required: 'Last Name is required',
-                  })}
-                />
-                {errors.last_name && (
-                  <p className='absolute mt-0 text-[10px] text-red-500 top-full'>
-                    {errors.last_name.message}
-                  </p>
-                )}
-              </div>
-            </div>
-
             {/* Email */}
             <div className='flex flex-col items-start relative'>
               <BsEnvelope className='absolute left-3 top-1/2 transform -translate-y-1/2 text-primary' />
@@ -165,42 +124,46 @@ export default function SignUp() {
               )}
             </div>
 
-            <div className='flex items-center space-x-2'>
-              <Checkbox
-                id='terms1'
-                className='border-primary data-[state=checked]:bg-primary'
-              />
-              <label
-                htmlFor='terms1'
-                className='text-xs text-primary font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
-              >
-                I agree to{' '}
-                <a
-                  href='/terms' // Replace with the actual Terms & Conditions page link
-                  className='text-primary underline font-semibold'
-                  target='_blank' // Opens in a new tab
-                  rel='noopener noreferrer' // Security best practice
+            {/* Remember Me & Forgot Password */}
+            <div className='flex items-center justify-between w-[660px]'>
+              {/* Remember Me Checkbox */}
+              <div className='flex items-center space-x-2'>
+                <Checkbox
+                  id='remember'
+                  className='border-primary data-[state=checked]:bg-primary'
+                />
+                <label
+                  htmlFor='remember'
+                  className='text-xs text-primary font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
                 >
-                  Terms & Conditions
-                </a>
-              </label>
+                  Remember me
+                </label>
+              </div>
+
+              {/* Forgot Password Link */}
+              <a
+                href='/forgotpass'
+                className='text-xs text-primary underline hover:font-semibold'
+              >
+                Forgot password?
+              </a>
             </div>
 
             {/* Submit Button */}
             <button
               type='submit'
-              className='flex w-[660px] h-[44px] items-center justify-center bg-primary rounded-xl text-secondary text-md font-semibold'
+              className='flex w-[660px] h-[44px] items-center justify-center bg-primary rounded-xl text-secondary text-md font-semibold hover:bg-green-dark transition-all duration-300 ease-in-out'
             >
-              Create Account
+              Sign In
             </button>
           </form>
         </FormProvider>
         <div className='flex justify-center items-center w-full'>
-          <p className='text-xs text-primary font-normal'>Or register with</p>
+          <p className='text-xs text-primary font-normal'>Or continue with</p>
         </div>
         <div className='flex justify-center items-center w-full'>
           <button
-            className='flex items-center justify-center w-[280px] h-[44px] border border-primary rounded-xl text-primary font-normal gap-3 hover:bg-gray-100 transition-all duration-300 ease-in-out'
+            className='flex items-center justify-center w-[280px] h-[44px] border border-primary rounded-xl text-primary hover:bg-gray-100 font-normal gap-3'
             onClick={() => console.log('Google Sign-Up Clicked')} // Replace with actual Google auth function
           >
             <FcGoogle className='text-red-500 w-5 h-5' />
@@ -209,10 +172,10 @@ export default function SignUp() {
         </div>
         <div className='flex justify-center items-center w-full flex-row gap-1'>
           <p className='text-xs font-normal text-primary'>
-            Already have an account?
+            Don't have an account?
           </p>
-          <a href='/login'>
-            <p className='text-xs font-semibold text-primary'>SIGN IN</p>
+          <a href='/signup'>
+            <p className='text-xs font-semibold text-primary'>SIGN UP</p>
           </a>
         </div>
       </div>

@@ -4,3 +4,21 @@ export interface Register {
   email: string;
   password: string;
 }
+
+export interface LoginAcc {
+  email: string;
+  password: string;
+}
+
+export interface ForgotPassword {
+  email: string;
+}
+
+export interface PasswordReset {
+  otp: string;
+}
+
+export interface SetNewPassword {
+  password: string;
+  confirmpass: string;
+}

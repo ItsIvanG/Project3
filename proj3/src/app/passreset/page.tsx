@@ -1,4 +1,4 @@
-import Login from '@/components/Login';
+import PassReset from '@/components/PassReset';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 
 export default function Page() {
@@ -18,7 +18,7 @@ export default function Page() {
       </div>
 
       <div className='bg-secondary w-[55%] h-full flex items-center justify-center'>
-        <Login />
+        <PassReset />
       </div>
     </main>
   );

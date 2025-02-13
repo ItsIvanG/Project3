@@ -9,15 +9,15 @@ export default function Page() {
         <div className='relative flex flex-col items-start justify-start h-full w-full p-8'>
           <a
             href='/'
-            className='flex px-4 py-2 border border-white rounded-full text-white text-sm font-medium text-opacity-80 gap-3'
+            className='flex items-center px-4 py-2 border border-secondary rounded-full text-secondary text-sm font-medium text-opacity-80 gap-3'
           >
-            <IoMdArrowRoundBack />
+            <IoMdArrowRoundBack className='text-lg' />
             Back to website
           </a>
         </div>
       </div>
 
-      <div className='bg-green-light w-[55%] h-full flex items-center justify-center'>
+      <div className='bg-secondary w-[55%] h-full flex items-center justify-center'>
         <SignUp />
       </div>
     </main>
