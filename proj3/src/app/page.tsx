@@ -1,7 +1,9 @@
-export default function Home() {
+import { VisitorsNavbar } from '@/components/VisitorsNavbar';
+
+export default function Page() {
   return (
-    <div className='w-full h-screenflex justify-center items-center'>
-      Welcome to Keystone
+    <div className=''>
+      <VisitorsNavbar />
     </div>
   );
 }
