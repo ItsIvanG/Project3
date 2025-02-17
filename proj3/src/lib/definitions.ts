@@ -22,3 +22,26 @@ export interface SetNewPassword {
   password: string;
   confirmpass: string;
 }
+
+export interface VisitorCourse {
+  id: string;
+  imgSrc: string;
+  label: string;
+}
+
+export interface CourseCardProps {
+  id: string;
+  title: string;
+  rating: number;
+  totalRatings: number;
+  lessons: number;
+  students: number;
+  imgSrc?: string;
+}
+
+export interface VisitorAnalyticsProps {
+  id: string;
+  imgSrc: string;
+  value: string | number;
+  label: string;
+}

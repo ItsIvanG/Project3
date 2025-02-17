@@ -14,14 +14,16 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 
+import { VISITORS_NAVBAR } from '@/app/constants';
+
 export function VisitorsNavbar() {
   return (
     <div className='fixed top-0 left-0 right-0 w-full bg-secondary shadow-md'>
-      <NavigationMenu className='px-14 py-3 w-full'>
-        <NavigationMenuList className='flex items-center justify-between w-full'>
+      <div className='px-14 py-3 w-full flex flex-row'>
+        <div className='flex flex-grow items-center justify-between'>
           {/* Left side (Logo and Navigation Links) */}
-          <div className='flex items-center gap-5'>
-            <NavigationMenuItem>
+          <div className='flex items-center gap-10'>
+            <div>
               <Link href='/'>
                 <Image
                   src='/logo.png'
@@ -31,26 +33,20 @@ export function VisitorsNavbar() {
                   className='mt-[-3px]'
                 />
               </Link>
-            </NavigationMenuItem>
+            </div>
 
-            <NavigationMenuItem>
-              <Link href='/getting-started' legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Courses
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <Link href='/components' legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  About Us
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
+            {/* Mapping through VISITORS_NAVBAR */}
+            {VISITORS_NAVBAR.map((nav) => (
+              <div
+                key={nav.key}
+                className='px-6 py-2 rounded-full text-md font-medium bg-secondary text-primary hover:bg-primary/5'
+              >
+                <Link href={nav.href} legacyBehavior passHref>
+                  {nav.label}
+                </Link>
+              </div>
+            ))}
           </div>
-
-          <div className='w-[455px]'></div>
 
           {/* Right side (Search Bar and Auth Buttons) */}
           <div className='flex items-center gap-7'>
@@ -67,7 +63,7 @@ export function VisitorsNavbar() {
             {/* Sign In and Sign Up Buttons */}
             <Link
               href='/login'
-              className='px-6 py-2 rounded-full text-md font-medium bg-accent text-primary hover:bg-primary/5'
+              className='px-6 py-2 rounded-full text-md font-medium bg-secondary text-primary hover:bg-primary/5'
             >
               Sign In
             </Link>
@@ -78,8 +74,8 @@ export function VisitorsNavbar() {
               Sign Up
             </Link>
           </div>
-        </NavigationMenuList>
-      </NavigationMenu>
+        </div>
+      </div>
     </div>
   );
 }

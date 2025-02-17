@@ -74,9 +74,9 @@ export default function PassReset() {
           >
             {/* OTP Input */}
             <div className='flex flex-col items-center relative'>
-              <InputOTP maxLength={4}>
+              <InputOTP maxLength={6}>
                 <InputOTPGroup className='flex space-x-6'>
-                  {[...Array(4)].map((_, index) => (
+                  {[...Array(6)].map((_, index) => (
                     <InputOTPSlot
                       key={index}
                       index={index}
@@ -87,7 +87,7 @@ export default function PassReset() {
                         required: 'OTP is required',
                         pattern: {
                           value: /^\d{4}$/,
-                          message: 'OTP must be a 4-digit number',
+                          message: 'OTP must be a 6-digit number',
                         },
                       })}
                     />
