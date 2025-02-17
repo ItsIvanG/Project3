@@ -9,7 +9,7 @@ export default function Page() {
         <div className='relative flex flex-col items-start justify-start h-full w-full p-8'>
           <a
             href='/'
-            className='flex items-center px-4 py-2 border border-secondary rounded-full text-secondary text-sm font-medium text-opacity-80 gap-3'
+            className='flex items-center px-4 py-2 border border-secondary hover:bg-secondary/20 rounded-full text-secondary text-sm font-medium text-opacity-80 gap-3'
           >
             <IoMdArrowRoundBack className='text-lg' />
             Back to website

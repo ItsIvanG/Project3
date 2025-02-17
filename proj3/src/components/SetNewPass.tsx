@@ -74,7 +74,7 @@ export default function SetNewPass() {
                 type={showPassword ? 'text' : 'password'} // Toggle between "text" and "password"
                 className={`w-full h-[44px] text-md border ${
                   errors.password ? 'border-red-500' : 'border-primary'
-                } focus:outline-none focus:border-2 bg-secondary text-primary placeholder-gray-400 rounded-xl p-4 pl-9 pr-10`} // 🔹 Added "pr-10" to create space for the eye icon
+                } focus:outline-none focus:border-2 bg-secondary text-primary placeholder-primary/50 rounded-xl p-4 pl-9 pr-10`} // 🔹 Added "pr-10" to create space for the eye icon
                 placeholder='Password'
                 {...register('password', {
                   required: 'Password is required',
@@ -112,7 +112,7 @@ export default function SetNewPass() {
                 type={showPassword ? 'text' : 'password'} // Toggle between "text" and "password"
                 className={`w-full h-[44px] text-md border ${
                   errors.confirmpass ? 'border-red-500' : 'border-primary'
-                } focus:outline-none focus:border-2 bg-secondary text-primary placeholder-gray-400 rounded-xl p-4 pl-9 pr-10`} // 🔹 Added "pr-10" to create space for the eye icon
+                } focus:outline-none focus:border-2 bg-secondary text-primary placeholder-primary/50 rounded-xl p-4 pl-9 pr-10`} // 🔹 Added "pr-10" to create space for the eye icon
                 placeholder='Confirm password'
                 {...register('confirmpass', {
                   required: 'Password is required',
@@ -143,7 +143,7 @@ export default function SetNewPass() {
             {/* Submit Button */}
             <button
               type='submit'
-              className='flex w-[660px] h-[44px] items-center justify-center bg-primary rounded-xl text-secondary text-md font-semibold'
+              className='flex w-[660px] h-[44px] items-center justify-center bg-primary hover:bg-primary/90 rounded-xl text-secondary text-md font-semibold'
             >
               Reset Password
             </button>

@@ -71,7 +71,7 @@ export default function SignUp() {
                 <input
                   className={`w-[314px] h-[44px] text-md border ${
                     errors.first_name ? 'border-red-500' : 'border-primary'
-                  } focus:outline-none focus:border-2 bg-secondary text-primary placeholder-gray-400 rounded-xl p-4 pl-9`}
+                  } focus:outline-none focus:border-2 bg-secondary text-primary placeholder-primary/50 rounded-xl p-4 pl-9`}
                   placeholder='First Name'
                   {...register('first_name', {
                     required: 'First Name is required',
@@ -90,7 +90,7 @@ export default function SignUp() {
                 <input
                   className={`w-[314px] h-[44px] text-md border ${
                     errors.last_name ? 'border-red-500' : 'border-primary'
-                  } focus:outline-none focus:border-2 bg-secondary text-primary placeholder-gray-400 rounded-xl p-4 pl-9`}
+                  } focus:outline-none focus:border-2 bg-secondary text-primary placeholder-primary/50 rounded-xl p-4 pl-9`}
                   placeholder='Last Name'
                   {...register('last_name', {
                     required: 'Last Name is required',
@@ -110,7 +110,7 @@ export default function SignUp() {
               <input
                 className={`w-[660px] h-[44px] text-md border ${
                   errors.email ? 'border-red-500' : 'border-primary'
-                } focus:outline-none focus:border-2 bg-secondary text-primary placeholder-gray-400 rounded-xl p-4 pl-9`}
+                } focus:outline-none focus:border-2 bg-secondary text-primary placeholder-primary/50 rounded-xl p-4 pl-9`}
                 placeholder='Email'
                 {...register('email', {
                   required: 'Email is required',
@@ -137,7 +137,7 @@ export default function SignUp() {
                 type={showPassword ? 'text' : 'password'} // Toggle between "text" and "password"
                 className={`w-full h-[44px] text-md border ${
                   errors.password ? 'border-red-500' : 'border-primary'
-                } focus:outline-none focus:border-2 bg-secondary text-primary placeholder-gray-400 rounded-xl p-4 pl-9 pr-10`} // 🔹 Added "pr-10" to create space for the eye icon
+                } focus:outline-none focus:border-2 bg-secondary text-primary placeholder-primary/50 rounded-xl p-4 pl-9 pr-10`} // 🔹 Added "pr-10" to create space for the eye icon
                 placeholder='Enter your password'
                 {...register('password', {
                   required: 'Password is required',
@@ -189,7 +189,7 @@ export default function SignUp() {
             {/* Submit Button */}
             <button
               type='submit'
-              className='flex w-[660px] h-[44px] items-center justify-center bg-primary rounded-xl text-secondary text-md font-semibold'
+              className='flex w-[660px] h-[44px] items-center justify-center bg-primary hover:bg-primary/90 rounded-xl text-secondary text-md font-semibold'
             >
               Create Account
             </button>
@@ -200,7 +200,7 @@ export default function SignUp() {
         </div>
         <div className='flex justify-center items-center w-full'>
           <button
-            className='flex items-center justify-center w-[280px] h-[44px] border border-primary rounded-xl text-primary font-normal gap-3 hover:bg-gray-100 transition-all duration-300 ease-in-out'
+            className='flex items-center justify-center w-[280px] h-[44px] border border-primary rounded-xl text-primary font-normal gap-3 hover:bg-primary/5 transition-all duration-300 ease-in-out'
             onClick={() => console.log('Google Sign-Up Clicked')} // Replace with actual Google auth function
           >
             <FcGoogle className='text-red-500 w-5 h-5' />

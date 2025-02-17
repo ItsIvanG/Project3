@@ -70,7 +70,7 @@ export default function ForgotPass() {
               <input
                 className={`w-[660px] h-[44px] text-md border ${
                   errors.email ? 'border-red-500' : 'border-primary'
-                } focus:outline-none focus:border-2 bg-secondary text-primary placeholder-gray-400 rounded-xl p-4 pl-9`}
+                } focus:outline-none focus:border-2 bg-secondary text-primary placeholder-primary/50 rounded-xl p-4 pl-9`}
                 placeholder='Email'
                 {...register('email', {
                   required: 'Email is required',
@@ -90,7 +90,7 @@ export default function ForgotPass() {
             {/* Submit Button */}
             <button
               type='submit'
-              className='flex w-[660px] h-[44px] items-center justify-center bg-primary rounded-xl text-secondary text-md font-semibold'
+              className='flex w-[660px] h-[44px] items-center justify-center bg-primary hover:bg-primary/90 rounded-xl text-secondary text-md font-semibold'
             >
               Next
             </button>
