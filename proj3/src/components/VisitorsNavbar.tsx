@@ -18,7 +18,7 @@ import { VISITORS_NAVBAR } from '@/app/constants';
 
 export function VisitorsNavbar() {
   return (
-    <div className='fixed top-0 left-0 right-0 w-full bg-secondary shadow-md'>
+    <div className='fixed top-0 left-0 right-0 w-full bg-secondary shadow-md z-30'>
       <div className='px-14 py-3 w-full flex flex-row'>
         <div className='flex flex-grow items-center justify-between'>
           {/* Left side (Logo and Navigation Links) */}
@@ -52,7 +52,9 @@ export function VisitorsNavbar() {
           <div className='flex items-center gap-7'>
             {/* Search Bar */}
             <div className='relative flex items-center'>
-              <FiSearch className='absolute left-4 text-primary' />
+              <div className='absolute left-3 bg-primary rounded-full p-1 flex items-center justify-center z-10'>
+                <FiSearch className='text-secondary text-lg' />
+              </div>
               <input
                 type='text'
                 placeholder='What do you want to learn?'

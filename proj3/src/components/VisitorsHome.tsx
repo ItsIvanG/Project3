@@ -31,7 +31,7 @@ export function VisitorsHome() {
         </div>
       </div>
 
-      <div className='w-[40%] bg-secondary flex items-center justify-center '>
+      <div className='w-[40%] flex items-center justify-center '>
         <div className='mt-16'>
           <img src='/landing.png' />
         </div>

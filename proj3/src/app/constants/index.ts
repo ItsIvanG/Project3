@@ -99,3 +99,30 @@ export const POPULAR_COURSES = [
     students: 3000,
   },
 ];
+
+export const TESTIMONIALS = [
+  {
+    id: 1,
+    name: 'John Doe',
+    role: 'Student',
+    quote:
+      "John has been sharing his passion for data for over a decade. He's used data science for work ranging from cancer research to process automation. He recently has found a passion for solving data science problems within marketplace companies.",
+    image: '/profile.png',
+  },
+  {
+    id: 2,
+    name: 'Sarah Smith',
+    role: 'Data Scientist',
+    quote:
+      "Sarah brings over 15 years of experience in machine learning and AI. Her work has revolutionized how we approach predictive analytics in healthcare. She's passionate about mentoring the next generation of data scientists.",
+    image: '/profile.png',
+  },
+  {
+    id: 3,
+    name: 'Michael Chen',
+    role: 'AI Researcher',
+    quote:
+      "Michael's innovative approach to deep learning has earned him recognition worldwide. He specializes in computer vision and has contributed to breakthrough projects in autonomous systems. His teaching style makes complex concepts accessible.",
+    image: '/profile.png',
+  },
+] as const;

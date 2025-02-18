@@ -45,3 +45,11 @@ export interface VisitorAnalyticsProps {
   value: string | number;
   label: string;
 }
+
+export interface Testimonial {
+  id: number;
+  name: string;
+  role: string;
+  quote: string;
+  image: string;
+}
