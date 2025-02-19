@@ -2,16 +2,16 @@ export function VisitorsAbout() {
   return (
     <section
       id='about'
-      className='bg-secondary min-h-screen px-24 w-full flex items-center justify-center'
+      className='bg-secondary h-fit p-20 w-full flex items-center justify-center'
     >
-      <div className='w-full flex flex-row items-center justify-center gap-6'>
-        <div className='w-[45%]  flex items-center justify-center '>
+      <div className='w-full flex flex-row items-center justify-center'>
+        <div className='w-[45%] flex items-center justify-center '>
           <div className='w-full max-w-md flex items-center justify-center'>
             <img src='/aboutpic.png' className='w-full h-auto' />
           </div>
         </div>
 
-        <div className='w-[55%] flex flex-col items-center justify-center gap-14'>
+        <div className='w-[60%] flex flex-col items-center justify-center gap-14'>
           <div className=''>
             <p className='font-extrabold text-primary text-5xl'>
               The Keystone Business Builders Difference

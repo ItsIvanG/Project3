@@ -12,24 +12,15 @@ import { useState, useEffect } from 'react';
 import { TESTIMONIALS } from '@/app/constants';
 import type { Testimonial } from '@/lib/definitions';
 
-export default function VisitorsTestimonials() {
-  const [api, setApi] = useState<any>();
-
-  useEffect(() => {
-    if (!api) return;
-
-    api.on('select', () => {});
-  }, [api]);
-
+export function VisitorsTestimonials() {
   return (
-    <div className='w-full px-20 min-h-screen flex justify-center items-center bg-secondary'>
+    <div className='w-full px-24 min-h-screen flex justify-center items-center bg-secondary'>
       <div className='flex flex-col justify-center items-center gap-16 w-full h-full'>
         <h2 className='text-center text-5xl font-semibold'>
           Taught By The Best
         </h2>
 
         <Carousel
-          setApi={setApi}
           opts={{
             loop: false,
           }}

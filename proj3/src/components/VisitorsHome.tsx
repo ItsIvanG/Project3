@@ -16,9 +16,12 @@ export function VisitorsHome() {
         </div>
 
         <div className='flex flex-row gap-7'>
-          <button className='text-2xl rounded-full bg-primary hover:bg-primary/90 text-secondary px-10 py-3'>
+          <a
+            href='/login'
+            className='text-2xl rounded-full bg-primary hover:bg-primary/90 text-secondary px-10 py-3'
+          >
             Get started
-          </button>
+          </a>
           <div className='flex flex-row items-center gap-3 font-semibold'>
             <a
               href='/'

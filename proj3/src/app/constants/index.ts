@@ -126,3 +126,104 @@ export const TESTIMONIALS = [
     image: '/profile.png',
   },
 ] as const;
+
+import type { Feature, FooterColumn, SocialLink } from '@/lib/definitions';
+import {
+  BsChatSquareText,
+  BsBook,
+  BsAward,
+  BsTag,
+  BsLightbulb,
+} from 'react-icons/bs';
+import {
+  FaFacebookF,
+  FaLinkedinIn,
+  FaInstagram,
+  FaTwitter,
+} from 'react-icons/fa';
+
+export const FEATURES: Feature[] = [
+  {
+    id: 1,
+    title: 'Best Tutors',
+    description:
+      'Learn from industry experts and entrepreneurs who share real-world insights, mentorship, and strategies to help you succeed.',
+    icon: BsChatSquareText,
+    iconBgColor: 'bg-primary',
+  },
+  {
+    id: 2,
+    title: 'Best curriculum',
+    description:
+      'Our courses cover essential business skills, from startup basics to advanced strategies, ensuring you stay ahead in the game.',
+    icon: BsBook,
+    iconBgColor: 'bg-primary',
+  },
+  {
+    id: 3,
+    title: 'Certificate',
+    description:
+      'Earn industry-recognized certificates to showcase your skills and achievements, helping you gain credibility and opportunities.',
+    icon: BsAward,
+    iconBgColor: 'bg-primary',
+  },
+  {
+    id: 4,
+    title: 'Best Price',
+    description:
+      'Affordable and flexible pricing plans ensure everyone can access high-quality business education. Start now and upgrade as you grow.',
+    icon: BsTag,
+    iconBgColor: 'bg-primary',
+  },
+  {
+    id: 5,
+    title: 'Creative Thinking',
+    description:
+      'Develop innovative problem-solving skills and strategies to build, adapt, and thrive in a competitive business landscape.',
+    icon: BsLightbulb,
+    iconBgColor: 'bg-primary',
+  },
+];
+
+export const FOOTER_COLUMNS: FooterColumn[] = [
+  {
+    title: 'Explore',
+    links: [
+      { label: 'Course', href: '#visitor_courses' },
+      { label: 'About Us', href: '#about' },
+      { label: 'Pricing', href: '/' },
+    ],
+  },
+  {
+    title: 'Featured Programs',
+    links: [
+      { label: 'Business Analytics', href: '/' },
+      { label: 'Data Analyst', href: '/' },
+      { label: 'Digital Marketing', href: '/' },
+      { label: 'Intro to Programming', href: '/' },
+    ],
+  },
+];
+
+export const SOCIAL_LINKS: SocialLink[] = [
+  {
+    label: 'Facebook',
+    href: 'https://facebook.com',
+    icon: FaFacebookF,
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://linkedin.com',
+    icon: FaLinkedinIn,
+  },
+  {
+    label: 'Instagram',
+    href: 'https://instagram.com',
+    icon: FaInstagram,
+  },
+  {
+    label: 'Twitter',
+    href: 'https://twitter.com',
+    icon: FaTwitter,
+  },
+];

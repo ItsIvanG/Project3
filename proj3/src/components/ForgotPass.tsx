@@ -89,6 +89,7 @@ export default function ForgotPass() {
 
             {/* Submit Button */}
             <button
+              //href to /passreset once email entered
               type='submit'
               className='flex w-[660px] h-[44px] items-center justify-center bg-primary hover:bg-primary/90 rounded-xl text-secondary text-md font-semibold'
             >

@@ -3,6 +3,7 @@ export interface Register {
   last_name: string;
   email: string;
   password: string;
+  otp: string;
 }
 
 export interface LoginAcc {
@@ -52,4 +53,33 @@ export interface Testimonial {
   role: string;
   quote: string;
   image: string;
+}
+
+import type React from 'react';
+export interface Feature {
+  id: number;
+  title: string;
+  description: string;
+  icon: React.ElementType; // Changed to accept React component type
+  iconBgColor: string;
+}
+
+export interface FooterLink {
+  label: string;
+  href: string;
+}
+
+export interface FooterColumn {
+  title: string;
+  links: FooterLink[];
+}
+
+export interface SocialLink {
+  label: string;
+  href: string;
+  icon: React.ElementType;
+}
+
+export interface EmailCode {
+  otp: string;
 }

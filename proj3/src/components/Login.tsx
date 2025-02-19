@@ -151,6 +151,7 @@ export default function Login() {
 
             {/* Submit Button */}
             <button
+              //href to student side website once logged in
               type='submit'
               className='flex w-[660px] h-[44px] items-center justify-center bg-primary rounded-xl text-secondary text-md font-semibold hover:bg-primary/90 transition-all duration-300 ease-in-out'
             >

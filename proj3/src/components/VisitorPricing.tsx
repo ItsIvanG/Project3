@@ -1,6 +1,6 @@
 export function VisitorPricing() {
   return (
-    <div className='w-full h-screen flex flex-row px-32 bg-secondary'>
+    <div className='w-full h-fit px-28 p-8 flex flex-row bg-secondary justify-center items-center'>
       <div className='w-[50%] flex flex-col items-start justify-center gap-12'>
         <div>
           <p className='font-extrabold text-primary text-6xl'>

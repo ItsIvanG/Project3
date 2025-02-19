@@ -1,4 +1,4 @@
-import PassReset from '@/components/PassReset';
+import AccountVerify from '@/components/AccountVerify';
 import Link from 'next/link';
 
 export default function Page() {
@@ -23,7 +23,7 @@ export default function Page() {
             <img src='/logo.png' className='w-full object-contain h-8' />
           </Link>
         </div>
-        <PassReset />
+        <AccountVerify />
       </div>
     </main>
   );

@@ -84,7 +84,7 @@ export function VisitorsCourses() {
       id='visitor_courses'
       className='bg-secondary min-h-screen py-16 px-4 md:p-20 w-full'
     >
-      <div className='max-w-7xl mx-auto flex flex-col gap-20'>
+      <div className='max-w-7xl mx-auto flex flex-col gap-32'>
         <div className='flex flex-col justify-center items-center gap-7'>
           <div className='text-center w-full mx-auto'>
             <p className='font-semibold text-3xl md:text-5xl text-primary'>

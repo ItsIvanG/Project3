@@ -1,13 +1,8 @@
 'use client';
-import { PasswordReset } from '@/lib/definitions';
+import { EmailCode } from '@/lib/definitions';
 import React, { useState } from 'react';
-import { CiUser, CiLock } from 'react-icons/ci';
-import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
-import { BsEnvelope } from 'react-icons/bs';
-import { FcGoogle } from 'react-icons/fc';
 import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
 import axios from 'axios';
-import { Checkbox } from './ui/checkbox';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import {
   InputOTP,
@@ -15,9 +10,8 @@ import {
   InputOTPSlot,
 } from '@/components/ui/input-otp';
 
-export default function PassReset() {
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const methods = useForm<PasswordReset>({
+export default function AccountVerify() {
+  const methods = useForm<EmailCode>({
     mode: 'onSubmit',
   });
 
@@ -28,7 +22,7 @@ export default function PassReset() {
     formState: { errors },
   } = methods;
 
-  const onSubmit: SubmitHandler<PasswordReset> = async (data) => {
+  const onSubmit: SubmitHandler<EmailCode> = async (data) => {
     // console.log('Form submitted:', data);
     // try {
     //   const response = await fetch("http://127.0.0.1:8000/api/accounts/", {
@@ -58,10 +52,10 @@ export default function PassReset() {
       </div>
       {/* Title & Subheading (Left-Aligned) */}
       <div className='relative flex flex-col justify-start items-start gap-2'>
-        <p className='font-bold text-5xl text-primary'>Password Reset</p>
+        <p className='font-bold text-5xl text-primary'>Account Verification</p>
         <p className='font-normal text-md text-primary ml-2'>
           We sent a code to <strong>juandelacruz@gmail.com</strong> to verify
-          request for password reset.
+          your account creation.
         </p>
       </div>
 
@@ -106,7 +100,7 @@ export default function PassReset() {
 
             {/* Submit Button */}
             <button
-              //href to /setnewpass once code is verified
+              //href to /login once verified
               type='submit'
               className='flex w-[660px] h-[44px] items-center justify-center bg-primary hover:bg-primary/90 rounded-xl text-secondary text-md font-semibold'
             >
