@@ -14,9 +14,9 @@ import type { Testimonial } from '@/lib/definitions';
 
 export function VisitorsTestimonials() {
   return (
-    <div className='w-full px-24 min-h-screen flex justify-center items-center bg-secondary'>
-      <div className='flex flex-col justify-center items-center gap-16 w-full h-full'>
-        <h2 className='text-center text-5xl font-semibold'>
+    <div className='w-full px-16 sm:px-24 py-20 min-h-screen flex justify-center items-center bg-secondary'>
+      <div className='flex flex-col justify-center items-center gap-10 sm:gap-16 w-full h-full'>
+        <h2 className='text-center text-4xl sm:text-5xl font-semibold'>
           Taught By The Best
         </h2>
 
@@ -32,10 +32,10 @@ export function VisitorsTestimonials() {
                 key={testimonial.id}
                 className='flex justify-center items-center w-full h-full'
               >
-                <div className='flex flex-row items-center justify-center gap-20 w-full h-full'>
+                <div className='flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-20 w-full h-full'>
                   {/* Profile Image on the Left */}
 
-                  <div className='h-[400px] w-[400px] rounded-full overflow-hidden'>
+                  <div className='h-[100px] w-[100px] sm:h-[180px] sm:w-[180px] lg:h-[400px] lg:w-[400px] rounded-full overflow-hidden'>
                     <img
                       src={testimonial.image || '/placeholder.svg'}
                       alt={testimonial.name}
@@ -44,16 +44,16 @@ export function VisitorsTestimonials() {
                   </div>
 
                   {/* Testimonial Content on the Right */}
-                  <div className='w-[60%] space-y-4 text-left'>
-                    <FaQuoteLeft className='w-16 h-16 text-primary' />
-                    <blockquote className='text-3xl leading-relaxed text-primary'>
+                  <div className='w-full lg:w-[60%] space-y-4 text-center lg:text-left'>
+                    <FaQuoteLeft className='w-6 h-6 sm:w-10 sm:h-10 lg:w-16 lg:h-16 text-primary' />
+                    <blockquote className='text-base sm:text-xl lg:text-3xl leading-tight sm:leading-relaxed text-primary'>
                       {testimonial.quote}
                     </blockquote>
                     <div className=''>
-                      <p className='font-semibold text-lg text-primary/50'>
+                      <p className='font-semibold text-base sm:text-lg text-primary/50'>
                         {testimonial.name}
                       </p>
-                      <p className='text-primary/50 text-md'>
+                      <p className='text-primary/50 text-xs sm:text-md'>
                         {testimonial.role}
                       </p>
                     </div>

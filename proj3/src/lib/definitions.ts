@@ -13,13 +13,7 @@ export interface LoginAcc {
 
 export interface ForgotPassword {
   email: string;
-}
-
-export interface PasswordReset {
   otp: string;
-}
-
-export interface SetNewPassword {
   password: string;
   confirmpass: string;
 }
@@ -78,8 +72,4 @@ export interface SocialLink {
   label: string;
   href: string;
   icon: React.ElementType;
-}
-
-export interface EmailCode {
-  otp: string;
 }

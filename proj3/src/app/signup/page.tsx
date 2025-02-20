@@ -18,7 +18,7 @@ export default function Page() {
         </div> */}
       </div>
 
-      <div className='bg-signup-bg bg-cover flex-col xl:items-start xl:bg-none bg-secondary w-full xl:w-[55%] h-full flex items-center justify-center gap-1 '>
+      <div className='xl:relative bg-signup-bg bg-cover flex-col xl:items-start xl:bg-none bg-secondary w-full xl:w-[55%] h-full flex items-center justify-center gap-1 '>
         {/* <div className='w-full h-10 xl:flex justify-start xl:justify-end absolute top-10 right-20 hidden'>
           <Link href='/'>
             <img src='/logo.png' className='w-full object-contain h-8' />

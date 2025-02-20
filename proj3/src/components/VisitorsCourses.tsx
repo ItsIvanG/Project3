@@ -99,7 +99,7 @@ export function VisitorsCourses() {
               </p>
             </div>
 
-            <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-8'>
+            <div className='grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-4 md:gap-8 '>
               {VISITORS_COURSES.map((course: VisitorCourse) => (
                 <Card
                   key={course.id}
@@ -123,24 +123,23 @@ export function VisitorsCourses() {
 
         <div className='flex flex-col justify-center items-center gap-5'>
           <div className='text-center w-full'>
-            <h2 className='font-semibold text-3xl md:text-5xl text-primary mb-3'>
+            <h2 className='font-semibold text-3xl sm:text-4xl md:text-5xl text-primary mb-3'>
               Our Most Popular Courses
             </h2>
-            <p className='font-medium text-xl md:text-2xl text-primary'>
+            <p className='font-medium text-base md:text-lg lg:text-2xl text-primary'>
               Get the best course with the best price with world-class tutors.
             </p>
           </div>
 
-          <div className='w-full flex justify-end items-center'>
-            <a
-              href='/'
-              className='font-semibold text-primary text-md hover:underline'
-            >
-              See all courses
-            </a>
-          </div>
-
-          <div className='w-full flex justify-center items-center'>
+          <div className='w-full flex flex-col justify-center items-center'>
+            <div className='w-full flex justify-end items-center p-3'>
+              <a
+                href='/'
+                className='font-semibold text-primary text-md hover:underline'
+              >
+                See all courses
+              </a>
+            </div>
             <Carousel
               opts={{
                 align: 'start',
@@ -152,7 +151,7 @@ export function VisitorsCourses() {
                 {POPULAR_COURSES.map((course: CourseCardProps) => (
                   <CarouselItem
                     key={course.id}
-                    className='md:basis-1/2 lg:basis-1/4 px-2'
+                    className='md:basis-1/2 lg:basis-1/3 xl:basis-1/4 px-2'
                   >
                     <div className='p-1'>
                       <CourseCard {...course} />
@@ -160,8 +159,10 @@ export function VisitorsCourses() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
+              <div className='hidden md:flex'>
+                <CarouselPrevious />
+                <CarouselNext />
+              </div>
             </Carousel>
           </div>
         </div>
