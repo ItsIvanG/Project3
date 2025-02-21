@@ -3,7 +3,7 @@ export function VisitorPricing() {
     <div className='w-full h-fit px-14 lg:px-28 py-20 lg:py-10 flex flex-row bg-secondary justify-center items-center'>
       <div className='w-full lg:w-[50%] flex flex-col items-start justify-center gap-12'>
         <div>
-          <p className='font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-primary'>
+          <p className='font-extrabold text-3xl md:text-5xl lg:text-6xl text-primary'>
             Straightforward pricing
           </p>
           <p className='font-medium text-primary text-base xl:text-lg leading-tight mt-6'>

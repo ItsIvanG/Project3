@@ -9,6 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import Link from 'next/link';
 
 function CourseCard({
   title,
@@ -20,7 +21,7 @@ function CourseCard({
 }: CourseCardProps) {
   return (
     <Card className='w-full overflow-hidden group hover:shadow-lg transition-shadow'>
-      <div className='relative h-32 bg-gradient-to-br from-blue-600 to-purple-600 overflow-hidden'>
+      <div className='relative h-40 bg-gradient-to-br from-blue-600 to-purple-600 overflow-hidden'>
         {imgSrc ? (
           <img
             src={imgSrc || '/placeholder.svg'}
@@ -82,9 +83,9 @@ export function VisitorsCourses() {
   return (
     <section
       id='visitor_courses'
-      className='bg-secondary min-h-screen py-16 px-4 md:p-20 w-full'
+      className='bg-secondary min-h-screen py-16 px-4 md:p-28 w-full'
     >
-      <div className='max-w-7xl mx-auto flex flex-col gap-32'>
+      <div className='mx-auto flex flex-col gap-32'>
         <div className='flex flex-col justify-center items-center gap-7'>
           <div className='text-center w-full mx-auto'>
             <p className='font-semibold text-3xl md:text-5xl text-primary'>
@@ -123,7 +124,7 @@ export function VisitorsCourses() {
 
         <div className='flex flex-col justify-center items-center gap-5'>
           <div className='text-center w-full'>
-            <h2 className='font-semibold text-3xl sm:text-4xl md:text-5xl text-primary mb-3'>
+            <h2 className='font-semibold text-3xl md:text-5xl text-primary mb-3'>
               Our Most Popular Courses
             </h2>
             <p className='font-medium text-base md:text-lg lg:text-2xl text-primary'>
@@ -133,12 +134,12 @@ export function VisitorsCourses() {
 
           <div className='w-full flex flex-col justify-center items-center'>
             <div className='w-full flex justify-end items-center p-3'>
-              <a
-                href='/'
+              <Link
+                href='/courses'
                 className='font-semibold text-primary text-md hover:underline'
               >
                 See all courses
-              </a>
+              </Link>
             </div>
             <Carousel
               opts={{

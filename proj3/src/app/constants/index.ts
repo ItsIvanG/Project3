@@ -1,7 +1,8 @@
 // VISITORS NAVIGATION
+
 export const VISITORS_NAVBAR = [
-  { href: '#visitor_courses', key: 'course', label: 'Course' },
-  { href: '#about', key: 'about', label: 'About' },
+  { href: '/#visitor_courses', key: 'course', label: 'Course' },
+  { href: '/#about', key: 'about', label: 'About' },
 ];
 
 export const VISITORS_ANALYTICS = [
@@ -100,6 +101,89 @@ export const POPULAR_COURSES = [
   },
 ];
 
+export const ALL_COURSES = [
+  {
+    id: '1',
+    title: 'Introduction to Programming',
+    imgSrc: '/course1.jpeg',
+    rating: 4.5,
+    totalRatings: 312,
+    lessons: 12,
+    students: 1500,
+  },
+  {
+    id: '2',
+    title: 'Web Development',
+    imgSrc: '/course2.jpg',
+    rating: 4.7,
+    totalRatings: 428,
+    lessons: 15,
+    students: 2000,
+  },
+  {
+    id: '3',
+    title: 'Data Science Essentials',
+    imgSrc: '/course3.jpeg',
+    rating: 4.6,
+    totalRatings: 256,
+    lessons: 10,
+    students: 1200,
+  },
+  {
+    id: '4',
+    title: 'Machine Learning Basics',
+    imgSrc: '/course4.jpeg',
+    rating: 4.8,
+    totalRatings: 512,
+    lessons: 18,
+    students: 2500,
+  },
+  {
+    id: '5',
+    title: 'UX Designing',
+    imgSrc: '/course5.jpeg',
+    rating: 5.0,
+    totalRatings: 234,
+    lessons: 25,
+    students: 350,
+  },
+  {
+    id: '6',
+    title: 'Prototyping',
+    imgSrc: '/course6.png',
+    rating: 2.6,
+    totalRatings: 678,
+    lessons: 5,
+    students: 100,
+  },
+  {
+    id: '7',
+    title: 'Cybersecurity',
+    imgSrc: '/course7.jpeg',
+    rating: 4.1,
+    totalRatings: 300,
+    lessons: 30,
+    students: 3000,
+  },
+];
+
+export const CourseInfos: CourseInfoProps[] = [
+  {
+    id: '1',
+    title: 'Introduction to Programming',
+    rating: 4.5,
+    totalRatings: 312,
+    lessons: 12,
+    students: 312,
+    imgSrc: '/course1.jpeg',
+    category: ['Tech', 'Contemporary'],
+    price: 39.0,
+    description:
+      "Whether you're a beginner or an experienced developer, explore hands-on tutorials, real-world projects, and expert insights to level up your skills. Start building, debugging, and innovating today!",
+    createdAt: '2024-01-15',
+  },
+];
+
 export const TESTIMONIALS = [
   {
     id: 1,
@@ -127,7 +211,12 @@ export const TESTIMONIALS = [
   },
 ] as const;
 
-import type { Feature, FooterColumn, SocialLink } from '@/lib/definitions';
+import type {
+  CourseInfoProps,
+  Feature,
+  FooterColumn,
+  SocialLink,
+} from '@/lib/definitions';
 import {
   BsChatSquareText,
   BsBook,

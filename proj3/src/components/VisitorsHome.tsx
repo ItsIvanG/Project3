@@ -19,14 +19,14 @@ export function VisitorsHome() {
         <div className='flex flex-col w-full lg:flex-row gap-5 lg:gap-7'>
           <Link
             href='/login'
-            className='text-xl text-nowrap lg:text-2xl rounded-full bg-primary hover:bg-primary/90 text-secondary md:px-10 py-3'
+            className='text-nowrap text-lg lg:text-2xl rounded-full bg-primary hover:bg-primary/90 text-secondary md:px-10 py-3'
           >
             Get started
           </Link>
           <div className='w-full justify-center lg:justify-start flex flex-row items-center gap-3 font-semibold'>
             <Link
               href='/'
-              className='flex items-center justify-center rounded-full bg-red-600 hover:bg-red-700 text-secondary text-2xl p-3'
+              className='flex items-center justify-center rounded-full bg-red-600 hover:bg-red-700 text-secondary text-lg lg:text-2xl p-3'
             >
               <FaPlay className='text-white' />
             </Link>

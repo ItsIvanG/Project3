@@ -1,4 +1,5 @@
 'use client';
+import { useRouter } from 'next/navigation';
 
 import * as React from 'react';
 import Link from 'next/link';
@@ -17,6 +18,12 @@ export function VisitorsNavbar() {
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
   };
+
+  // const router = useRouter();
+
+  // const redirect = (url: string) => {
+  //   router.push(url);
+  // };
 
   return (
     <div className='fixed top-0 left-0 right-0 w-full bg-secondary shadow-md z-30'>
@@ -38,9 +45,10 @@ export function VisitorsNavbar() {
           <div className='hidden md:flex items-center'>
             {VISITORS_NAVBAR.map((nav) => (
               <Link
-                key={nav.key}
                 href={nav.href}
-                className='px-6 py-2 rounded-full text-md font-medium bg-secondary text-primary hover:bg-primary/5'
+                key={nav.key}
+                // onClick={() => redirect(nav.href)}
+                className='px-6 py-2 rounded-full text-md font-medium bg-secondary text-primary hover:bg-primary/5 no-underline hover:no-underline'
               >
                 {nav.label}
               </Link>

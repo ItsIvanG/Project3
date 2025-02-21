@@ -14,7 +14,7 @@ import type { Testimonial } from '@/lib/definitions';
 
 export function VisitorsTestimonials() {
   return (
-    <div className='w-full px-16 sm:px-24 py-20 min-h-screen flex justify-center items-center bg-secondary'>
+    <div className='w-full px-16 sm:px-24 py-10 sm:py-20 h-fit lg:min-h-screen flex justify-center items-center bg-secondary'>
       <div className='flex flex-col justify-center items-center gap-10 sm:gap-16 w-full h-full'>
         <h2 className='text-center text-4xl sm:text-5xl font-semibold'>
           Taught By The Best
@@ -46,7 +46,7 @@ export function VisitorsTestimonials() {
                   {/* Testimonial Content on the Right */}
                   <div className='w-full lg:w-[60%] space-y-4 text-center lg:text-left'>
                     <FaQuoteLeft className='w-6 h-6 sm:w-10 sm:h-10 lg:w-16 lg:h-16 text-primary' />
-                    <blockquote className='text-base sm:text-xl lg:text-3xl leading-tight sm:leading-relaxed text-primary'>
+                    <blockquote className='text-base sm:text-xl xl:text-3xl leading-tight sm:leading-relaxed text-primary'>
                       {testimonial.quote}
                     </blockquote>
                     <div className=''>
