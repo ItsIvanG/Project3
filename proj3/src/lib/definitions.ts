@@ -3,6 +3,7 @@ export interface Register {
   last_name: string;
   email: string;
   password: string;
+  otp: string;
 }
 
 export interface LoginAcc {
@@ -12,13 +13,77 @@ export interface LoginAcc {
 
 export interface ForgotPassword {
   email: string;
-}
-
-export interface PasswordReset {
   otp: string;
-}
-
-export interface SetNewPassword {
   password: string;
   confirmpass: string;
+}
+
+export interface VisitorCourse {
+  id: string;
+  imgSrc: string;
+  label: string;
+}
+
+export interface CourseCardProps {
+  id: string;
+  title: string;
+  rating: number;
+  totalRatings: number;
+  lessons: number;
+  students: number;
+  imgSrc?: string;
+}
+
+export interface CourseInfoProps {
+  id: string;
+  title: string;
+  rating: number;
+  totalRatings: number;
+  lessons: number;
+  students: number;
+  imgSrc?: string;
+  category: string[];
+  price: number;
+  description: string;
+  createdAt: string; // Adding this for sorting functionality
+}
+
+export interface VisitorAnalyticsProps {
+  id: string;
+  imgSrc: string;
+  value: string | number;
+  label: string;
+}
+
+export interface Testimonial {
+  id: number;
+  name: string;
+  role: string;
+  quote: string;
+  image: string;
+}
+
+import type React from 'react';
+export interface Feature {
+  id: number;
+  title: string;
+  description: string;
+  icon: React.ElementType; // Changed to accept React component type
+  iconBgColor: string;
+}
+
+export interface FooterLink {
+  label: string;
+  href: string;
+}
+
+export interface FooterColumn {
+  title: string;
+  links: FooterLink[];
+}
+
+export interface SocialLink {
+  label: string;
+  href: string;
+  icon: React.ElementType;
 }
