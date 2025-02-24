@@ -167,8 +167,25 @@ export const ALL_COURSES = [
   },
 ];
 
-export const CourseInfos: CourseInfoProps[] = [
-  {
+// export const CourseInfos: CourseInfoHeader[] = [
+//   {
+//     id: '1',
+//     title: 'Introduction to Programming',
+//     rating: 4.5,
+//     totalRatings: 312,
+//     lessons: 12,
+//     students: 312,
+//     imgSrc: '/course1.jpeg',
+//     category: ['Tech', 'Contemporary'],
+//     price: 39.0,
+//     description:
+//       "Whether you're a beginner or an experienced developer, explore hands-on tutorials, real-world projects, and expert insights to level up your skills. Start building, debugging, and innovating today!",
+//     createdAt: '2024-01-15',
+//   },
+// ];
+
+export const CourseInfos: CourseInfoProps = {
+  courseInfoHeader: {
     id: '1',
     title: 'Introduction to Programming',
     rating: 4.5,
@@ -182,7 +199,31 @@ export const CourseInfos: CourseInfoProps[] = [
       "Whether you're a beginner or an experienced developer, explore hands-on tutorials, real-world projects, and expert insights to level up your skills. Start building, debugging, and innovating today!",
     createdAt: '2024-01-15',
   },
-];
+  expOutcomes: [
+    'Fundamentals of Programming – Understand key concepts like variables, data types, loops, and functions.',
+    'Problem-Solving Techniques – Learn how to break down complex problems and write efficient code.',
+    'Hands-on Coding – Build real-world projects and practice coding through interactive exercises.',
+    'Debugging and Optimization – Identify errors, troubleshoot issues, and improve code performance.',
+    'Version Control with Git – Learn the basics of Git and GitHub for collaboration and project management.',
+    'Best Practices & Code Efficiency – Write clean, maintainable, and scalable code.',
+    'Introduction to Frameworks & Libraries – Explore popular tools to enhance development speed and functionality.',
+  ],
+  courseResources: [
+    { title: 'Keys to Success', createdAt: '2024-03-04', type: 'Video' },
+    { title: 'Chapter 1', createdAt: '2024-03-04', type: 'Document' },
+    { title: 'Chapter 2', createdAt: '2024-03-04', type: 'Document' },
+    { title: 'Chapter 3', createdAt: '2024-03-04', type: 'Document' },
+  ],
+  courseIncludes: [
+    { icon: '>', inclusion: '26.5 hours on-demand video' },
+    { icon: '>', inclusion: '1 practice test' },
+    { icon: '>', inclusion: 'Assignments' },
+    { icon: '>', inclusion: '1 article' },
+    { icon: '>', inclusion: '193 downloadable resources' },
+    { icon: '>', inclusion: 'Access on mobile and TV' },
+    { icon: '>', inclusion: 'Certificate of completion' },
+  ],
+};
 
 export const TESTIMONIALS = [
   {
@@ -212,6 +253,7 @@ export const TESTIMONIALS = [
 ] as const;
 
 import type {
+  CourseInfoHeader,
   CourseInfoProps,
   Feature,
   FooterColumn,

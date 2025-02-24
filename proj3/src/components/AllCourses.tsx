@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import type { CourseCardProps } from '@/lib/definitions';
 import { useRouter } from 'next/navigation';
 import {
+  ReusableSelect,
   Select,
   SelectContent,
   SelectGroup,
@@ -12,6 +13,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from './ui/select';
+import { DropdownMenuCheckboxItemProps } from '@radix-ui/react-dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from './ui/dropdown-menu';
+import { Button } from './ui/button';
+import React from 'react';
 
 function CourseCard({
   id,
@@ -92,7 +104,7 @@ function CourseCard({
 
 export function AllCourses() {
   return (
-    <div className='bg-secondary min-h-screen px-10 lg:px-16 xl:px-28 pt-28 w-full mx-auto flex flex-col'>
+    <div className='bg-secondary px-10 lg:px-16 xl:px-28 py-32 mx-auto flex flex-col'>
       <div className='flex flex-col justify-center items-center gap-10 w-full'>
         <div className='flex flex-col md:flex-row justify-start md:justify-between w-full md:items-end gap-3 md:gap-0'>
           <div>
@@ -103,41 +115,71 @@ export function AllCourses() {
               Navigate through the courses you might want to learn.
             </p>
           </div>
-          <div className='w-full md:w-auto'>
-            <Select defaultValue='popular'>
-              <SelectTrigger className='w-full md:w-[200px] bg-secondary border-primary/90'>
-                <SelectValue placeholder='Sort by Most Popular' />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectItem
-                    value='popular'
-                    className='data-[state=checked]:bg-primary/5 data-[state=checked]:text-primary'
-                  >
-                    Most Popular
-                  </SelectItem>
-                  <SelectItem
-                    value='rated'
-                    className='data-[state=checked]:bg-primary/5 data-[state=checked]:text-primary'
-                  >
-                    Highest Rated
-                  </SelectItem>
-                  <SelectItem
-                    value='recent'
-                    className='data-[state=checked]:bg-primary/5 data-[state=checked]:text-primary'
-                  >
-                    Recently Uploaded
-                  </SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
+          <div className='flex flex-row gap-3'>
+            <div className='w-full md:w-auto'>
+              <ReusableSelect
+                items={[
+                  {
+                    name: 'All Categories',
+                    action: () => {},
+                  },
+                  {
+                    name: 'Web Development',
+                    action: () => {},
+                  },
+                  {
+                    name: 'Business',
+                    action: () => {},
+                  },
+                  {
+                    name: 'Machine Learning',
+                    action: () => {},
+                  },
+                  {
+                    name: 'Data Science',
+                    action: () => {},
+                  },
+                  {
+                    name: 'Cybersecurity',
+                    action: () => {},
+                  },
+                ]}
+              />
+            </div>
+            <div className='w-full md:w-auto'>
+              <ReusableSelect
+                items={[
+                  {
+                    name: 'All Courses',
+                    action: () => {},
+                  },
+                  {
+                    name: 'Most Popular',
+                    action: () => {},
+                  },
+                  {
+                    name: 'Highest Rated',
+                    action: () => {},
+                  },
+                  {
+                    name: 'Recently Uploaded',
+                    action: () => {},
+                  },
+                ]}
+              />
+            </div>
           </div>
         </div>
 
         {/* Grid Layout for Course Cards */}
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full'>
           {ALL_COURSES.map((course: CourseCardProps) => (
-            <CourseCard key={course.id} {...course} />
+            <div
+              key={course.id}
+              className='transition-transform duration-300 hover:scale-x-100'
+            >
+              <CourseCard {...course} />
+            </div>
           ))}
         </div>
       </div>
