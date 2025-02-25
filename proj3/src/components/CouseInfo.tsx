@@ -12,6 +12,8 @@ import type {
 import { CourseInfos } from '@/app/constants';
 import { Button } from './ui/button';
 import { useState } from 'react';
+import Image from 'next/image';
+import { IoIosArrowForward } from 'react-icons/io';
 
 function CourseInfosCard({
   id,
@@ -48,8 +50,8 @@ function CourseInfosCard({
             {category.map((cat) => (
               <Badge
                 key={cat}
-                variant='secondary'
-                className='rounded-full text-xs sm:text-[10px] md:text-sm'
+                variant='outline'
+                className='rounded-full border border-primary text-xs sm:text-[10px] md:text-sm'
               >
                 {cat}
               </Badge>
@@ -109,22 +111,28 @@ function CourseInfosCard({
 }
 function CourseIncludes({ icon, inclusion }: CourseInclusion) {
   return (
-    <div className='ml-4'>
-      <span className='mr-2'>{icon}</span>
-      {inclusion}
+    <div className='ml-4 flex flex-row mb-2 items-center'>
+      <Image className='mr-4' src={icon} alt={'•'} height={0} width={26} />
+      <span className='text-xs sm:text-sm md:text-base lg:text-lg'>
+        {inclusion}
+      </span>
     </div>
   );
 }
 
 function CourseResource({ title, createdAt, type }: CourseResources) {
   return (
-    <div className='border flex flex-row'>
-      <div>
-        <span>{title}</span>
-        <span>{createdAt}</span>
-        <div>{type}</div>
+    <div className='border border-primary/30 flex flex-row items-center justify-between p-3 rounded-lg cursor-pointer hover:bg-primary/5'>
+      <div className='flex flex-col'>
+        <span className='font-bold text-base text-primary'>{title}</span>
+        <span className='text-sm text-primary'>{createdAt}</span>
+        <div className='text-sm bg-primary text-secondary rounded-full flex justify-center p-1 px-6'>
+          {type}
+        </div>
       </div>
-      <div>{'>'}</div>
+      <div className='flex items-center justify-center bg-primary text-secondary w-7 h-7 rounded-full'>
+        <IoIosArrowForward className='text-lg' />
+      </div>
     </div>
   );
 }
@@ -138,7 +146,7 @@ export default function CourseInfo() {
     data;
 
   return (
-    <div className='bg-secondary px-4 lg:px-16 xl:px-28 py-32 w-full mx-auto flex flex-col '>
+    <div className='bg-secondary px-4 lg:px-16 xl:px-28 py-32 w-full mx-auto flex flex-col gap-10'>
       <CourseInfosCard
         id={courseInfoHeader.id}
         title={courseInfoHeader.title}
@@ -152,35 +160,48 @@ export default function CourseInfo() {
         createdAt={courseInfoHeader.createdAt}
       />
       <div className='w-full'>
-        <p>Expected Outcomes</p>
+        <p className='font-bold text-xl md:text-3xl text-primary mb-3'>
+          Expected Outcomes:
+        </p>
         {expOutcomes.map((outcome, index) => {
           return (
             <div key={index} className='ml-4'>
-              • <span className='ml-2'>{outcome}</span>
+              •{' '}
+              <span className='ml-2 text-xs sm:text-sm md:text-base lg:text-lg'>
+                {outcome}
+              </span>
             </div>
           );
         })}
       </div>
       <div className='w-full'>
-        <p>Course Includes</p>
-        {courseIncludes.map(({ icon, inclusion }, index) => {
-          return (
-            <CourseIncludes key={index} icon={icon} inclusion={inclusion} />
-          );
-        })}
+        <p className='font-bold text-xl md:text-3xl text-primary mb-3'>
+          Course Includes
+        </p>
+        <div className='w-full grid grid-cols-1 md:grid-cols-2'>
+          {courseIncludes.map(({ icon, inclusion }, index) => {
+            return (
+              <CourseIncludes key={index} icon={icon} inclusion={inclusion} />
+            );
+          })}
+        </div>
       </div>
       <div className='w-full'>
-        <p>Resources</p>
-        {courseResources.map(({ title, createdAt, type }, index) => {
-          return (
-            <CourseResource
-              key={index}
-              title={title}
-              createdAt={createdAt}
-              type={type}
-            />
-          );
-        })}
+        <p className='font-bold text-xl md:text-3xl text-primary mb-3'>
+          Resources
+        </p>
+        <div className='w-full grid grid-cols-1 md:grid-cols-2 gap-3 '>
+          {courseResources.map(({ title, createdAt, type }, index) => {
+            return (
+              <CourseResource
+                key={index}
+                title={title}
+                createdAt={createdAt}
+                type={type}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

@@ -24,6 +24,7 @@ import {
 } from './ui/dropdown-menu';
 import { Button } from './ui/button';
 import React from 'react';
+import { VisitorsMotto } from './VisitorsMotto';
 
 function CourseCard({
   id,
@@ -41,7 +42,7 @@ function CourseCard({
   };
   return (
     <Card
-      className='w-full overflow-hidden group hover:shadow-lg transition-shadow cursor-pointer'
+      className='w-full group hover:shadow-lg cursor-pointer transition-transform hover:scale-105 overflow-hidden duration-300 ease-in-out'
       onClick={() => redirect(id)}
     >
       <div className='relative h-40 bg-gradient-to-br from-blue-600 to-purple-600 overflow-hidden'>
@@ -106,6 +107,15 @@ export function AllCourses() {
   return (
     <div className='bg-secondary px-10 lg:px-16 xl:px-28 py-32 mx-auto flex flex-col'>
       <div className='flex flex-col justify-center items-center gap-10 w-full'>
+        <div className='w-full h-fit bg-primary p-10 md:p-14 flex justify-center items-center'>
+          <div className='w-full h-full flex-col flex text-center justify-center items-center gap-10'>
+            <div>
+              <p className='font-extrabold text-4xl lg:text-7xl text-secondary'>
+                LEARN. MANAGE. GROW.
+              </p>
+            </div>
+          </div>
+        </div>
         <div className='flex flex-col md:flex-row justify-start md:justify-between w-full md:items-end gap-3 md:gap-0'>
           <div>
             <h2 className='font-semibold text-3xl md:text-5xl text-primary'>

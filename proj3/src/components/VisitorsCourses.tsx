@@ -30,7 +30,7 @@ function CourseCard({
 
   return (
     <Card
-      className='w-full overflow-hidden group hover:shadow-lg transition-shadow cursor-pointer'
+      className='w-full overflow-hidden group hover:shadow-lg transition-transform hover:scale-105 duration-300 ease-in-out cursor-pointer'
       onClick={() => redirect(id)}
     >
       <div className='relative h-40 bg-gradient-to-br from-blue-600 to-purple-600 overflow-hidden'>
@@ -112,7 +112,7 @@ export function VisitorsCourses() {
               </p>
             </div>
 
-            <div className='grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-4 md:gap-8 '>
+            <div className='grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-4 md:gap-8 overflow-visible'>
               {VISITORS_COURSES.map((course: VisitorCourse) => (
                 <Card
                   key={course.id}
@@ -145,7 +145,7 @@ export function VisitorsCourses() {
           </div>
 
           <div className='w-full flex flex-col justify-center items-center'>
-            <div className='w-full flex justify-end items-center p-3'>
+            <div className='w-full flex justify-end items-center'>
               <Link
                 href='/courses'
                 className='font-semibold text-primary text-md hover:underline'
@@ -158,9 +158,9 @@ export function VisitorsCourses() {
                 align: 'start',
                 loop: false,
               }}
-              className='w-full max-w-sm sm:max-w-xl md:max-w-3xl lg:max-w-full'
+              className='w-full max-w-sm sm:max-w-xl md:max-w-3xl lg:max-w-full overflow-visible'
             >
-              <CarouselContent className='-ml-4 flex '>
+              <CarouselContent className='-ml-4 flex overflow-visible p-5'>
                 {POPULAR_COURSES.map((course: CourseCardProps) => (
                   <CarouselItem
                     key={course.id}

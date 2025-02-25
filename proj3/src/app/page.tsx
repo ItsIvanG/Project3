@@ -3,7 +3,7 @@ import { VisitorsAbout } from '@/components/VisitorsAbout';
 import { VisitorsAnalytics } from '@/components/VisitorsAnalytics';
 import { VisitorsCourses } from '@/components/VisitorsCourses';
 import { VisitorsHome } from '@/components/VisitorsHome';
-import { VisitorsNavbar } from '@/components/VisitorsNavbar';
+import { VisitorsNavbar } from '@/components/Navbar';
 import { VisitorsTestimonials } from '@/components/VisitorsTestimonials';
 import { VisitorsQualities } from '@/components/VisitorsQualities';
 import { VisitorsMotto } from '@/components/VisitorsMotto';

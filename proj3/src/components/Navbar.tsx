@@ -11,9 +11,13 @@ import { RiCloseFill } from 'react-icons/ri';
 import { VISITORS_NAVBAR } from '@/app/constants';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
+import { ReusableDropdown } from './ui/dropdown-menu';
 
-export function VisitorsNavbar() {
+export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
+
+  //state to track if there is logged in user
+  const [isLoggedIn, setisLoggedIn] = React.useState(true);
 
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
@@ -21,9 +25,46 @@ export function VisitorsNavbar() {
 
   // const router = useRouter();
 
-  // const redirect = (url: string) => {
+  // const redirect =
+  //(url: string) => {
   //   router.push(url);
   // };
+
+  let links = isLoggedIn
+    ? [
+        {
+          type: 'default',
+          href: '/studentdashboard',
+          key: 'dashboard',
+          label: 'Dashboard',
+        },
+        {
+          type: 'dropdown',
+          key: 'course',
+          dropDown: {
+            label: 'Courses',
+            items: [
+              {
+                label: 'All Courses',
+                href: '/courses',
+              },
+              {
+                label: 'My Courses',
+                href: '/courses/myCourses',
+              },
+            ],
+          },
+        },
+      ]
+    : [
+        {
+          type: 'default',
+          href: '/#visitor_courses',
+          key: 'course',
+          label: 'Course',
+        },
+        { type: 'default', href: '/#about', key: 'about', label: 'About' },
+      ];
 
   return (
     <div className='fixed top-0 left-0 right-0 w-full bg-secondary shadow-md z-30'>
@@ -42,17 +83,27 @@ export function VisitorsNavbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className='hidden md:flex items-center'>
-            {VISITORS_NAVBAR.map((nav) => (
-              <Link
-                href={nav.href}
-                key={nav.key}
-                // onClick={() => redirect(nav.href)}
-                className='px-6 py-2 rounded-full text-md font-medium bg-secondary text-primary hover:bg-primary/5 no-underline hover:no-underline'
-              >
-                {nav.label}
-              </Link>
-            ))}
+          <div className='hidden md:flex items-center space-x-2'>
+            {links.map((nav, index) => {
+              let type = nav.type;
+              return (
+                <React.Fragment key={index}>
+                  {type === 'dropdown' ? (
+                    <ReusableDropdown
+                      label={nav.dropDown?.label}
+                      items={nav.dropDown?.items}
+                    />
+                  ) : (
+                    <Link
+                      href={nav.href || ''}
+                      className='px-6 py-2 rounded-full text-md font-medium bg-secondary text-primary hover:bg-primary/5 no-underline hover:no-underline'
+                    >
+                      {nav.label}
+                    </Link>
+                  )}
+                </React.Fragment>
+              );
+            })}
           </div>
         </div>
 
@@ -71,18 +122,24 @@ export function VisitorsNavbar() {
           </div>
 
           {/* Auth Buttons */}
-          <Link
-            href='/login'
-            className='px-6 py-2 rounded-full text-md font-medium bg-secondary text-primary hover:bg-primary/5'
-          >
-            Sign In
-          </Link>
-          <Link
-            href='/signup'
-            className='px-6 py-2 rounded-full text-md font-medium bg-primary text-secondary hover:bg-primary/90'
-          >
-            Sign Up
-          </Link>
+          {!isLoggedIn && (
+            <>
+              <Link
+                href='/login'
+                className='px-6 py-2 rounded-full text-md font-medium bg-secondary text-primary hover:bg-primary/5'
+              >
+                Sign In
+              </Link>
+              <Link
+                href='/signup'
+                className='px-6 py-2 rounded-full text-md font-medium bg-primary text-secondary hover:bg-primary/90'
+              >
+                Sign Up
+              </Link>
+            </>
+          )}
+
+          {isLoggedIn && <div>{/* dito lalagay ung profile dp */}</div>}
         </div>
 
         {/* Mobile Menu Button */}
