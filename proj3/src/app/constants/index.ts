@@ -215,13 +215,13 @@ export const CourseInfos: CourseInfoProps = {
     { title: 'Chapter 3', createdAt: '2024-03-04', type: 'Document' },
   ],
   courseIncludes: [
-    { icon: '>', inclusion: '26.5 hours on-demand video' },
-    { icon: '>', inclusion: '1 practice test' },
-    { icon: '>', inclusion: 'Assignments' },
-    { icon: '>', inclusion: '1 article' },
-    { icon: '>', inclusion: '193 downloadable resources' },
-    { icon: '>', inclusion: 'Access on mobile and TV' },
-    { icon: '>', inclusion: 'Certificate of completion' },
+    { icon: '/video.png', inclusion: '26.5 hours on-demand video' },
+    { icon: '/question.png', inclusion: '1 practice test' },
+    { icon: '/assign.png', inclusion: 'Assignments' },
+    { icon: '/article.png', inclusion: '1 article' },
+    { icon: '/download.png', inclusion: '193 downloadable resources' },
+    { icon: '/mobile.png', inclusion: 'Access on mobile and TV' },
+    { icon: '/trophy.png', inclusion: 'Certificate of completion' },
   ],
 };
 

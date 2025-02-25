@@ -7,6 +7,7 @@ import { Check, ChevronRight, Circle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from './button';
 import { DropdownMenuCheckboxItemProps } from '@radix-ui/react-dropdown-menu';
+import Link from 'next/link';
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
 
@@ -184,6 +185,35 @@ const DropdownMenuShortcut = ({
 };
 DropdownMenuShortcut.displayName = 'DropdownMenuShortcut';
 
+interface ReusableDropdownInterface {
+  label: string | undefined;
+  items: { label: string; href: string }[] | undefined;
+}
+
+const ReusableDropdown = ({ label, items }: ReusableDropdownInterface) => {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant='ghost'
+          className='px-6 py-2 rounded-full text-md font-medium bg-secondary text-primary hover:bg-primary/5 no-underline hover:no-underline border-none focus-none'
+        >
+          {label}
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align='start'>
+        {items?.map((item, index) => {
+          return (
+            <DropdownMenuItem key={index}>
+              <Link href={item.href}>{item.label}</Link>
+            </DropdownMenuItem>
+          );
+        })}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
+
 export {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -200,4 +230,5 @@ export {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuRadioGroup,
+  ReusableDropdown,
 };
