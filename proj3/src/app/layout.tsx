@@ -1,18 +1,19 @@
-import type { Metadata } from 'next';
-import { Nunito_Sans } from 'next/font/google';
-import './globals.css';
-import { ThemeProvider } from '@/components/theme-provider';
+import type { Metadata } from "next";
+import { Nunito_Sans } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 const nunitoSans = Nunito_Sans({
-  subsets: ['latin'],
-  weight: ['400', '700'], // Customize weights if needed
-  variable: '--font-nunito-sans', // Allows usage in CSS
+  subsets: ["latin"],
+  weight: ["400", "700"], // Customize weights if needed
+  variable: "--font-nunito-sans", // Allows usage in CSS
 });
 
 export const metadata: Metadata = {
-  title: 'Keystone Business Builders',
-  description: '',
-  icons: '/favicon.ico',
+  title: "Keystone Business Builders",
+  description: "",
+  icons: "/favicon.ico",
 };
 
 export default function RootLayout({
@@ -21,19 +22,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' suppressHydrationWarning className={nunitoSans.variable}>
+    <html lang="en" suppressHydrationWarning className={nunitoSans.variable}>
       <head>
-        <link rel='icon' type='image/png' href='/favicon.png' />
+        <link rel="icon" type="image/png" href="/favicon.png" />
       </head>
       <body className={nunitoSans.className}>
         <ThemeProvider
-          attribute='class'
-          defaultTheme='system'
+          attribute="class"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
           {children}
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   );
