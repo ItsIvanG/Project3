@@ -12,9 +12,14 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { Input } from "./ui/input";
 import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
+import { useUserStore } from "../store";
 
 export default function Login() {
   // const { toast } = useToast();
+  const router = useRouter();
+  const setName = useUserStore((state) => state.setName);
+  const setRole = useUserStore((state) => state.setRole);
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const methods = useForm<LoginAcc>({
@@ -54,6 +59,17 @@ export default function Login() {
             "No response message"
         ),
       });
+
+      if (responseData?.statusCode === 200) {
+        setName(responseData?.body?.full_name);
+        setRole(responseData?.body?.role);
+      }
+
+      if (responseData?.body?.role === "instructor") {
+        router.push("/instructor/settings");
+      } else if (responseData?.body?.role === "student") {
+        router.push("/");
+      }
       reset(); // Reset the form after successful submission
     } catch (error) {
       console.error("Error creating account", error);

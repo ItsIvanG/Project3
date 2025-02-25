@@ -12,6 +12,8 @@ import { VISITORS_NAVBAR } from "@/app/constants";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import UserBadge from "@/custom/UserBadge";
+import { ModeToggle } from "@/custom/dark_toggle";
+import { useUserStore } from "@/store";
 
 export function VisitorsNavbar() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -25,7 +27,8 @@ export function VisitorsNavbar() {
   // const redirect = (url: string) => {
   //   router.push(url);
   // };
-
+  const name = useUserStore((state) => state.name);
+  const role = useUserStore((state) => state.role);
   return (
     <div className="fixed top-0 left-0 right-0 w-full bg-secondary shadow-md z-30">
       <div className="px-5 md:px-14 py-3 w-full flex items-center justify-between">
@@ -84,7 +87,10 @@ export function VisitorsNavbar() {
           >
             Sign Up
           </Link>
-          <UserBadge name="John Doe" pic="hahah" />
+          {/* TODO: GET USER PICTURE */}
+
+          <UserBadge name={name} pic="hahah" role={role} />
+          <ModeToggle />
         </div>
 
         {/* Mobile Menu Button */}
