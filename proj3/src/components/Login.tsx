@@ -70,7 +70,7 @@ export default function Login() {
       } else if (responseData?.body?.role === "student") {
         router.push("/");
       }
-      reset(); // Reset the form after successful submission
+      // reset(); // Reset the form after successful submission
     } catch (error) {
       console.error("Error creating account", error);
     }
