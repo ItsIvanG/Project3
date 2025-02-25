@@ -34,7 +34,7 @@ export interface CourseCardProps {
   imgSrc?: string;
 }
 
-export interface CourseInfoProps {
+export interface CourseInfoHeader {
   id: string;
   title: string;
   rating: number;
@@ -46,6 +46,24 @@ export interface CourseInfoProps {
   price: number;
   description: string;
   createdAt: string; // Adding this for sorting functionality
+}
+
+export interface CourseResources {
+  title: string;
+  createdAt: string;
+  type: string;
+}
+
+export interface CourseInclusion {
+  icon: string;
+  inclusion: string;
+}
+
+export interface CourseInfoProps {
+  courseInfoHeader: CourseInfoHeader;
+  expOutcomes: string[];
+  courseIncludes: CourseInclusion[];
+  courseResources: CourseResources[];
 }
 
 export interface VisitorAnalyticsProps {

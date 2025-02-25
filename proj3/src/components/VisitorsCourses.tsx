@@ -1,3 +1,4 @@
+'use client';
 import { VISITORS_COURSES, POPULAR_COURSES } from '@/app/constants';
 import { Star, Users, MonitorPlay } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
@@ -10,8 +11,10 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 function CourseCard({
+  id,
   title,
   rating,
   totalRatings,
@@ -19,8 +22,17 @@ function CourseCard({
   students,
   imgSrc,
 }: CourseCardProps) {
+  const router = useRouter();
+
+  const redirect = (id: string) => {
+    router.push(`/courses/${id}/view`);
+  };
+
   return (
-    <Card className='w-full overflow-hidden group hover:shadow-lg transition-shadow'>
+    <Card
+      className='w-full overflow-hidden group hover:shadow-lg transition-shadow cursor-pointer'
+      onClick={() => redirect(id)}
+    >
       <div className='relative h-40 bg-gradient-to-br from-blue-600 to-purple-600 overflow-hidden'>
         {imgSrc ? (
           <img
