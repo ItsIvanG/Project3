@@ -167,23 +167,6 @@ export const ALL_COURSES = [
   },
 ];
 
-// export const CourseInfos: CourseInfoHeader[] = [
-//   {
-//     id: '1',
-//     title: 'Introduction to Programming',
-//     rating: 4.5,
-//     totalRatings: 312,
-//     lessons: 12,
-//     students: 312,
-//     imgSrc: '/course1.jpeg',
-//     category: ['Tech', 'Contemporary'],
-//     price: 39.0,
-//     description:
-//       "Whether you're a beginner or an experienced developer, explore hands-on tutorials, real-world projects, and expert insights to level up your skills. Start building, debugging, and innovating today!",
-//     createdAt: '2024-01-15',
-//   },
-// ];
-
 export const CourseInfos: CourseInfoProps = {
   courseInfoHeader: {
     id: '1',
@@ -225,6 +208,84 @@ export const CourseInfos: CourseInfoProps = {
   ],
 };
 
+export const DashboardInfos: DashboardStats = {
+  recentlyEnrolled: [
+    {
+      id: '1',
+      imgSrc: '/course1.jpeg',
+      author: 'Ivan Gonzales',
+      title: 'Introduction to Programming',
+      finishedPercentage: 25,
+      finishedOverTotal: '1/10',
+    },
+    {
+      id: '2',
+      imgSrc: '/course3.jpeg',
+      author: 'Hanah Espineda',
+      title: 'Data Science',
+      finishedPercentage: 55,
+      finishedOverTotal: '1/10',
+    },
+    {
+      id: '3',
+      imgSrc: '/course5.jpeg',
+      author: 'Danielle Castaneda',
+      title: 'UI/UX Design',
+      finishedPercentage: 75,
+      finishedOverTotal: '1/10',
+    },
+    {
+      id: '4',
+      imgSrc: '/course4.jpeg',
+      author: 'Therese Gaspar',
+      title: 'Software Testing',
+      finishedPercentage: 39,
+      finishedOverTotal: '1/10',
+    },
+    {
+      id: '5',
+      imgSrc: '/course1.jpeg',
+      author: 'Zyrille Quilit',
+      title: 'Back End Development',
+      finishedPercentage: 10,
+      finishedOverTotal: '1/10',
+    },
+    {
+      id: '6',
+      imgSrc: '/course1.jpeg',
+      author: 'Francis Berjuega',
+      title: 'Front End Development',
+      finishedPercentage: 40,
+      finishedOverTotal: '1/10',
+    },
+    {
+      id: '7',
+      imgSrc: '/course7.jpeg',
+      author: 'Hanah Espineda',
+      title: 'Project Management',
+      finishedPercentage: 100,
+      finishedOverTotal: '1/10',
+    },
+  ],
+  chart: [
+    {
+      name: 'Completed',
+      value: 80,
+      fill: 'bg-primary',
+    },
+    {
+      name: 'Remaining',
+      value: 20,
+      fill: 'hsl(220, 14%, 96%)',
+    },
+  ],
+  statscard: [
+    { icon: '/course.png', title: 'Course Completed', value: '3' },
+    { icon: '/lesson.png', title: 'Lessons Viewed', value: '9' },
+    { icon: '/cert.png', title: 'Certificates Earned', value: '3' },
+  ],
+};
+
 export const TESTIMONIALS = [
   {
     id: 1,
@@ -255,6 +316,7 @@ export const TESTIMONIALS = [
 import type {
   CourseInfoHeader,
   CourseInfoProps,
+  DashboardStats,
   Feature,
   FooterColumn,
   SocialLink,

@@ -3,6 +3,8 @@
 import { Star, Users, MonitorPlay } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { useRouter } from 'next/navigation';
+import { useUserStore } from '@/store';
 import type {
   CourseInclusion,
   CourseInfoHeader,
@@ -27,8 +29,19 @@ function CourseInfosCard({
   price,
   description,
 }: CourseInfoHeader) {
+  const router = useRouter();
+  const name = useUserStore((state) => state.name);
+  const isLoggedIn = name !== ''; // Check if user is logged in
+
+  const handlePurchaseClick = () => {
+    if (!isLoggedIn) {
+      router.push('/login'); // Redirect to login if not logged in
+    } else {
+      router.push(`/payment/${id}`); // Redirect to payment page with course ID
+    }
+  };
   return (
-    <Card className='w-full overflow-hidden h-fit xl:h-2/3 shadow-md '>
+    <Card className='w-full overflow-hidden h-fit xl:h-2/3 shadow'>
       <div className='w-full h-full flex flex-col lg:flex-row'>
         {/* Course Image */}
         <div className='relative w-full lg:flex-grow lg:w-1/2 overflow-hidden bg-green-400'>
@@ -96,9 +109,9 @@ function CourseInfosCard({
             </div>
           </div>
 
-          {/* Price */}
+          {/* Price & Purchase Button */}
           <div className='mt-auto flex items-end'>
-            <Button className='rounded-full'>
+            <Button className='rounded-full' onClick={handlePurchaseClick}>
               <span className='text-sm sm:text-md lg:text-lg font-bold text-secondary px-7'>
                 ${price.toFixed(2)}
               </span>

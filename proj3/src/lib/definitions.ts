@@ -81,6 +81,7 @@ export interface Testimonial {
   image: string;
 }
 
+import { StringToBoolean } from 'class-variance-authority/types';
 import type React from 'react';
 export interface Feature {
   id: number;
@@ -104,4 +105,31 @@ export interface SocialLink {
   label: string;
   href: string;
   icon: React.ElementType;
+}
+
+export interface ChartDataItem {
+  name: string;
+  value: number;
+  fill: string;
+}
+
+export interface StatsCard {
+  icon: string;
+  title: string;
+  value: string;
+}
+
+export interface EnrolledCourse {
+  id: string;
+  imgSrc: string;
+  author: string;
+  title: string;
+  finishedPercentage: number;
+  finishedOverTotal: string;
+}
+
+export interface DashboardStats {
+  recentlyEnrolled: EnrolledCourse[];
+  chart: ChartDataItem[];
+  statscard: StatsCard[];
 }
