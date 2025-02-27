@@ -20,6 +20,8 @@ export default function Login() {
   const router = useRouter();
   const setName = useUserStore((state) => state.setName);
   const setRole = useUserStore((state) => state.setRole);
+  const setAccountId = useUserStore((state) => state.setAccountId);
+  const accountId = useUserStore((state) => state.accountId);
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const methods = useForm<LoginAcc>({
@@ -63,6 +65,8 @@ export default function Login() {
       if (responseData?.statusCode === 200) {
         setName(responseData?.body?.full_name);
         setRole(responseData?.body?.role);
+        setAccountId(responseData?.body?.account_id);
+        console.log("Logged in with ID: ", accountId);
       }
 
       if (responseData?.body?.role === "instructor") {

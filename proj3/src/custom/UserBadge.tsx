@@ -20,14 +20,18 @@ import { Button } from "@/components/ui/button";
 import { useUserStore } from "@/store";
 import { set } from "date-fns";
 import { toast } from "@/hooks/use-toast";
+import { CardTitle } from "@/components/ui/card";
 
 const UserBadge = ({ name = "Guest", role = "", pic = "" }) => {
   const setName = useUserStore((state) => state.setName);
   const setRole = useUserStore((state) => state.setRole);
+  const setAccountId = useUserStore((state) => state.setAccountId);
+
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const handleSignOut = () => {
     setName("");
     setRole("");
+    setAccountId("");
     toast({ title: "Signed out successfully" });
   };
   return (
@@ -57,12 +61,13 @@ const UserBadge = ({ name = "Guest", role = "", pic = "" }) => {
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Sign out?</DialogTitle>
+            <DialogTitle className=" text-2xl">Sign out?</DialogTitle>
+
             <DialogDescription>
               Are you sure you want to sign out?
             </DialogDescription>
           </DialogHeader>
-          <DialogFooter className="sm:justify-start">
+          <DialogFooter className="justify-end">
             <DialogClose asChild>
               <Button
                 type="button"

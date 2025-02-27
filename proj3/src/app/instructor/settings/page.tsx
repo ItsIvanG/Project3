@@ -14,10 +14,11 @@ export default function Page() {
   const router = useRouter();
 
   useEffect(() => {
-    if (role !== "instructor") {
+    if (role !== "instructor" && role !== "") {
+      console.log("Redirecting to home page, role = ", role);
       router.push("/");
     }
-  });
+  }, [role]);
 
   return (
     <Fragment>
