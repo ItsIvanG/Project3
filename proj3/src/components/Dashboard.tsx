@@ -9,98 +9,32 @@ import { Progress } from './ui/progress';
 import { Button } from './ui/button';
 import { ReusableSelect } from './ui/select';
 import { CheckCircle } from 'lucide-react';
-
-function RecentlyEnrolledComponent({
-  id,
-  imgSrc,
-  author,
-  title,
-  finishedPercentage,
-  finishedOverTotal,
-}: EnrolledCourse) {
-  return (
-    <Card
-      className='w-full group cursor-pointer overflow-hidden'
-      // onClick={() => redirect(id)}
-      //ung course progress pupuntahan neto parang kamukha ng course info
-    >
-      <div className='relative h-40 bg-gradient-to-br from-blue-600 to-purple-600 overflow-hidden'>
-        {imgSrc ? (
-          <img
-            src={imgSrc || '/placeholder.svg'}
-            alt={title}
-            className='w-full h-full object-cover'
-          />
-        ) : (
-          <div className='absolute inset-0 opacity-30'>
-            <div className='absolute inset-0 grid grid-cols-6 gap-2 p-4 transform -skew-y-12'>
-              {Array.from({ length: 24 }).map((_, i) => (
-                <div
-                  key={i}
-                  className='bg-secondary/20 rounded-sm h-8 backdrop-blur-sm'
-                />
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-      <CardHeader className='p-4'>
-        <p className='text-xs text-muted-foreground'>A course by {author}</p>
-        <h3 className='font-semibold text-lg leading-none tracking-tight line-clamp-1'>
-          {title}
-        </h3>
-      </CardHeader>
-      <CardContent className='pb-3 px-3'>
-        <div className='flex flex-col'>
-          <div className='flex flex-row justify-between'>
-            <div>
-              <p className='text-xs text-muted-foreground'>
-                {finishedPercentage}%
-              </p>
-            </div>
-            <div>
-              <p className='text-xs text-muted-foreground'>
-                {finishedOverTotal}
-              </p>
-            </div>
-          </div>
-          <div>
-            <Progress value={finishedPercentage} />
-          </div>
-          <div className='pt-6 flex justify-end'>
-            <Button
-              variant={finishedPercentage === 100 ? 'default' : 'outline'}
-              disabled={finishedPercentage === 100}
-            >
-              {finishedPercentage === 100 ? (
-                <>
-                  <CheckCircle className='w-4 h-4' /> Completed
-                </>
-              ) : (
-                'Resume'
-              )}
-            </Button>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
-}
+import { useRouter } from 'next/navigation';
+import { GrNext } from 'react-icons/gr';
+import RecentlyEnrolledCourses from './RecentlyEnrolledCourses';
+import Link from 'next/link';
 
 function StatsCardComponent({ icon, title, value }: StatsCard) {
   return (
-    <div className='w-full bg-card shadow rounded-lg p-4 flex flex-row gap-4'>
-      <div className='bg-card shadow border rounded-md flex justify-center items-center'>
-        <img src={icon} alt='•' className='h-10 w-10 object-contain p-2' />
-      </div>
-      <div className='flex flex-col'>
-        <div>
-          <p className='text-xl font-bold text-primary'>{value}</p>
+    <div className='w-full bg-card shadow rounded-lg p-4 flex flex-row gap-4 items-center justify-between'>
+      <div className='flex flex-row gap-4 items-center'>
+        <div className='bg-card shadow border rounded-md flex justify-center items-center'>
+          <img src={icon} alt='•' className='h-10 w-10 object-contain p-2' />
         </div>
-        <div>
+        <div className='flex flex-col'>
+          <p className='text-xl font-bold text-primary'>{value}</p>
           <p className='text-sm text-muted-foreground'>{title}</p>
         </div>
       </div>
+      {/* Condition to show the button when title is "Certificate" */}
+      {title === 'Certificates Earned' && (
+        <Link
+          className='bg-primary text-secondary text-xs rounded-full aspect-square p-2 hover:bg-primary/90'
+          href=''
+        >
+          <GrNext />
+        </Link>
+      )}
     </div>
   );
 }
@@ -144,7 +78,11 @@ export default function Dashboard() {
           </div>
           <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5'>
             {recentlyEnrolled.map((myCourse, index) => (
-              <RecentlyEnrolledComponent key={index} {...myCourse} />
+              <RecentlyEnrolledCourses
+                key={index}
+                courses={{ ...myCourse }}
+                fromdashboard={true}
+              />
             ))}
           </div>
         </div>

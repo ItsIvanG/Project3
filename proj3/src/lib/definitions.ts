@@ -26,6 +26,7 @@ export interface VisitorCourse {
 
 export interface CourseCardProps {
   id: string;
+  author: string;
   title: string;
   rating: number;
   totalRatings: number;
@@ -41,17 +42,12 @@ export interface CourseInfoHeader {
   totalRatings: number;
   lessons: number;
   students: number;
+  instructor: string;
   imgSrc?: string;
   category: string[];
   price: number;
   description: string;
   createdAt: string; // Adding this for sorting functionality
-}
-
-export interface CourseResources {
-  title: string;
-  createdAt: string;
-  type: string;
 }
 
 export interface CourseInclusion {
@@ -63,6 +59,76 @@ export interface CourseInfoProps {
   courseInfoHeader: CourseInfoHeader;
   expOutcomes: string[];
   courseIncludes: CourseInclusion[];
+  courseResources: CourseResources[];
+}
+
+// export interface CourseProgressChapters {
+//   chapterName: string;
+//   chapterDuration: string;
+// }
+
+// export interface CourseProgressPercent {
+//   overalPercentage: number;
+// }
+
+// export interface CourseBadges {
+//   badgeIcon: string;
+// }
+
+// export interface CourseDuration {
+//   courseDuration: number;
+// }
+
+// export interface CourseLevel {
+//   courseLevel: string;
+// }
+
+// export interface CourseExercises {
+//   courseNoOfExercise: number;
+// }
+
+export interface CourseInstructor {
+  instructorName: string;
+  profileSrc: string;
+}
+
+export interface ChapterProgress {
+  dateFinished: string | undefined;
+  timeFinished: string | undefined;
+  isFinished: boolean;
+  chapterTitle: string;
+  estHoursToFinish: string;
+}
+
+export interface OverallProgress {
+  overallProgress: number;
+  chaptersProgress: ChapterProgress[];
+}
+
+export interface CourseInfoCard {
+  estimatedHoursToFinish: number;
+  level: string;
+  noOfLabs: string; //if meron
+  achievementBadgesIconSrc: string[];
+  instructor: CourseInstructor;
+}
+
+export interface CourseResources {
+  title: string;
+  createdAt: string;
+  type: string;
+}
+
+export interface CourseTimeline {
+  onlineMeetings: string[];
+  currentDate?: Date;
+}
+
+export interface CourseProgressProps {
+  courseInfoHeader: CourseInfoHeader;
+  overallProgress: OverallProgress;
+  courseInfoCard: CourseInfoCard;
+  courseMeetings: CourseTimeline;
   courseResources: CourseResources[];
 }
 

@@ -15,6 +15,7 @@ import { useRouter } from 'next/navigation';
 
 function CourseCard({
   id,
+  author,
   title,
   rating,
   totalRatings,
@@ -54,6 +55,7 @@ function CourseCard({
         )}
       </div>
       <CardHeader className='pb-3'>
+        <p className='text-xs text-muted-foreground'>A course by {author}</p>
         <h3 className='font-semibold text-lg leading-none tracking-tight'>
           {title}
         </h3>

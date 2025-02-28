@@ -38,6 +38,7 @@ export const VISITORS_COURSES = [
 export const POPULAR_COURSES = [
   {
     id: '1',
+    author: 'Ivan Gonzales',
     title: 'Introduction to Programming',
     imgSrc: '/course1.jpeg',
     rating: 4.5,
@@ -47,6 +48,7 @@ export const POPULAR_COURSES = [
   },
   {
     id: '2',
+    author: 'Ivan Gonzales',
     title: 'Web Development',
     imgSrc: '/course2.jpg',
     rating: 4.7,
@@ -56,6 +58,7 @@ export const POPULAR_COURSES = [
   },
   {
     id: '3',
+    author: 'Ivan Gonzales',
     title: 'Data Science Essentials',
     imgSrc: '/course3.jpeg',
     rating: 4.6,
@@ -65,6 +68,7 @@ export const POPULAR_COURSES = [
   },
   {
     id: '4',
+    author: 'Ivan Gonzales',
     title: 'Machine Learning Basics',
     imgSrc: '/course4.jpeg',
     rating: 4.8,
@@ -74,6 +78,7 @@ export const POPULAR_COURSES = [
   },
   {
     id: '5',
+    author: 'Ivan Gonzales',
     title: 'UX Designing',
     imgSrc: '/course5.jpeg',
     rating: 5.0,
@@ -83,6 +88,7 @@ export const POPULAR_COURSES = [
   },
   {
     id: '6',
+    author: 'Ivan Gonzales',
     title: 'Prototyping',
     imgSrc: '/course6.png',
     rating: 2.6,
@@ -92,6 +98,7 @@ export const POPULAR_COURSES = [
   },
   {
     id: '7',
+    author: 'Ivan Gonzales',
     title: 'Cybersecurity',
     imgSrc: '/course7.jpeg',
     rating: 4.1,
@@ -104,6 +111,7 @@ export const POPULAR_COURSES = [
 export const ALL_COURSES = [
   {
     id: '1',
+    author: 'Ivan Gonzales',
     title: 'Introduction to Programming',
     imgSrc: '/course1.jpeg',
     rating: 4.5,
@@ -113,6 +121,7 @@ export const ALL_COURSES = [
   },
   {
     id: '2',
+    author: 'Ivan Gonzales',
     title: 'Web Development',
     imgSrc: '/course2.jpg',
     rating: 4.7,
@@ -122,6 +131,7 @@ export const ALL_COURSES = [
   },
   {
     id: '3',
+    author: 'Ivan Gonzales',
     title: 'Data Science Essentials',
     imgSrc: '/course3.jpeg',
     rating: 4.6,
@@ -131,6 +141,7 @@ export const ALL_COURSES = [
   },
   {
     id: '4',
+    author: 'Ivan Gonzales',
     title: 'Machine Learning Basics',
     imgSrc: '/course4.jpeg',
     rating: 4.8,
@@ -140,6 +151,7 @@ export const ALL_COURSES = [
   },
   {
     id: '5',
+    author: 'Ivan Gonzales',
     title: 'UX Designing',
     imgSrc: '/course5.jpeg',
     rating: 5.0,
@@ -149,6 +161,7 @@ export const ALL_COURSES = [
   },
   {
     id: '6',
+    author: 'Ivan Gonzales',
     title: 'Prototyping',
     imgSrc: '/course6.png',
     rating: 2.6,
@@ -158,6 +171,7 @@ export const ALL_COURSES = [
   },
   {
     id: '7',
+    author: 'Ivan Gonzales',
     title: 'Cybersecurity',
     imgSrc: '/course7.jpeg',
     rating: 4.1,
@@ -175,6 +189,7 @@ export const CourseInfos: CourseInfoProps = {
     totalRatings: 312,
     lessons: 12,
     students: 312,
+    instructor: 'Hanah Espineda',
     imgSrc: '/course1.jpeg',
     category: ['Tech', 'Contemporary'],
     price: 39.0,
@@ -208,65 +223,137 @@ export const CourseInfos: CourseInfoProps = {
   ],
 };
 
-export const DashboardInfos: DashboardStats = {
-  recentlyEnrolled: [
-    {
-      id: '1',
-      imgSrc: '/course1.jpeg',
-      author: 'Ivan Gonzales',
-      title: 'Introduction to Programming',
-      finishedPercentage: 25,
-      finishedOverTotal: '1/10',
+export const courseProgressData: CourseProgressProps = {
+  courseInfoHeader: {
+    id: 'course-001',
+    title: 'Advanced Web Development',
+    rating: 4.8,
+    totalRatings: 1200,
+    lessons: 20,
+    students: 5000,
+    instructor: 'John Doe',
+    imgSrc: '/images/web-dev-thumbnail.png',
+    category: ['Programming', 'Web Development'],
+    price: 49.99,
+    description:
+      'A deep dive into modern web development practices, covering TypeScript, Next.js, and more.',
+    createdAt: '2024-12-01',
+  },
+  overallProgress: {
+    overallProgress: 75,
+    chaptersProgress: [
+      {
+        dateFinished: '2025-02-15',
+        timeFinished: '14:30',
+        isFinished: true,
+        chapterTitle: 'Chapter 1: Introduction to TypeScript',
+        estHoursToFinish: '2',
+      },
+      {
+        dateFinished: '2025-02-15',
+        timeFinished: '14:30',
+        isFinished: true,
+        chapterTitle: 'Chapter 2: Introduction to JavaScript',
+        estHoursToFinish: '2',
+      },
+      {
+        dateFinished: undefined,
+        timeFinished: undefined,
+        isFinished: false,
+        chapterTitle: 'Chapter 3: Next.js & Server-Side Rendering',
+        estHoursToFinish: '3',
+      },
+    ],
+  },
+  courseInfoCard: {
+    estimatedHoursToFinish: 15,
+    level: 'BEGINNER',
+    noOfLabs: '5',
+    achievementBadgesIconSrc: ['/badge2.png', '/badge1.png', '/badge3.png'],
+    instructor: {
+      instructorName: 'John Doe',
+      profileSrc: '/profile.png',
     },
-    {
-      id: '2',
-      imgSrc: '/course3.jpeg',
-      author: 'Hanah Espineda',
-      title: 'Data Science',
-      finishedPercentage: 55,
-      finishedOverTotal: '1/10',
-    },
-    {
-      id: '3',
-      imgSrc: '/course5.jpeg',
-      author: 'Danielle Castaneda',
-      title: 'UI/UX Design',
-      finishedPercentage: 75,
-      finishedOverTotal: '1/10',
-    },
-    {
-      id: '4',
-      imgSrc: '/course4.jpeg',
-      author: 'Therese Gaspar',
-      title: 'Software Testing',
-      finishedPercentage: 39,
-      finishedOverTotal: '1/10',
-    },
-    {
-      id: '5',
-      imgSrc: '/course1.jpeg',
-      author: 'Zyrille Quilit',
-      title: 'Back End Development',
-      finishedPercentage: 10,
-      finishedOverTotal: '1/10',
-    },
-    {
-      id: '6',
-      imgSrc: '/course1.jpeg',
-      author: 'Francis Berjuega',
-      title: 'Front End Development',
-      finishedPercentage: 40,
-      finishedOverTotal: '1/10',
-    },
-    {
-      id: '7',
-      imgSrc: '/course7.jpeg',
-      author: 'Hanah Espineda',
-      title: 'Project Management',
-      finishedPercentage: 100,
-      finishedOverTotal: '1/10',
-    },
+  },
+  courseMeetings: {
+    onlineMeetings: [
+      '2025-03-06T14:00:00Z',
+      '2025-03-09T10:30:00Z',
+      '2025-03-10T15:45:00Z',
+      '2025-03-12T09:00:00Z',
+    ],
+    currentDate: new Date(), // Optional, remove if not needed
+  },
+
+  courseResources: [
+    { title: 'Keys to Success', createdAt: '2024-03-04', type: 'Video' },
+    { title: 'Chapter 1', createdAt: '2024-03-04', type: 'Document' },
+    { title: 'Chapter 2', createdAt: '2024-03-04', type: 'Document' },
+    { title: 'Chapter 3', createdAt: '2024-03-04', type: 'Document' },
   ],
+};
+
+export const RecentlyEnrolledCourse: EnrolledCourse[] = [
+  {
+    id: '1',
+    imgSrc: '/course1.jpeg',
+    author: 'Ivan Gonzales',
+    title: 'Introduction to Programming',
+    finishedPercentage: 25,
+    finishedOverTotal: '1/10',
+  },
+  {
+    id: '2',
+    imgSrc: '/course3.jpeg',
+    author: 'Hanah Espineda',
+    title: 'Data Science',
+    finishedPercentage: 55,
+    finishedOverTotal: '1/10',
+  },
+  {
+    id: '3',
+    imgSrc: '/course5.jpeg',
+    author: 'Danielle Castaneda',
+    title: 'UI/UX Design',
+    finishedPercentage: 75,
+    finishedOverTotal: '1/10',
+  },
+  {
+    id: '4',
+    imgSrc: '/course4.jpeg',
+    author: 'Therese Gaspar',
+    title: 'Software Testing',
+    finishedPercentage: 39,
+    finishedOverTotal: '1/10',
+  },
+  {
+    id: '5',
+    imgSrc: '/course1.jpeg',
+    author: 'Zyrille Quilit',
+    title: 'Back End Development',
+    finishedPercentage: 10,
+    finishedOverTotal: '1/10',
+  },
+  {
+    id: '6',
+    imgSrc: '/course1.jpeg',
+    author: 'Francis Berjuega',
+    title: 'Front End Development',
+    finishedPercentage: 40,
+    finishedOverTotal: '1/10',
+  },
+  {
+    id: '7',
+    imgSrc: '/course7.jpeg',
+    author: 'Hanah Espineda',
+    title: 'Project Management',
+    finishedPercentage: 100,
+    finishedOverTotal: '1/10',
+  },
+];
+
+export const DashboardInfos: DashboardStats = {
+  recentlyEnrolled: RecentlyEnrolledCourse,
   chart: [
     {
       name: 'Completed',
@@ -316,7 +403,9 @@ export const TESTIMONIALS = [
 import type {
   CourseInfoHeader,
   CourseInfoProps,
+  CourseProgressProps,
   DashboardStats,
+  EnrolledCourse,
   Feature,
   FooterColumn,
   SocialLink,
