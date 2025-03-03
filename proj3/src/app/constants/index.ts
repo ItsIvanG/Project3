@@ -401,8 +401,10 @@ export const TESTIMONIALS = [
 ] as const;
 
 import type {
+  CourseChapterContent,
   CourseInfoHeader,
   CourseInfoProps,
+  CourseNavigation,
   CourseProgressProps,
   DashboardStats,
   EnrolledCourse,
@@ -509,3 +511,47 @@ export const SOCIAL_LINKS: SocialLink[] = [
     icon: FaTwitter,
   },
 ];
+
+export const courseNavigation: CourseNavigation = {
+  courseTitle: 'Introduction to Programming',
+  courseChapters: [
+    {
+      chapterTitle: 'Chapter 1: Getting Started with Web Development',
+      subchapters: [
+        { subchaptertitle: '1.1 What is HTML?', isFinished: true },
+        { subchaptertitle: '1.2 CSS Basics', isFinished: true },
+      ],
+      chapterProgressPercent: 100,
+    },
+    {
+      chapterTitle: 'Chapter 2: JavaScript Fundamentals',
+      subchapters: [
+        {
+          subchaptertitle: '2.1 Introduction to JavaScript',
+          isFinished: false,
+        },
+        { subchaptertitle: '2.2 Variables and Data Types', isFinished: false },
+      ],
+      chapterProgressPercent: 0,
+    },
+  ],
+};
+
+export const courseChapterContent: CourseChapterContent = {
+  heading: {
+    imgSrc: '/course1.jpeg',
+    chapterTitle: 'Getting Started with Web Development',
+  },
+  contents: [
+    {
+      subChaptertitle: '1.1 What is HTML?',
+      subChaptercontent:
+        'HTML, or HyperText Markup Language, is the foundation of web development. It is a markup language used to structure content on the web. Unlike programming languages that control logic and calculations, HTML focuses on organizing elements like text, images, links, and multimedia into a structured format that browsers can interpret. Every web page you see online is built with HTML, making it an essential skill for anyone interested in web development. HTML consists of elements enclosed in tags, such as <h1> for headings, <p> for paragraphs, and <img> for images. These elements define the structure and content of a webpage, but they do not control the appearance—this is where CSS comes in. HTML follows a hierarchical structure, meaning elements can be nested within others to create a well-organized webpage layout. Over time, HTML has evolved, with HTML5 introducing new semantic elements like <article>, <section>, and <nav>, improving accessibility and SEO. One of the greatest strengths of HTML is its simplicity. Even beginners can quickly learn the basics and start creating web pages. However, modern web development involves combining HTML with CSS for styling and JavaScript for interactivity. By mastering HTML first, you build a strong foundation for designing functional and visually appealing websites.',
+    },
+    {
+      subChaptertitle: '1.2 CSS Basics',
+      subChaptercontent:
+        'CSS, or Cascading Style Sheets, is a stylesheet language used to control the appearance of web pages. While HTML structures the content, CSS defines how elements should look, including colors, fonts, spacing, and layout. By separating design from structure, CSS makes websites more visually appealing and easier to maintain. Instead of styling elements directly in HTML, CSS allows developers to create reusable styles, making web design more efficient and scalable. CSS works by selecting HTML elements and applying styles using selectors. For example, a rule like h1 { color: blue; } changes all <h1> headings to blue. Styles can be applied in three ways: inline CSS (directly within an HTML element), internal CSS (inside a <style> tag in the HTML file), or external CSS (linking to a separate .css file). The external method is the most efficient for large projects, as it keeps styling separate from content and allows global updates with ease. Another important concept in CSS is the box model, which defines how elements are spaced and sized using margins, borders, padding, and content. CSS also enables responsive design using media queries, ensuring web pages adapt to different screen sizes. By learning CSS, you gain the ability to create visually stunning and user-friendly websites, setting the stage for more advanced topics like Flexbox, Grid, and animations.',
+    },
+  ],
+};

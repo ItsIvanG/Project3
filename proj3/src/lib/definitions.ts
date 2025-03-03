@@ -199,3 +199,40 @@ export interface DashboardStats {
   chart: ChartDataItem[];
   statscard: StatsCard[];
 }
+
+//ung image saka chaptertitle sa top left
+export interface CourseLessonHeading {
+  imgSrc: string;
+  chapterTitle: string;
+}
+
+//ung array ng subchapter sa loob ng accordion
+export interface CourseSubChapter {
+  subchaptertitle: string;
+  isFinished: boolean;
+}
+
+//ung array ng subchaptertitle tas content sa left
+export interface CourseLessonContent {
+  subChaptertitle: string;
+  subChaptercontent: string;
+}
+
+//ung accordion lang mismo kasama ung title sa taas
+export interface CourseChaptersAccordion {
+  chapterTitle: string;
+  subchapters: CourseSubChapter[];
+  chapterProgressPercent: number;
+}
+
+//course title sa taas at ung accordion
+export interface CourseNavigation {
+  courseTitle: string;
+  courseChapters: CourseChaptersAccordion[];
+}
+
+//ung buong content sa left na pinagsama
+export interface CourseChapterContent {
+  heading: CourseLessonHeading;
+  contents: CourseLessonContent[];
+}

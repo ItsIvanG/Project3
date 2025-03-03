@@ -1,7 +1,9 @@
+import CourseLessonProper from '@/components/CourseLessonProper';
+
 export default function Page() {
   return (
-    <div className='pt-30 text-primary w-full min-h-screen flex justify-center items-center'>
-      <h1>learning proper page</h1>
+    <div className='text-primary py-24 w-full min-h-screen flex justify-center items-start bg-secondary'>
+      <CourseLessonProper />
     </div>
   );
 }
