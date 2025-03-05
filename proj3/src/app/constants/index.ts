@@ -475,7 +475,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
     links: [
       { label: 'Course', href: '#visitor_courses' },
       { label: 'About Us', href: '#about' },
-      { label: 'Pricing', href: '/' },
+      { label: 'Bundles', href: '/' },
     ],
   },
   {
