@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
+import { Trash } from "lucide-react";
 
 export default function DeleteCourse({ courseId = "" }) {
   const [open, setOpen] = useState(false);
@@ -22,7 +23,7 @@ export default function DeleteCourse({ courseId = "" }) {
     setLoading(true);
     try {
       const response = await fetch(
-        "https://rp2mrfczwf.execute-api.ap-southeast-1.amazonaws.com/init/courses",
+        process.env.NEXT_PUBLIC_API_URL + "/init/courses",
         {
           method: "POST",
           headers: {
@@ -36,7 +37,7 @@ export default function DeleteCourse({ courseId = "" }) {
       if (response.ok) {
         toast({ title: "Course deleted successfully!" });
         // onDeleteSuccess(); // Refresh the course list or navigate away
-        router.push("/instructor/settings");
+        router.push("/instructor/panel");
         setOpen(false);
       } else {
         toast({
@@ -58,6 +59,7 @@ export default function DeleteCourse({ courseId = "" }) {
   return (
     <>
       <Button variant="destructive" onClick={() => setOpen(true)}>
+        <Trash />
         Delete Course
       </Button>
 

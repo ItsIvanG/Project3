@@ -50,7 +50,7 @@ export default function AddCourseDialog() {
 
     try {
       const response = await fetch(
-        "https://rp2mrfczwf.execute-api.ap-southeast-1.amazonaws.com/init/courses",
+        process.env.NEXT_PUBLIC_API_URL + "/init/courses",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

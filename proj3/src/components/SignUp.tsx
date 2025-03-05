@@ -17,6 +17,7 @@ import {
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
   const [step, setStep] = useState<number>(1);
@@ -24,7 +25,7 @@ export default function SignUp() {
   const methods = useForm<Register>({
     mode: "onSubmit",
   });
-
+  const router = useRouter();
   const {
     register,
     reset,
@@ -42,6 +43,7 @@ export default function SignUp() {
         process.env.NEXT_PUBLIC_OTP_SIGNUP
       );
       console.log("Creating account...");
+      // handleSubmit(onSubmit)();
     }
   };
 
@@ -49,7 +51,7 @@ export default function SignUp() {
     console.log("Form submitted:", data);
     try {
       const response = await fetch(
-        "https://rp2mrfczwf.execute-api.ap-southeast-1.amazonaws.com/init/student",
+        process.env.NEXT_PUBLIC_API_URL + "/init/student",
         {
           method: "POST", // Ensure the method is POST
           headers: {
@@ -70,6 +72,7 @@ export default function SignUp() {
         ),
       });
       console.log("Account created", responseData);
+      router.push("/login");
     } catch (error) {
       console.error("Error creating account", error);
     }
@@ -212,9 +215,14 @@ export default function SignUp() {
                     </div>
 
                     <div className="w-full flex items-center justify-start space-x-2">
-                      <Checkbox
-                        id="terms1"
-                        className="border-primary data-[state=checked]:bg-primary"
+                      <Input
+                        type="checkbox"
+                        id="terms"
+                        {...register("terms", {
+                          required:
+                            "You must agree to the terms and conditions",
+                        })}
+                        className="w-4 h-4 border border-primary focus:ring-primary"
                       />
                       <label
                         htmlFor="terms1"
@@ -232,6 +240,11 @@ export default function SignUp() {
                       </label>
                     </div>
                   </div>
+                  {errors.terms && (
+                    <p className="text-red-500 text-xs">
+                      {errors.terms.message}
+                    </p>
+                  )}
 
                   {/* Submit Button */}
                   <Button

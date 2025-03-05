@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -8,7 +8,9 @@ import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import DeleteCourse from "./DeleteCourse";
-import { PlusCircle } from "lucide-react";
+import { PlusCircle, Save } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
+import LessonCard from "./LessonCard";
 
 export default function CourseTabs({ course }) {
   const [activeTab, setActiveTab] = useState("details");
@@ -16,6 +18,10 @@ export default function CourseTabs({ course }) {
   const [thumbnailPreview, setThumbnailPreview] = useState(
     course?.course_thumbnail || ""
   );
+
+  const [lessons, setLessons] = useState([]);
+
+  const courseId = courseDetails.course_id;
 
   const handleInputChange = (e) => {
     setCourseDetails({ ...courseDetails, [e.target.name]: e.target.value });
@@ -31,6 +37,62 @@ export default function CourseTabs({ course }) {
       reader.readAsDataURL(file);
     }
   };
+
+  const fetchLessons = async () => {
+    try {
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_API_URL + "/init/lessons",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ get_lessons_from_course_id: courseId }),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch lessons");
+      }
+      const responseData = await response.json();
+      const lessons = responseData.lessons || [];
+      setLessons(lessons);
+      console.log("Lessons fetched", lessons);
+    } catch (error) {
+      console.error("Error fetching lessons", error);
+    }
+  };
+  const handleCourseEdit = async () => {
+    try {
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_API_URL + "/init/courses",
+        {
+          method: "POST", // Ensure the method is POST
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(courseDetails), // Stringify the data to send as JSON
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to create account");
+      }
+      const responseData = await response.json(); // Parse the JSON response
+      toast({
+        title: JSON.stringify(
+          responseData?.body?.message ||
+            responseData?.data?.message ||
+            "No response message"
+        ),
+      });
+      console.log("Account created", responseData);
+    } catch (error) {
+      console.error("Error creating account", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchLessons();
+  }, [courseId]);
 
   return (
     <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -105,9 +167,11 @@ export default function CourseTabs({ course }) {
                 placeholder="Enter expected outcomes"
               />
             </div>
-            <div className="flex justify-end space-x-4">
+            <div className="flex justify-end  space-x-2">
               <DeleteCourse courseId={courseDetails.course_id} />
-              <Button>Save Changes</Button>
+              <Button onClick={handleCourseEdit}>
+                <Save /> Save Changes
+              </Button>
             </div>
           </CardContent>
         </Card>
@@ -151,6 +215,22 @@ export default function CourseTabs({ course }) {
           </CardHeader>
           <CardContent>
             <p>Manage course lessons and materials.</p>
+            <div className=" space-y-5 mt-5">
+              {" "}
+              {lessons && lessons.length > 0 ? (
+                lessons.map((lesson) => (
+                  <LessonCard
+                    key={lesson.lesson_id}
+                    lessonNo={lesson.lesson_no} // Assuming lesson_no should be lesson_id
+                    lessonTitle={lesson.lesson_name} // Corrected to lesson_name
+                    id={courseId}
+                    lessonId={lesson.lesson_id}
+                  />
+                ))
+              ) : (
+                <p>No lessons found.</p>
+              )}
+            </div>
           </CardContent>
         </Card>
       </TabsContent>

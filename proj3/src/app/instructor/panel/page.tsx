@@ -44,7 +44,7 @@ export default function Page() {
   const fetchCourses = async (instructorId: string) => {
     try {
       const response = await fetch(
-        "https://rp2mrfczwf.execute-api.ap-southeast-1.amazonaws.com/init/courses/get",
+        process.env.NEXT_PUBLIC_API_URL + "/init/courses/get",
         {
           method: "POST",
           headers: {
@@ -72,7 +72,7 @@ export default function Page() {
 
     try {
       const response = await fetch(
-        "https://rp2mrfczwf.execute-api.ap-southeast-1.amazonaws.com/init/courses/get",
+        process.env.NEXT_PUBLIC_API_URL + "/init/courses/get",
         {
           method: "POST",
           headers: {

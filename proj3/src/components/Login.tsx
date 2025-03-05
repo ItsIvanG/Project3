@@ -41,7 +41,7 @@ export default function Login() {
     console.log("Form submitted:", data);
     try {
       const response = await fetch(
-        "https://rp2mrfczwf.execute-api.ap-southeast-1.amazonaws.com/init/auth/signin",
+        process.env.NEXT_PUBLIC_API_URL + "/init/auth/signin",
         {
           method: "POST", // Ensure the method is POST
           headers: {
@@ -75,7 +75,7 @@ export default function Login() {
       }
 
       if (responseData?.body?.role === "instructor") {
-        router.push("/instructor/settings");
+        router.push("/instructor/panel");
       } else if (responseData?.body?.role === "student") {
         router.push("/");
       }
