@@ -123,20 +123,21 @@ export default function Page() {
                   <h1 className="text-3xl">Courses</h1>
                   <AddCourseDialog />
                 </div>
-
-                {/* Render Courses Dynamically */}
-                {courses.length > 0 ? (
-                  courses.map((course: any) => (
-                    <CourseCard
-                      key={course.course_id}
-                      title={course.course_name}
-                      description={course.course_description}
-                      id={course.course_id}
-                    />
-                  ))
-                ) : (
-                  <p className="mt-4">No courses found.</p>
-                )}
+                <div className="grid grid-cols-1 gap-5 mt-5">
+                  {/* Render Courses Dynamically */}
+                  {courses.length > 0 ? (
+                    courses.map((course: any) => (
+                      <CourseCard
+                        key={course.course_id}
+                        title={course.course_name}
+                        description={course.course_description}
+                        id={course.course_id}
+                      />
+                    ))
+                  ) : (
+                    <p className="mt-4">No courses found.</p>
+                  )}
+                </div>
               </div>
             )}
           </main>

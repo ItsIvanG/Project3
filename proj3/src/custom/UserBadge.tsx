@@ -15,11 +15,11 @@ const UserBadge = ({ name = "Guest", role = "", pic = "" }) => {
 
   const handleSettings = () => {
     if (role === "instructor") {
-      router.push("/instructor/settings");
+      router.push("/instructor/panel");
     } else if (role === "student") {
-      router.push("/student/settings");
+      router.push("/student/panel");
     } else if (role === "admin") {
-      router.push("/admin/settings");
+      router.push("/admin/panel");
     }
   };
 

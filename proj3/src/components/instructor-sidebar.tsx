@@ -17,7 +17,7 @@ import Link from "next/link";
 const items = [
   {
     title: "Courses",
-    url: "settings",
+    url: "panel",
     icon: Inbox,
   },
   {

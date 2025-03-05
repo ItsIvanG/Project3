@@ -8,9 +8,9 @@ const CourseCard = ({
   id = "",
 }) => {
   return (
-    <div className="my-4">
+    <div className="">
       <Link
-        href={{ pathname: "/instructor/settings", query: { id } }}
+        href={{ pathname: "/instructor/panel", query: { id } }}
         className="block"
       >
         <div className="flex items-center space-x-4 p-4 border rounded-lg shadow-md hover:shadow-lg transition">
