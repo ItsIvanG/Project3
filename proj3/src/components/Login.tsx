@@ -21,6 +21,8 @@ export default function Login() {
   const setName = useUserStore((state) => state.setName);
   const setRole = useUserStore((state) => state.setRole);
   const setAccountId = useUserStore((state) => state.setAccountId);
+  const setRoleId = useUserStore((state) => state.setRoleId);
+
   const accountId = useUserStore((state) => state.accountId);
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -66,6 +68,9 @@ export default function Login() {
         setName(responseData?.body?.full_name);
         setRole(responseData?.body?.role);
         setAccountId(responseData?.body?.account_id);
+        // Set role-specific ID dynamically
+        const roleIdKey = `${responseData?.body?.role}_id`; // e.g., "student_id", "instructor_id", "admin_id"
+        setRoleId(responseData?.body?.[roleIdKey]);
         console.log("Logged in with ID: ", accountId);
       }
 
