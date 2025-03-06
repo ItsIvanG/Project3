@@ -90,15 +90,21 @@ const LessonCard = ({
   };
   return (
     <div className="my-4">
-      <div className="flex items-center space-x-4 p-4 border rounded-lg shadow-md hover:shadow-lg transition">
-        {/* <div>
-        <Image src={imageSrc} width={150} height={50} alt={lessonTitle} />
-      </div> */}
-        <div onClick={handleNavigation} className="block cursor-pointer">
+      <div className="relative flex items-center p-4 border rounded-lg">
+        {/* Clickable overlay */}
+        <div
+          onClick={handleNavigation}
+          className="absolute inset-0 cursor-pointer"
+        />
+
+        {/* Lesson Details */}
+        <div>
           <h2 className="text-xl font-semibold">Lesson {lessonNo}:</h2>
           <h3 className="text-gray-600">{lessonTitle}</h3>
         </div>
-        <div className="ml-auto grid grid-cols-2 gap-2">
+
+        {/* Buttons (should not trigger handleNavigation) */}
+        <div className="ml-auto grid grid-cols-2 gap-2 relative z-10">
           <Button onClick={handleUpLesson} variant="outline" size="sm">
             <ArrowUp />
           </Button>
