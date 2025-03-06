@@ -77,16 +77,14 @@ export default function CourseTabs({ course }) {
         throw new Error("Failed to create account");
       }
       const responseData = await response.json(); // Parse the JSON response
+      const parsedBody = responseData.body ? JSON.parse(responseData.body) : {};
+
       toast({
-        title: JSON.stringify(
-          responseData?.body?.message ||
-            responseData?.data?.message ||
-            "No response message"
-        ),
+        title: parsedBody.message,
       });
-      console.log("Account created", responseData);
+      console.log("Course details edited", responseData);
     } catch (error) {
-      console.error("Error creating account", error);
+      console.error("Error editing Course details", error);
     }
   };
 
