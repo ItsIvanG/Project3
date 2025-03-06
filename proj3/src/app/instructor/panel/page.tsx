@@ -21,6 +21,7 @@ export default function Page() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const courseId = searchParams.get("id"); // Get course ID from URL
+  const [loadingCourses, setLoadingCourses] = useState(true);
 
   useEffect(() => {
     if (role !== "instructor" && role !== "") {
@@ -42,6 +43,7 @@ export default function Page() {
   }, [courseId]);
 
   const fetchCourses = async (instructorId: string) => {
+    setLoadingCourses(true);
     try {
       const response = await fetch(
         process.env.NEXT_PUBLIC_API_URL + "/init/courses/get",
@@ -63,6 +65,8 @@ export default function Page() {
       setCourses(parsedBody.courses || []);
     } catch (error) {
       console.error("Error fetching courses:", error);
+    } finally {
+      setLoadingCourses(false);
     }
   };
 
@@ -123,21 +127,26 @@ export default function Page() {
                   <h1 className="text-3xl">Courses</h1>
                   <AddCourseDialog />
                 </div>
-                <div className="grid grid-cols-1 gap-5 mt-5">
-                  {/* Render Courses Dynamically */}
-                  {courses.length > 0 ? (
-                    courses.map((course: any) => (
-                      <CourseCard
-                        key={course.course_id}
-                        title={course.course_name}
-                        description={course.course_description}
-                        id={course.course_id}
-                      />
-                    ))
-                  ) : (
-                    <p className="mt-4">No courses found.</p>
-                  )}
-                </div>
+
+                {loadingCourses ? (
+                  <p>Loading courses...</p>
+                ) : (
+                  <div className="grid grid-cols-1 gap-5 mt-5">
+                    {/* Render Courses Dynamically */}
+                    {courses.length > 0 ? (
+                      courses.map((course: any) => (
+                        <CourseCard
+                          key={course.course_id}
+                          title={course.course_name}
+                          description={course.course_description}
+                          id={course.course_id}
+                        />
+                      ))
+                    ) : (
+                      <p className="mt-4">No courses found.</p>
+                    )}
+                  </div>
+                )}
               </div>
             )}
           </main>
