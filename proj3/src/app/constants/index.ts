@@ -38,6 +38,7 @@ export const VISITORS_COURSES = [
 export const POPULAR_COURSES = [
   {
     id: '1',
+    author: 'Ivan Gonzales',
     title: 'Introduction to Programming',
     imgSrc: '/course1.jpeg',
     rating: 4.5,
@@ -47,6 +48,7 @@ export const POPULAR_COURSES = [
   },
   {
     id: '2',
+    author: 'Ivan Gonzales',
     title: 'Web Development',
     imgSrc: '/course2.jpg',
     rating: 4.7,
@@ -56,6 +58,7 @@ export const POPULAR_COURSES = [
   },
   {
     id: '3',
+    author: 'Ivan Gonzales',
     title: 'Data Science Essentials',
     imgSrc: '/course3.jpeg',
     rating: 4.6,
@@ -65,6 +68,7 @@ export const POPULAR_COURSES = [
   },
   {
     id: '4',
+    author: 'Ivan Gonzales',
     title: 'Machine Learning Basics',
     imgSrc: '/course4.jpeg',
     rating: 4.8,
@@ -74,6 +78,7 @@ export const POPULAR_COURSES = [
   },
   {
     id: '5',
+    author: 'Ivan Gonzales',
     title: 'UX Designing',
     imgSrc: '/course5.jpeg',
     rating: 5.0,
@@ -83,6 +88,7 @@ export const POPULAR_COURSES = [
   },
   {
     id: '6',
+    author: 'Ivan Gonzales',
     title: 'Prototyping',
     imgSrc: '/course6.png',
     rating: 2.6,
@@ -92,6 +98,7 @@ export const POPULAR_COURSES = [
   },
   {
     id: '7',
+    author: 'Ivan Gonzales',
     title: 'Cybersecurity',
     imgSrc: '/course7.jpeg',
     rating: 4.1,
@@ -104,6 +111,7 @@ export const POPULAR_COURSES = [
 export const ALL_COURSES = [
   {
     id: '1',
+    author: 'Ivan Gonzales',
     title: 'Introduction to Programming',
     imgSrc: '/course1.jpeg',
     rating: 4.5,
@@ -113,6 +121,7 @@ export const ALL_COURSES = [
   },
   {
     id: '2',
+    author: 'Ivan Gonzales',
     title: 'Web Development',
     imgSrc: '/course2.jpg',
     rating: 4.7,
@@ -122,6 +131,7 @@ export const ALL_COURSES = [
   },
   {
     id: '3',
+    author: 'Ivan Gonzales',
     title: 'Data Science Essentials',
     imgSrc: '/course3.jpeg',
     rating: 4.6,
@@ -131,6 +141,7 @@ export const ALL_COURSES = [
   },
   {
     id: '4',
+    author: 'Ivan Gonzales',
     title: 'Machine Learning Basics',
     imgSrc: '/course4.jpeg',
     rating: 4.8,
@@ -140,6 +151,7 @@ export const ALL_COURSES = [
   },
   {
     id: '5',
+    author: 'Ivan Gonzales',
     title: 'UX Designing',
     imgSrc: '/course5.jpeg',
     rating: 5.0,
@@ -149,6 +161,7 @@ export const ALL_COURSES = [
   },
   {
     id: '6',
+    author: 'Ivan Gonzales',
     title: 'Prototyping',
     imgSrc: '/course6.png',
     rating: 2.6,
@@ -158,6 +171,7 @@ export const ALL_COURSES = [
   },
   {
     id: '7',
+    author: 'Ivan Gonzales',
     title: 'Cybersecurity',
     imgSrc: '/course7.jpeg',
     rating: 4.1,
@@ -167,23 +181,6 @@ export const ALL_COURSES = [
   },
 ];
 
-// export const CourseInfos: CourseInfoHeader[] = [
-//   {
-//     id: '1',
-//     title: 'Introduction to Programming',
-//     rating: 4.5,
-//     totalRatings: 312,
-//     lessons: 12,
-//     students: 312,
-//     imgSrc: '/course1.jpeg',
-//     category: ['Tech', 'Contemporary'],
-//     price: 39.0,
-//     description:
-//       "Whether you're a beginner or an experienced developer, explore hands-on tutorials, real-world projects, and expert insights to level up your skills. Start building, debugging, and innovating today!",
-//     createdAt: '2024-01-15',
-//   },
-// ];
-
 export const CourseInfos: CourseInfoProps = {
   courseInfoHeader: {
     id: '1',
@@ -192,6 +189,7 @@ export const CourseInfos: CourseInfoProps = {
     totalRatings: 312,
     lessons: 12,
     students: 312,
+    instructor: 'Hanah Espineda',
     imgSrc: '/course1.jpeg',
     category: ['Tech', 'Contemporary'],
     price: 39.0,
@@ -225,6 +223,156 @@ export const CourseInfos: CourseInfoProps = {
   ],
 };
 
+export const courseProgressData: CourseProgressProps = {
+  courseInfoHeader: {
+    id: 'course-001',
+    title: 'Advanced Web Development',
+    rating: 4.8,
+    totalRatings: 1200,
+    lessons: 20,
+    students: 5000,
+    instructor: 'John Doe',
+    imgSrc: '/images/web-dev-thumbnail.png',
+    category: ['Programming', 'Web Development'],
+    price: 49.99,
+    description:
+      'A deep dive into modern web development practices, covering TypeScript, Next.js, and more.',
+    createdAt: '2024-12-01',
+  },
+  overallProgress: {
+    overallProgress: 75,
+    chaptersProgress: [
+      {
+        dateFinished: '2025-02-15',
+        timeFinished: '14:30',
+        isFinished: true,
+        chapterTitle: 'Chapter 1: Introduction to TypeScript',
+        estHoursToFinish: '2',
+      },
+      {
+        dateFinished: '2025-02-15',
+        timeFinished: '14:30',
+        isFinished: true,
+        chapterTitle: 'Chapter 2: Introduction to JavaScript',
+        estHoursToFinish: '2',
+      },
+      {
+        dateFinished: undefined,
+        timeFinished: undefined,
+        isFinished: false,
+        chapterTitle: 'Chapter 3: Next.js & Server-Side Rendering',
+        estHoursToFinish: '3',
+      },
+    ],
+  },
+  courseInfoCard: {
+    estimatedHoursToFinish: 15,
+    level: 'BEGINNER',
+    noOfLabs: '5',
+    achievementBadgesIconSrc: ['/badge2.png', '/badge1.png', '/badge3.png'],
+    instructor: {
+      instructorName: 'John Doe',
+      profileSrc: '/profile.png',
+    },
+  },
+  courseMeetings: {
+    onlineMeetings: [
+      '2025-03-06T14:00:00Z',
+      '2025-03-09T10:30:00Z',
+      '2025-03-10T15:45:00Z',
+      '2025-03-12T09:00:00Z',
+    ],
+    currentDate: new Date(), // Optional, remove if not needed
+  },
+
+  courseResources: [
+    { title: 'Keys to Success', createdAt: '2024-03-04', type: 'Video' },
+    { title: 'Chapter 1', createdAt: '2024-03-04', type: 'Document' },
+    { title: 'Chapter 2', createdAt: '2024-03-04', type: 'Document' },
+    { title: 'Chapter 3', createdAt: '2024-03-04', type: 'Document' },
+  ],
+};
+
+export const RecentlyEnrolledCourse: EnrolledCourse[] = [
+  {
+    id: '1',
+    imgSrc: '/course1.jpeg',
+    author: 'Ivan Gonzales',
+    title: 'Introduction to Programming',
+    finishedPercentage: 25,
+    finishedOverTotal: '1/10',
+  },
+  {
+    id: '2',
+    imgSrc: '/course3.jpeg',
+    author: 'Hanah Espineda',
+    title: 'Data Science',
+    finishedPercentage: 55,
+    finishedOverTotal: '1/10',
+  },
+  {
+    id: '3',
+    imgSrc: '/course5.jpeg',
+    author: 'Danielle Castaneda',
+    title: 'UI/UX Design',
+    finishedPercentage: 75,
+    finishedOverTotal: '1/10',
+  },
+  {
+    id: '4',
+    imgSrc: '/course4.jpeg',
+    author: 'Therese Gaspar',
+    title: 'Software Testing',
+    finishedPercentage: 39,
+    finishedOverTotal: '1/10',
+  },
+  {
+    id: '5',
+    imgSrc: '/course1.jpeg',
+    author: 'Zyrille Quilit',
+    title: 'Back End Development',
+    finishedPercentage: 10,
+    finishedOverTotal: '1/10',
+  },
+  {
+    id: '6',
+    imgSrc: '/course1.jpeg',
+    author: 'Francis Berjuega',
+    title: 'Front End Development',
+    finishedPercentage: 40,
+    finishedOverTotal: '1/10',
+  },
+  {
+    id: '7',
+    imgSrc: '/course7.jpeg',
+    author: 'Hanah Espineda',
+    title: 'Project Management',
+    finishedPercentage: 100,
+    finishedOverTotal: '1/10',
+  },
+];
+
+export const DashboardInfos: DashboardStats = {
+  recentlyEnrolled: RecentlyEnrolledCourse,
+  chart: [
+    {
+      name: 'Completed',
+      value: 80,
+      fill: 'bg-primary',
+    },
+    {
+      name: 'Remaining',
+      value: 20,
+      fill: 'hsl(220, 14%, 96%)',
+    },
+  ],
+  statscard: [
+    { icon: '/course.png', title: 'Course Completed', value: '3' },
+    { icon: '/lesson.png', title: 'Lessons Viewed', value: '9' },
+    { icon: '/cert.png', title: 'Certificates Earned', value: '3' },
+  ],
+};
+
 export const TESTIMONIALS = [
   {
     id: 1,
@@ -253,8 +401,13 @@ export const TESTIMONIALS = [
 ] as const;
 
 import type {
+  CourseChapterContent,
   CourseInfoHeader,
   CourseInfoProps,
+  CourseNavigation,
+  CourseProgressProps,
+  DashboardStats,
+  EnrolledCourse,
   Feature,
   FooterColumn,
   SocialLink,
@@ -322,7 +475,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
     links: [
       { label: 'Course', href: '#visitor_courses' },
       { label: 'About Us', href: '#about' },
-      { label: 'Pricing', href: '/' },
+      { label: 'Bundles', href: '/' },
     ],
   },
   {
@@ -358,3 +511,47 @@ export const SOCIAL_LINKS: SocialLink[] = [
     icon: FaTwitter,
   },
 ];
+
+export const courseNavigation: CourseNavigation = {
+  courseTitle: 'Introduction to Programming',
+  courseChapters: [
+    {
+      chapterTitle: 'Chapter 1: Getting Started with Web Development',
+      subchapters: [
+        { subchaptertitle: '1.1 What is HTML?', isFinished: true },
+        { subchaptertitle: '1.2 CSS Basics', isFinished: true },
+      ],
+      chapterProgressPercent: 100,
+    },
+    {
+      chapterTitle: 'Chapter 2: JavaScript Fundamentals',
+      subchapters: [
+        {
+          subchaptertitle: '2.1 Introduction to JavaScript',
+          isFinished: false,
+        },
+        { subchaptertitle: '2.2 Variables and Data Types', isFinished: false },
+      ],
+      chapterProgressPercent: 0,
+    },
+  ],
+};
+
+export const courseChapterContent: CourseChapterContent = {
+  heading: {
+    imgSrc: '/course1.jpeg',
+    chapterTitle: 'Getting Started with Web Development',
+  },
+  contents: [
+    {
+      subChaptertitle: '1.1 What is HTML?',
+      subChaptercontent:
+        'HTML, or HyperText Markup Language, is the foundation of web development. It is a markup language used to structure content on the web. Unlike programming languages that control logic and calculations, HTML focuses on organizing elements like text, images, links, and multimedia into a structured format that browsers can interpret. Every web page you see online is built with HTML, making it an essential skill for anyone interested in web development. HTML consists of elements enclosed in tags, such as <h1> for headings, <p> for paragraphs, and <img> for images. These elements define the structure and content of a webpage, but they do not control the appearance—this is where CSS comes in. HTML follows a hierarchical structure, meaning elements can be nested within others to create a well-organized webpage layout. Over time, HTML has evolved, with HTML5 introducing new semantic elements like <article>, <section>, and <nav>, improving accessibility and SEO. One of the greatest strengths of HTML is its simplicity. Even beginners can quickly learn the basics and start creating web pages. However, modern web development involves combining HTML with CSS for styling and JavaScript for interactivity. By mastering HTML first, you build a strong foundation for designing functional and visually appealing websites.',
+    },
+    {
+      subChaptertitle: '1.2 CSS Basics',
+      subChaptercontent:
+        'CSS, or Cascading Style Sheets, is a stylesheet language used to control the appearance of web pages. While HTML structures the content, CSS defines how elements should look, including colors, fonts, spacing, and layout. By separating design from structure, CSS makes websites more visually appealing and easier to maintain. Instead of styling elements directly in HTML, CSS allows developers to create reusable styles, making web design more efficient and scalable. CSS works by selecting HTML elements and applying styles using selectors. For example, a rule like h1 { color: blue; } changes all <h1> headings to blue. Styles can be applied in three ways: inline CSS (directly within an HTML element), internal CSS (inside a <style> tag in the HTML file), or external CSS (linking to a separate .css file). The external method is the most efficient for large projects, as it keeps styling separate from content and allows global updates with ease. Another important concept in CSS is the box model, which defines how elements are spaced and sized using margins, borders, padding, and content. CSS also enables responsive design using media queries, ensuring web pages adapt to different screen sizes. By learning CSS, you gain the ability to create visually stunning and user-friendly websites, setting the stage for more advanced topics like Flexbox, Grid, and animations.',
+    },
+  ],
+};
