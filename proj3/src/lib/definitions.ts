@@ -180,7 +180,7 @@ export interface ChartDataItem {
 }
 
 export interface StatsCard {
-  icon: string;
+  icon: React.ElementType;
   title: string;
   value: string;
 }

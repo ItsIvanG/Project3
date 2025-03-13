@@ -1,6 +1,6 @@
 'use client';
 
-import { Pie, PieChart, Tooltip } from 'recharts';
+import { Pie, PieChart, Tooltip, Cell } from 'recharts';
 import {
   Card,
   CardContent,
@@ -11,12 +11,8 @@ import {
 } from '@/components/ui/card';
 import { type ChartConfig, ChartContainer } from '@/components/ui/chart';
 import { ChartDataItem } from '@/lib/definitions';
+import { useTheme } from 'next-themes';
 
-// Constants
-const TOTAL_CHAPTERS = 10;
-const CHAPTERS_READ = 6;
-
-// Chart Config for Labels & Colors
 const chartConfig: ChartConfig = {
   value: { label: 'Chapters' },
   completed: { label: 'Completed', color: 'bg-primary' },
@@ -24,6 +20,14 @@ const chartConfig: ChartConfig = {
 };
 
 export function ChartPieDonut({ chartData }: { chartData: ChartDataItem[] }) {
+  const { theme } = useTheme();
+
+  // Define colors for both light and dark modes
+  const colors =
+    theme === 'dark'
+      ? ['hsl(220, 14%, 96%)', 'hsl(220, 5%, 25%)'] //Dark Mode
+      : ['hsl(220, 5%, 5%)', 'hsl(220, 5%, 90%)']; //Light Mode
+
   return (
     <Card className='flex flex-col border shadow w-full rounded-lg'>
       <CardHeader className='items-center pb-0'>
@@ -32,7 +36,7 @@ export function ChartPieDonut({ chartData }: { chartData: ChartDataItem[] }) {
           This is the total number of chapters you have read.
         </CardDescription>
       </CardHeader>
-      <CardContent className='flex-1 pb-0 w-full p-0 '>
+      <CardContent className='flex-1 pb-0 w-full p-0'>
         <ChartContainer
           config={chartConfig}
           className='mx-auto aspect-square max-h-[250px]'
@@ -46,7 +50,11 @@ export function ChartPieDonut({ chartData }: { chartData: ChartDataItem[] }) {
               outerRadius={80}
               startAngle={90}
               endAngle={-270}
-            />
+            >
+              {chartData.map((_, index) => (
+                <Cell key={`cell-${index}`} fill={colors[index]} />
+              ))}
+            </Pie>
 
             <Tooltip formatter={(value, name) => [`${value} chapters`, name]} />
           </PieChart>

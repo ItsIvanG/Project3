@@ -15,7 +15,7 @@ export default function CourseNavAccordion({
   courseChapters: CourseChaptersAccordion[];
 }) {
   return (
-    <div className='w-full bg-card rounded-b-lg lg:rounded-br-lg shadow'>
+    <div className='w-full bg-card shadow'>
       <Accordion type='multiple' className='w-full'>
         {courseChapters?.map((chapter, index) => {
           // Check if the entire chapter is completed
@@ -30,7 +30,10 @@ export default function CourseNavAccordion({
             <AccordionItem
               value={`chapter-${index}`}
               key={index}
-              className={cn('border-b', allFinished && 'bg-green-100')} // Chapter background when complete
+              className={cn(
+                'border-b',
+                allFinished && 'bg-green-300 dark:bg-green-700'
+              )} // Chapter background when complete
             >
               <AccordionTrigger className='px-4 hover:no-underline'>
                 <div className='flex flex-col w-full gap-2'>
@@ -43,7 +46,7 @@ export default function CourseNavAccordion({
                       {/* Fixed width progress bar */}
                       <Progress
                         value={progressPercent}
-                        className='h-1 w-full'
+                        className='h-1 w-full '
                       />
                     </div>
                     <span className='text-xs text-muted-foreground min-w-[30px] text-center'>
@@ -60,7 +63,7 @@ export default function CourseNavAccordion({
                       className={cn(
                         'flex items-center gap-2 w-full text-sm transition-colors pl-6', // Uniform left margin
                         subchapter.isFinished
-                          ? 'bg-green-50' // Full width green background when finished
+                          ? 'bg-green-100 dark:bg-green-200'
                           : 'hover:bg-muted/50 cursor-pointer'
                       )}
                     >
@@ -72,7 +75,8 @@ export default function CourseNavAccordion({
                       <span
                         className={cn(
                           'text-sm p-2',
-                          subchapter.isFinished && 'text-muted-foreground'
+                          subchapter.isFinished &&
+                            'text-muted-foreground dark:text-secondary/60'
                         )}
                       >
                         {subchapter.subchaptertitle}

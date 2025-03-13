@@ -367,9 +367,9 @@ export const DashboardInfos: DashboardStats = {
     },
   ],
   statscard: [
-    { icon: '/course.png', title: 'Course Completed', value: '3' },
-    { icon: '/lesson.png', title: 'Lessons Viewed', value: '9' },
-    { icon: '/cert.png', title: 'Certificates Earned', value: '3' },
+    { icon: BsPatchCheck, title: 'Course Completed', value: '3' },
+    { icon: MdOutlinePlayLesson, title: 'Lessons Viewed', value: '9' },
+    { icon: PiCertificate, title: 'Certificates Earned', value: '3' },
   ],
 };
 
@@ -418,6 +418,7 @@ import {
   BsAward,
   BsTag,
   BsLightbulb,
+  BsPatchCheck,
 } from 'react-icons/bs';
 import {
   FaFacebookF,
@@ -425,6 +426,8 @@ import {
   FaInstagram,
   FaTwitter,
 } from 'react-icons/fa';
+import { MdOutlinePlayLesson } from 'react-icons/md';
+import { PiCertificate } from 'react-icons/pi';
 
 export const FEATURES: Feature[] = [
   {
@@ -532,7 +535,7 @@ export const courseNavigation: CourseNavigation = {
         },
         { subchaptertitle: '2.2 Variables and Data Types', isFinished: false },
       ],
-      chapterProgressPercent: 0,
+      chapterProgressPercent: 50,
     },
   ],
 };

@@ -17,19 +17,19 @@ export default function CourseChapterLessons() {
           src={heading.imgSrc || '/course1.jpeg'}
           className='w-full h-full object-cover'
         />
-        <div className='w-full absolute bottom-0 left-0 bg-primary/50 py-2 px-5 sm:py-3 lg:py-5 lg:px-10 flex flex-col gap-1 md:gap-4'>
-          <span className='font-bold text-lg sm:text-2xl md:text-3xl lg:text-4xl text-secondary shadow'>
+        <div className='w-full absolute bottom-0 left-0 bg-primary/50 dark:bg-secondary/55 py-2 px-5 sm:py-3 lg:py-5 lg:px-10 flex flex-col gap-1 md:gap-4'>
+          <span className='font-bold text-lg sm:text-2xl md:text-3xl lg:text-4xl text-secondary dark:text-primary'>
             {heading.chapterTitle}
           </span>
-          <span className='text-xs text-secondary flex flex-row items-center gap-2'>
+          <span className='text-xs text-secondary dark:text-primary flex flex-row items-center gap-2'>
             Scroll to begin{' '}
-            <IoIosArrowDropdownCircle className='text-secondary/50' />
+            <IoIosArrowDropdownCircle className='text-secondary/50 dark:text-primary/50' />
           </span>
         </div>
       </div>
 
       {/* course content */}
-      <div className='w-full flex flex-col bg-card p-5 sm:p-10 gap-16 rounded-none lg:rounded-bl-lg shadow'>
+      <div className='w-full flex flex-col bg-card p-5 sm:p-10 gap-16 shadow'>
         {data.contents?.map((content, index) => {
           return (
             <div key={index} className='w-full flex flex-col'>

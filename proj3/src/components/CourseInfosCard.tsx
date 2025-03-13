@@ -107,7 +107,7 @@ export default function CourseInfosCard({
           {/* Instructor */}
           <div className='md:mt-2 flex flex-col items-start text-xs sm:text-sm text-muted-foreground mb-6 '>
             <p>INSTRUCTOR</p>
-            <span className='font-semibold'>{instructor}</span>
+            <span className='font-semibold line-clamp-1'>{instructor}</span>
           </div>
 
           {/* Purchase or Resume Course Button */}

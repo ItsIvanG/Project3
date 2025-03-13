@@ -13,8 +13,8 @@ export default function CourseLessonProper() {
   const { courseTitle, courseChapters } = data;
   return (
     <div className='bg-secondary px-4 md:px-10 xl:px-20 w-full mx-auto flex flex-col'>
-      <div className='w-full bg-primary h-10 rounded-t-lg flex items-center px-5'>
-        <h2 className='font-bold text-base md:text-xl text-secondary'>
+      <div className='w-full bg-primary dark:bg-black h-10 rounded-t-lg flex items-center px-5'>
+        <h2 className='font-bold text-base md:text-xl text-secondary dark:text-primary'>
           {courseTitle}
         </h2>
       </div>
