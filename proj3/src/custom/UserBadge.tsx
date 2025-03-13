@@ -9,7 +9,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { LiaSignOutAltSolid } from 'react-icons/lia';
-
 import { useRouter } from 'next/navigation';
 import SignOutDialog from './SignOutDialog'; // Import the new component
 
@@ -42,8 +41,12 @@ const UserBadge = ({ name = 'Guest', role = '', pic = '' }) => {
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem onClick={handleSettings}>Settings</DropdownMenuItem>
+          <DropdownMenuItem onClick={handleSettings}>
+            <IoSettingsOutline className='mr-2' />
+            Settings
+          </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setIsSignOutDialogOpen(true)}>
+            <LiaSignOutAltSolid className='mr-2' />
             Sign out
           </DropdownMenuItem>
         </DropdownMenuContent>
