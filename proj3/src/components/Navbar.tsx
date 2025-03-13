@@ -21,13 +21,15 @@ export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
   const name = useUserStore((state) => state.name);
   const role = useUserStore((state) => state.role);
-
+  const accountId = useUserStore((state) => state.accountId);
   //state to track if there is logged in user
   const [isLoggedIn, setisLoggedIn] = React.useState(false);
 
   React.useEffect(() => {
-    setisLoggedIn(name !== ''); // Update isLoggedIn when name changes
-  }, [name]); // Dependency array should include `name`
+
+    setisLoggedIn(accountId !== ""); // Update isLoggedIn when name changes
+  }, [accountId]); // Dependency array should include `name`
+
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);

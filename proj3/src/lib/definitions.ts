@@ -1,6 +1,6 @@
 export interface Register {
-  first_name: string;
-  last_name: string;
+  student_fname: string;
+  student_lname: string;
   email: string;
   password: string;
   otp: string;

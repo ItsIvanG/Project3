@@ -20,6 +20,10 @@ export default function Login() {
   const router = useRouter();
   const setName = useUserStore((state) => state.setName);
   const setRole = useUserStore((state) => state.setRole);
+  const setAccountId = useUserStore((state) => state.setAccountId);
+  const setRoleId = useUserStore((state) => state.setRoleId);
+
+  const accountId = useUserStore((state) => state.accountId);
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const methods = useForm<LoginAcc>({
@@ -37,7 +41,7 @@ export default function Login() {
     console.log("Form submitted:", data);
     try {
       const response = await fetch(
-        "https://rp2mrfczwf.execute-api.ap-southeast-1.amazonaws.com/init/auth/signin",
+        process.env.NEXT_PUBLIC_API_URL + "/init/auth/signin",
         {
           method: "POST", // Ensure the method is POST
           headers: {
@@ -63,10 +67,15 @@ export default function Login() {
       if (responseData?.statusCode === 200) {
         setName(responseData?.body?.full_name);
         setRole(responseData?.body?.role);
+        setAccountId(responseData?.body?.account_id);
+        // Set role-specific ID dynamically
+        const roleIdKey = `${responseData?.body?.role}_id`; // e.g., "student_id", "instructor_id", "admin_id"
+        setRoleId(responseData?.body?.[roleIdKey]);
+        console.log("Logged in with ID: ", accountId);
       }
 
       if (responseData?.body?.role === "instructor") {
-        router.push("/instructor/settings");
+        router.push("/instructor/panel");
       } else if (responseData?.body?.role === "student") {
         router.push("/");
       }
