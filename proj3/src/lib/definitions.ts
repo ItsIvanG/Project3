@@ -51,7 +51,7 @@ export interface CourseInfoHeader {
 }
 
 export interface CourseInclusion {
-  icon: string;
+  icon: React.ElementType;
   inclusion: string;
 }
 

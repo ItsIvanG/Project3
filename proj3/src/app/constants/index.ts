@@ -181,6 +181,16 @@ export const ALL_COURSES = [
   },
 ];
 
+import {
+  BiVideo,
+  BiHelpCircle,
+  BiTask,
+  BiFile,
+  BiDownload,
+  BiMobileAlt,
+  BiTrophy,
+} from 'react-icons/bi';
+
 export const CourseInfos: CourseInfoProps = {
   courseInfoHeader: {
     id: '1',
@@ -213,13 +223,13 @@ export const CourseInfos: CourseInfoProps = {
     { title: 'Chapter 3', createdAt: '2024-03-04', type: 'Document' },
   ],
   courseIncludes: [
-    { icon: '/video.png', inclusion: '26.5 hours on-demand video' },
-    { icon: '/question.png', inclusion: '1 practice test' },
-    { icon: '/assign.png', inclusion: 'Assignments' },
-    { icon: '/article.png', inclusion: '1 article' },
-    { icon: '/download.png', inclusion: '193 downloadable resources' },
-    { icon: '/mobile.png', inclusion: 'Access on mobile and TV' },
-    { icon: '/trophy.png', inclusion: 'Certificate of completion' },
+    { icon: BiVideo, inclusion: '26.5 hours on-demand video' },
+    { icon: BiHelpCircle, inclusion: '1 practice test' },
+    { icon: BiTask, inclusion: 'Assignments' },
+    { icon: BiFile, inclusion: '1 article' },
+    { icon: BiDownload, inclusion: '193 downloadable resources' },
+    { icon: BiMobileAlt, inclusion: 'Access on mobile and TV' },
+    { icon: BiTrophy, inclusion: 'Certificate of completion' },
   ],
 };
 
