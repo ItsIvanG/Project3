@@ -16,6 +16,9 @@ import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import DeleteLesson from "./DeleteLesson";
 import { Textarea } from "@/components/ui/textarea";
+import UploadThumbnail from "@/app/upload/uploadThumbnail";
+import UploadResource from "@/app/upload/UploadResource";
+import CourseResource from "@/components/CourseResource";
 
 export default function CourseTabs({ course }) {
   const [activeTab, setActiveTab] = useState("details");
@@ -54,17 +57,6 @@ export default function CourseTabs({ course }) {
   const setEditingLesson = (lesson) => {
     setLessonDetails(lesson);
     console.log("Editing lesson", lesson);
-  };
-
-  const handleThumbnailChange = (e) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setThumbnailPreview(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
   };
 
   const fetchLessons = async () => {
@@ -166,6 +158,17 @@ export default function CourseTabs({ course }) {
     fetchLessons();
   }, [courseId]);
 
+  const [thumbnailData, setThumbnailData] = useState("");
+
+  const handleThumbnailData = (data: string) => {
+    setThumbnailData(data); // Store the data received from the child
+    courseDetails.thumbnail = data; // Update the courseDetails object
+    console.log("Thumbnail data received", data);
+    handleCourseEdit();
+  };
+
+  const fetchResources = async () => {};
+
   return (
     <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
       <p className=" text-2xl font-bold">{courseDetails.course_name}</p>
@@ -208,24 +211,15 @@ export default function CourseTabs({ course }) {
 
             {/* Course Thumbnail Input */}
             <div>
-              <Label htmlFor="course_thumbnail">Course Thumbnail</Label>
-              <Input
-                id="course_thumbnail"
-                type="file"
-                accept="image/*"
-                onChange={handleThumbnailChange}
-              />
-              {thumbnailPreview && (
-                <div className="mt-4">
-                  <Image
-                    src={thumbnailPreview}
-                    alt="Course Thumbnail"
-                    width={200}
-                    height={100}
-                    className="rounded-lg border"
-                  />
-                </div>
-              )}
+              <Label htmlFor="course_thumbnail">Thumbnail</Label>
+
+              <UploadThumbnail sendDataToParent={handleThumbnailData} />
+              {/* <Input
+                id="thumbnail"
+                name="thumbnail"
+                value={courseDetails.thumbnail || ""}
+                readOnly
+              /> */}
             </div>
 
             {/* Expected Outcomes */}
@@ -238,6 +232,26 @@ export default function CourseTabs({ course }) {
                 onChange={handleInputChange}
                 className="h-40"
                 placeholder={`Enter expected outcomes.\nE.g. By the end of this course, you will be able to...\n• Write basic Python programs\n• Understand the fundamentals of data structures`}
+              />
+            </div>
+            <div>
+              <Label htmlFor="course_zoom_link">Meeting link</Label>
+              <Input
+                id="course_zoom_link"
+                name="course_zoom_link"
+                value={courseDetails.course_zoom_link || ""}
+                onChange={handleInputChange}
+                placeholder="Enter meeting link"
+              />
+            </div>
+            <div>
+              <Label htmlFor="price">Price</Label>
+              <Input
+                id="price"
+                name="price"
+                value={courseDetails.price || ""}
+                onChange={handleInputChange}
+                placeholder="0.00"
               />
             </div>
             <div className="flex flex-col sm:flex-row sm:space-x-2 sm:justify-end space-y-2 sm:space-y-0">
@@ -326,6 +340,62 @@ export default function CourseTabs({ course }) {
                     placeholder={`E.g. This module, Introduction to Programming, is essential for anyone looking to develop problem-solving skills and logical thinking through coding. It provides the fundamental knowledge needed to understand how computers execute instructions, enabling you to write, analyze, and improve simple programs. `}
                     className="h-40"
                   />
+                </div>
+                <div>
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Lesson Resources</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex items-center space-x-2">
+                        <UploadResource sendDataToParent={fetchLessons} />
+                      </div>
+                      <div>
+                        {lessons.map((lesson) => (
+                          <div key={lesson.lesson_id} className="mb-4">
+                            {/* <h3 className="text-lg font-semibold">
+                              {lesson.lesson_name}
+                            </h3>
+                            <p className="text-sm text-gray-600">
+                              {lesson.lesson_content}
+                            </p> */}
+                            <div className="grid grid-cols-2 gap-4 mt-5">
+                              {lesson.resources.length > 0 ? (
+                                lesson.resources.map((resource) => (
+                                  <CourseResource
+                                    key={resource.resource_id}
+                                    title={resource.file_name}
+                                    createdAt={new Date(
+                                      resource.uploaded_on
+                                    ).toLocaleDateString("en-US", {
+                                      year: "numeric",
+                                      month: "long",
+                                      day: "numeric",
+                                    })}
+                                    type={resource.file_type.toUpperCase()}
+                                    url={resource.file_url}
+                                  />
+                                ))
+                              ) : (
+                                <p className="text-gray-500 text-sm">
+                                  {/* No resources available */}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+                <div>
+                  {/* <Label htmlFor="course_thumbnail">Lesson Resources</Label>
+                  <Input
+                    id="lesson_resource"
+                    type="file"
+                    accept="*"
+                    // onChange={handleThumbnailChange}
+                  /> */}
                 </div>
                 <div className="flex flex-col sm:flex-row sm:space-x-2 sm:justify-end space-y-2 sm:space-y-0">
                   <DeleteLesson

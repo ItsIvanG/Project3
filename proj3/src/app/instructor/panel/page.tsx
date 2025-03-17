@@ -32,7 +32,7 @@ export default function Page() {
 
   useEffect(() => {
     if (!courseId && instructorId) {
-      fetchCourses(instructorId);
+      fetchCourses();
     }
   }, [instructorId, courseId]);
 
@@ -42,7 +42,7 @@ export default function Page() {
     }
   }, [courseId]);
 
-  const fetchCourses = async (instructorId: string) => {
+  const fetchCourses = async () => {
     setLoadingCourses(true);
     try {
       const response = await fetch(
@@ -92,6 +92,8 @@ export default function Page() {
 
       const responseData = await response.json();
       const parsedBody = JSON.parse(responseData.body);
+      console.log("Fetched course:", parsedBody);
+
       setCourseDetails(parsedBody.course || null);
     } catch (error) {
       console.error("Error fetching course details:", error);
@@ -103,7 +105,7 @@ export default function Page() {
 
   return (
     <Fragment>
-      <div className="m-10">
+      <div className="md:m-10 m-5">
         <SidebarProvider>
           <AppSidebar />
           <main className="flex w-full flex-col">
@@ -125,7 +127,7 @@ export default function Page() {
               <div id="courses">
                 <div className="flex justify-between items-center mt-5">
                   <h1 className="text-3xl">Courses</h1>
-                  <AddCourseDialog />
+                  <AddCourseDialog refreshCourse={fetchCourses} />
                 </div>
 
                 {loadingCourses ? (
@@ -140,6 +142,7 @@ export default function Page() {
                           title={course.course_name}
                           description={course.course_description}
                           id={course.course_id}
+                          imageSrc={course.thumbnail}
                         />
                       ))
                     ) : (

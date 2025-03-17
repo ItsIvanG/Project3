@@ -121,6 +121,10 @@ body {
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
+/* HIDE ERROR POPUP
+nextjs-portal {
+  display: none;
+} */
 
 @layer base {
   * {
