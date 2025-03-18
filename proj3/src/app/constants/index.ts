@@ -486,18 +486,16 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
   {
     title: 'Explore',
     links: [
-      { label: 'Course', href: '#visitor_courses' },
+      { label: 'Courses', href: '#visitor_courses' },
       { label: 'About Us', href: '#about' },
-      { label: 'Bundles', href: '/' },
+      // { label: 'Bundles', href: '/' },
     ],
   },
   {
-    title: 'Featured Programs',
+    title: 'Policies',
     links: [
-      { label: 'Business Analytics', href: '/' },
-      { label: 'Data Analyst', href: '/' },
-      { label: 'Digital Marketing', href: '/' },
-      { label: 'Intro to Programming', href: '/' },
+      { label: 'Privacy Policy', href: '/privacypolicy' },
+      { label: 'Terms of Use', href: '/terms' },
     ],
   },
 ];

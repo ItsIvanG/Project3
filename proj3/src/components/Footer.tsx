@@ -73,9 +73,9 @@ export function Footer() {
               </div>
 
               {/* Legal Links */}
-              <div className='flex items-center gap-6 text-sm text-secondary/75 dark:text-primary/75'>
+              {/* <div className='flex items-center gap-6 text-sm text-secondary/75 dark:text-primary/75'>
                 <Link
-                  href='/privacy'
+                  href='/privacypolicy'
                   className='hover:text-secondary dark:hover:text-primary transition-colors'
                 >
                   Privacy Policy
@@ -86,7 +86,7 @@ export function Footer() {
                 >
                   Terms of Use
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
