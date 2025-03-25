@@ -108,7 +108,7 @@ export default function CourseInfo() {
         </Button>
       </div> */}
 
-      <CourseInfosCard {...courseInfoHeader} isOngoing={false} createdAt={""} />
+      <CourseInfosCard {...courseInfoHeader} isOngoing={true} createdAt={""} />
 
       <div className="w-full">
         <p className="font-bold text-xl md:text-3xl text-primary mb-5">

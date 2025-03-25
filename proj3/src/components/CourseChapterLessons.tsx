@@ -11,6 +11,7 @@ export default function CourseChapterLessons() {
   const [lessonData, setLessonData] = useState({
     subChaptertitle: "Loading...",
     subChaptercontent: "Fetching lesson content...",
+    lessonVideo: "",
   });
 
   const [resources, setResources] = useState([]); // Store lesson resources
@@ -36,6 +37,7 @@ export default function CourseChapterLessons() {
             subChaptertitle: responseData.lesson.lesson_name,
             subChaptercontent:
               responseData.lesson.lesson_content || "No content available.",
+            lessonVideo: responseData.lesson.lesson_video || "",
           });
 
           setResources(responseData.resources || []); // Store lesson resources
@@ -45,6 +47,7 @@ export default function CourseChapterLessons() {
         setLessonData({
           subChaptertitle: "Error",
           subChaptercontent: "Failed to load lesson content.",
+          lessonVideo: "",
         });
       }
     };
@@ -71,6 +74,17 @@ export default function CourseChapterLessons() {
           </span>
         </div>
       </div>
+
+      {/* Video Player */}
+      {lessonData.lessonVideo && (
+        <div className="w-full flex justify-center mt-5">
+          <video
+            className="w-full max-w-4xl rounded-lg shadow-lg"
+            controls
+            src={lessonData.lessonVideo}
+          />
+        </div>
+      )}
 
       {/* Course Content */}
       <div className="w-full flex flex-col bg-card p-5 sm:p-10 gap-16 rounded-none lg:rounded-bl-lg shadow">

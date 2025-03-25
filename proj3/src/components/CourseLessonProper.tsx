@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams, useRouter } from "next/navigation";
+import { useUserStore } from "@/store"; // Assuming you have a store hook
 import { courseNavigation } from "@/app/constants";
 import CourseNavAccordion from "./CourseNavAccordion";
 import CourseChapterLessons from "./CourseChapterLessons";
@@ -8,11 +9,61 @@ import { CourseNavigation, CourseChaptersAccordion } from "@/lib/definitions";
 
 export default function CourseLessonProper() {
   const [data, setData] = useState<CourseNavigation>(courseNavigation);
+  const [lessonId, setLessonId] = useState<number | null>(null);
   const params = useParams();
-  const courseId = params.id; // Extract course ID
+  const searchParams = useSearchParams();
+  const router = useRouter(); // Hook for URL updates
+  const courseId = Number(params.id); // Extract course ID from URL
+  const studentId = useUserStore((state) => state.roleId); // Get student ID from store.ts
 
   useEffect(() => {
-    if (!courseId) return; // Ensure courseId is available
+    if (!courseId || !studentId) return;
+
+    const fetchLessonId = async () => {
+      try {
+        const response = await fetch(
+          "https://rp2mrfczwf.execute-api.ap-southeast-1.amazonaws.com/init/currentlesson",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              action: "get",
+              course_id: courseId,
+              student_id: studentId,
+            }),
+          }
+        );
+
+        const responseData = await response.json();
+        if (responseData.lesson_id) {
+          setLessonId(responseData.lesson_id);
+
+          // If lesson_id is found and not in URL, update the URL
+          const urlLessonId = searchParams.get("lesson_id");
+          if (!urlLessonId) {
+            router.replace(
+              `/courses/myCourses/${courseId}/take?lesson_id=${responseData.lesson_id}`
+            );
+          }
+        } else {
+          console.warn("No current lesson found for student.");
+        }
+      } catch (error) {
+        console.error("Error fetching current lesson:", error);
+      }
+    };
+
+    // Check if lesson_id exists in URL, otherwise fetch it
+    const urlLessonId = searchParams.get("lesson_id");
+    if (urlLessonId) {
+      setLessonId(Number(urlLessonId));
+    } else {
+      fetchLessonId();
+    }
+  }, [courseId, studentId]);
+
+  useEffect(() => {
+    if (!courseId) return;
 
     const fetchLessons = async () => {
       try {
@@ -21,33 +72,28 @@ export default function CourseLessonProper() {
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              get_lessons_from_course_id: Number(courseId),
-            }),
+            body: JSON.stringify({ get_lessons_from_course_id: courseId }),
           }
         );
 
         const responseData = await response.json();
-
         if (responseData.status === "success" && responseData.lessons) {
           console.log("Fetched lessons: ", responseData.lessons);
 
-          // Transform lessons into CourseChaptersAccordion format
           const mappedChapters: CourseChaptersAccordion[] = [
             {
-              chapterTitle: "Lessons", // Static title for now
+              chapterTitle: "Lessons",
               subchapters: responseData.lessons
-                .sort((a, b) => a.lesson_no - b.lesson_no) // Sort by lesson number
+                .sort((a, b) => a.lesson_no - b.lesson_no)
                 .map((lesson) => ({
-                  subchaptertitle: lesson.lesson_name, // Fix incorrect key
+                  subchaptertitle: lesson.lesson_name,
                   lessonId: lesson.lesson_id,
-                  isFinished: false, // Default to false (Needs real progress tracking)
+                  isFinished: false, // Needs real progress tracking
                 })),
-              chapterProgressPercent: 0, // Set to 0, can be updated dynamically
+              chapterProgressPercent: 0,
             },
           ];
 
-          // Update the state with fetched lessons
           setData((prev) => ({
             ...prev,
             courseChapters: mappedChapters,
@@ -70,7 +116,7 @@ export default function CourseLessonProper() {
       </div>
       <div className="w-full h-fit flex flex-col lg:flex-row gap-10 lg:gap-0">
         <div className="w-full lg:w-3/4">
-          <CourseChapterLessons />
+          <CourseChapterLessons lessonId={lessonId} />
         </div>
         <div className="w-full lg:w-1/4 h-fit flex flex-col">
           <div className="w-full bg-primary h-10 flex lg:hidden items-center px-5">
