@@ -26,10 +26,8 @@ export function Navbar() {
   const [isLoggedIn, setisLoggedIn] = React.useState(false);
 
   React.useEffect(() => {
-
-    setisLoggedIn(accountId !== ""); // Update isLoggedIn when name changes
+    setisLoggedIn(accountId !== ''); // Update isLoggedIn when name changes
   }, [accountId]); // Dependency array should include `name`
-
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
