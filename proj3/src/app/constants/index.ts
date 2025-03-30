@@ -526,25 +526,27 @@ export const SOCIAL_LINKS: SocialLink[] = [
 export const courseNavigation: CourseNavigation = {
   courseTitle: 'Introduction to Programming',
   courseChapters: [
-    {
-      chapterTitle: 'Chapter 1: Getting Started with Web Development',
-      subchapters: [
-        { subchaptertitle: '1.1 What is HTML?', isFinished: true },
-        { subchaptertitle: '1.2 CSS Basics', isFinished: true },
-      ],
-      chapterProgressPercent: 100,
-    },
-    {
-      chapterTitle: 'Chapter 2: JavaScript Fundamentals',
-      subchapters: [
-        {
-          subchaptertitle: '2.1 Introduction to JavaScript',
-          isFinished: false,
-        },
-        { subchaptertitle: '2.2 Variables and Data Types', isFinished: false },
-      ],
-      chapterProgressPercent: 50,
-    },
+
+    // {
+    //   chapterTitle: '',
+    //   subchapters: [
+    //     { subchaptertitle: '1.1 What is HTML?', isFinished: true },
+    //     { subchaptertitle: '1.2 CSS Basics', isFinished: true },
+    //   ],
+    //   chapterProgressPercent: 100,
+    // },
+    // {
+    //   chapterTitle: 'Chapter 2: JavaScript Fundamentals',
+    //   subchapters: [
+    //     {
+    //       subchaptertitle: '2.1 Introduction to JavaScript',
+    //       isFinished: false,
+    //     },
+    //     { subchaptertitle: '2.2 Variables and Data Types', isFinished: false },
+    //   ],
+    //   chapterProgressPercent: 0,
+    // },
+
   ],
 };
 

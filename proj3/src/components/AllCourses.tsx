@@ -1,3 +1,4 @@
+
 'use client';
 
 import { ALL_COURSES } from '@/app/constants';
@@ -26,6 +27,7 @@ import { Button } from './ui/button';
 import React from 'react';
 import { VisitorsMotto } from './VisitorsMotto';
 
+
 function CourseCard({
   id,
   author,
@@ -44,58 +46,62 @@ function CourseCard({
 
   return (
     <Card
-      className='w-full group hover:shadow-lg cursor-pointer transition-transform hover:scale-105 overflow-hidden duration-300 ease-in-out'
+      className="w-full group hover:shadow-lg cursor-pointer transition-transform hover:scale-105 overflow-hidden duration-300 ease-in-out"
       onClick={() => redirect(id)}
     >
-      <div className='relative h-40 bg-gradient-to-br from-blue-600 to-purple-600 overflow-hidden'>
+      <div className="relative h-40 bg-gradient-to-br from-blue-600 to-purple-600 overflow-hidden">
         {imgSrc ? (
           <img
-            src={imgSrc || '/placeholder.svg'}
+            src={imgSrc || "/placeholder.svg"}
             alt={title}
-            className='w-full h-full object-cover'
+            className="w-full h-full object-cover"
           />
         ) : (
-          <div className='absolute inset-0 opacity-30'>
-            <div className='absolute inset-0 grid grid-cols-6 gap-2 p-4 transform -skew-y-12'>
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute inset-0 grid grid-cols-6 gap-2 p-4 transform -skew-y-12">
               {Array.from({ length: 24 }).map((_, i) => (
                 <div
                   key={i}
-                  className='bg-secondary/20 rounded-sm h-8 backdrop-blur-sm'
+                  className="bg-secondary/20 rounded-sm h-8 backdrop-blur-sm"
                 />
               ))}
             </div>
           </div>
         )}
       </div>
-      <CardHeader className='pb-3'>
-        <p className='text-xs text-muted-foreground'>A course by {author}</p>
-        <h3 className='font-semibold text-lg leading-none tracking-tight'>
+      <CardHeader className="pb-3">
+        <p className="text-xs text-muted-foreground">A course by {author}</p>
+        <h3 className="font-semibold text-lg leading-none tracking-tight">
           {title}
         </h3>
       </CardHeader>
       <CardContent>
-        <div className='flex items-center gap-4 text-sm'>
-          <div className='flex items-center gap-1'>
+        <div className="flex items-center gap-4 text-sm">
+          <div className="flex items-center gap-1">
             {Array.from({ length: 5 }).map((_, i) => (
               <Star
                 key={i}
                 className={`w-4 h-4 ${
                   i < Math.floor(rating)
-                    ? 'fill-yellow-400 text-yellow-400'
-                    : 'fill-none text-yellow-400'
+
+                    ? "fill-yellow-400 text-yellow-400"
+                    : i < rating
+                    ? "fill-none text-yellow-400"
+                    : "fill-yellow-400 text-yellow-400"
+
                 }`}
               />
             ))}
-            <span className='text-primary/50 ml-1'>({totalRatings})</span>
+            <span className="text-primary/50 ml-1">({totalRatings})</span>
           </div>
         </div>
-        <div className='flex items-center gap-4 mt-4 text-sm text-primary/50'>
-          <div className='flex items-center gap-1'>
-            <MonitorPlay className='w-4 h-4' />
+        <div className="flex items-center gap-4 mt-4 text-sm text-primary/50">
+          <div className="flex items-center gap-1">
+            <MonitorPlay className="w-4 h-4" />
             <span>{lessons}</span>
           </div>
-          <div className='flex items-center gap-1'>
-            <Users className='w-4 h-4' />
+          <div className="flex items-center gap-1">
+            <Users className="w-4 h-4" />
             <span>{students}</span>
           </div>
         </div>
@@ -105,27 +111,73 @@ function CourseCard({
 }
 
 export function AllCourses() {
+  const [ALL_COURSES, setAllCourses] = useState<CourseCardProps[]>([]);
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await fetch(
+          process.env.NEXT_PUBLIC_API_URL + "/init/courses/get",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ get_all_courses: true }),
+          }
+        );
+        const data = await response.json();
+
+        if (data.statusCode === 200) {
+          const courses = JSON.parse(data.body).courses.map((course: any) => ({
+            id: course.course_id.toString(),
+            author: `${course.instructor_name}`,
+            title: course.course_name,
+            rating: parseFloat(course.course_average_rating),
+            totalRatings: course.course_rating_count,
+            lessons: course.course_estimated_time,
+            students: Math.floor(Math.random() * 1000) + 1, // Placeholder
+            imgSrc: course.thumbnail || "default-image-url.jpg",
+          }));
+
+          setAllCourses(courses);
+        } else {
+          console.error("Failed to fetch courses:", data);
+        }
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+
   return (
+
     <div className='bg-secondary px-10 lg:px-16 xl:px-28 py-32 mx-auto flex flex-col'>
       <div className='flex flex-col justify-center items-center gap-10 w-full'>
         <div className='w-full h-fit bg-primary dark:bg-black p-10 md:p-14 flex justify-center items-center'>
           <div className='w-full h-full flex-col flex text-center justify-center items-center gap-10'>
             <div>
               <p className='font-extrabold text-4xl lg:text-7xl text-secondary dark:text-primary'>
+
                 LEARN. MANAGE. GROW.
               </p>
             </div>
           </div>
         </div>
+
         <div className='flex flex-col md:flex-row justify-between w-full md:items-end gap-3'>
+
           <div>
-            <h2 className='font-bold text-3xl md:text-5xl text-primary'>
+            <h2 className="font-bold text-3xl md:text-5xl text-primary">
               All Courses
             </h2>
-            <p className='font-medium text-base md:text-lg lg:text-2xl text-primary'>
+            <p className="font-medium text-base md:text-lg lg:text-2xl text-primary">
               Navigate through the courses you might want to learn.
             </p>
           </div>
+
           <div className='flex flex-col lg:flex-row gap-3'>
             <ReusableSelect
               items={[
@@ -157,6 +209,7 @@ export function AllCourses() {
             <CourseCard {...course} />
           </div>
         ))}
+
       </div>
     </div>
   );

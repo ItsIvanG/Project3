@@ -117,6 +117,7 @@ export interface CourseResources {
   title: string;
   createdAt: string;
   type: string;
+  url: string;
 }
 
 export interface CourseTimeline {

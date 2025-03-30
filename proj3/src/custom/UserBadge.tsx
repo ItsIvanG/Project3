@@ -1,18 +1,23 @@
-import { UserCircle } from 'lucide-react'; // Placeholder icon
-import { Button } from '@/components/ui/button';
-import React, { Fragment, useState } from 'react';
+
+import { UserCircle } from "lucide-react"; // Placeholder icon
+import { Button } from "@/components/ui/button";
+import React, { Fragment, useState } from "react";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { IoSettingsOutline } from 'react-icons/io5';
-import { LiaSignOutAltSolid } from 'react-icons/lia';
-import { useRouter } from 'next/navigation';
-import SignOutDialog from './SignOutDialog'; // Import the new component
 
-const UserBadge = ({ name = 'Guest', role = '', pic = '' }) => {
+} from "@/components/ui/dropdown-menu";
+import { IoSettingsOutline } from "react-icons/io5";
+import { LiaSignOutAltSolid } from "react-icons/lia";
+
+import { useRouter } from "next/navigation";
+import SignOutDialog from "./SignOutDialog"; // Import the new component
+
+const UserBadge = ({ name = "Guest", role = "", pic = "" }) => {
+
   const [isSignOutDialogOpen, setIsSignOutDialogOpen] = useState(false);
   const router = useRouter();
 

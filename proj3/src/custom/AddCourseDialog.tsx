@@ -15,7 +15,7 @@ import { toast } from "@/hooks/use-toast"; // ShadCN toast
 import { PlusCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export default function AddCourseDialog() {
+export default function AddCourseDialog({ refreshCourse }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [courseData, setCourseData] = useState({
@@ -23,7 +23,6 @@ export default function AddCourseDialog() {
     course_description: "",
     expected_outcomes: "",
     price: "",
-    course_estimated_time: "",
     thumbnail: "",
     course_zoom_link: "https://zoom.us/",
   });
@@ -68,7 +67,16 @@ export default function AddCourseDialog() {
           variant: "default",
         });
 
-        location.reload(); // Refresh the page
+        refreshCourse(); // Refresh course list
+        setCourseData({
+          course_name: "",
+          course_description: "",
+          expected_outcomes: "",
+          price: "",
+          thumbnail: "",
+          course_zoom_link: "https://zoom.us/",
+        });
+
         setOpen(false);
       } else {
         toast({
@@ -119,11 +127,11 @@ export default function AddCourseDialog() {
           placeholder="Price"
           onChange={handleChange}
         />
-        <Input
+        {/* <Input
           name="course_estimated_time"
           placeholder="Estimated Time (e.g., 10 hours)"
           onChange={handleChange}
-        />
+        /> */}
         <Input
           name="thumbnail"
           placeholder="Thumbnail URL"
