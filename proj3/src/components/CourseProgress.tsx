@@ -64,12 +64,12 @@ function OverallProgressComponent({
               {/* Status indicator - fixed position */}
               <div className='w-[60px] flex justify-center relative z-10 mt-3'>
                 {chapter.isFinished ? (
-                  <CheckCircle className='h-5 w-5 text-green-500 fill-green-100' />
+                  <CheckCircle className='h-5 w-5 text-green-500 dark:text-green-100 fill-green-100 dark:fill-green-500' />
                 ) : index ===
                   chaptersProgress.findIndex((c) => !c.isFinished) ? (
-                  <Circle className='h-5 w-5 text-green-500' />
+                  <Circle className='h-5 w-5 text-green-500 dark:text-green-100' />
                 ) : (
-                  <Circle className='h-5 w-5 text-gray-300' />
+                  <Circle className='h-5 w-5 text-gray-300 dark:text-green-500' />
                 )}
               </div>
 

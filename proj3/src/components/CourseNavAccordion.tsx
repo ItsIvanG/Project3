@@ -15,8 +15,10 @@ export default function CourseNavAccordion({
   courseChapters: CourseChaptersAccordion[];
 }) {
   return (
-    <div className="w-full bg-card rounded-b-lg lg:rounded-br-lg shadow">
-      <Accordion type="multiple" className="w-full">
+
+    <div className='w-full bg-card shadow'>
+      <Accordion type='multiple' className='w-full'>
+
         {courseChapters?.map((chapter, index) => {
           const allFinished = chapter.subchapters.every(
             (sub) => sub.isFinished
@@ -29,16 +31,29 @@ export default function CourseNavAccordion({
             <AccordionItem
               value={`chapter-${index}`}
               key={index}
-              className={cn("border-b", allFinished && "bg-green-100")}
+
+              className={cn(
+                'border-b',
+                allFinished && 'bg-green-300 dark:bg-green-700'
+              )} // Chapter background when complete
+
             >
               <AccordionTrigger className="px-4 hover:no-underline">
                 <div className="flex flex-col w-full gap-2">
                   <span className="text-base font-bold text-left">
                     {chapter.chapterTitle}
                   </span>
-                  <div className="w-full flex flex-row items-center gap-2">
-                    <Progress value={progressPercent} className="h-1 w-full" />
-                    <span className="text-xs text-muted-foreground min-w-[30px] text-center">
+                  <div className='w-full flex flex-row items-center gap-2'>
+                    <div className='w-full'>
+                      {' '}
+                      {/* Fixed width progress bar */}
+                      <Progress
+                        value={progressPercent}
+                        className='h-1 w-full '
+                      />
+                    </div>
+                    <span className='text-xs text-muted-foreground min-w-[30px] text-center'>
+
                       {progressPercent}%
                     </span>
                   </div>
@@ -52,8 +67,10 @@ export default function CourseNavAccordion({
                       className={cn(
                         "flex items-center gap-2 w-full text-sm transition-colors pl-6",
                         subchapter.isFinished
-                          ? "bg-green-50"
-                          : "hover:bg-muted/50 cursor-pointer"
+
+                          ? 'bg-green-100 dark:bg-green-200'
+                          : 'hover:bg-muted/50 cursor-pointer'
+
                       )}
                     >
                       {subchapter.isFinished ? (
@@ -63,8 +80,11 @@ export default function CourseNavAccordion({
                       )}
                       <span
                         className={cn(
-                          "text-sm p-2",
-                          subchapter.isFinished && "text-muted-foreground"
+
+                          'text-sm p-2',
+                          subchapter.isFinished &&
+                            'text-muted-foreground dark:text-secondary/60'
+
                         )}
                       >
                         {subchapter.subchaptertitle} {/* Fixed key */}

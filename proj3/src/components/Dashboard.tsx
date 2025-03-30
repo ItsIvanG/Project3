@@ -15,18 +15,19 @@ import RecentlyEnrolledCourses from './RecentlyEnrolledCourses';
 import Link from 'next/link';
 
 function StatsCardComponent({ icon, title, value }: StatsCard) {
+  const IconComponent = icon; // Correctly treating the icon as a component reference
+
   return (
     <div className='w-full bg-card shadow rounded-lg p-4 flex flex-row gap-4 items-center justify-between'>
       <div className='flex flex-row gap-4 items-center'>
-        <div className='bg-card shadow border rounded-md flex justify-center items-center'>
-          <img src={icon} alt='•' className='h-10 w-10 object-contain p-2' />
+        <div className='bg-card shadow border rounded-md flex justify-center items-center p-2 text-lg text-primary dark:text-secondary'>
+          <IconComponent className='w-6 h-6' />{' '}
         </div>
         <div className='flex flex-col'>
           <p className='text-xl font-bold text-primary'>{value}</p>
           <p className='text-sm text-muted-foreground'>{title}</p>
         </div>
       </div>
-      {/* Condition to show the button when title is "Certificate" */}
       {title === 'Certificates Earned' && (
         <Link
           className='bg-primary text-secondary text-xs rounded-full aspect-square p-2 hover:bg-primary/90'

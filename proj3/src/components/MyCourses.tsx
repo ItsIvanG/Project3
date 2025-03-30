@@ -12,10 +12,10 @@ export function MyCourses() {
   return (
     <div className='bg-secondary px-10 lg:px-16 xl:px-28 py-32 mx-auto flex flex-col'>
       <div className='flex flex-col justify-center items-center gap-10 w-full'>
-        <div className='w-full h-fit bg-primary p-10 md:p-14 flex justify-center items-center'>
+        <div className='w-full h-fit bg-primary dark:bg-black p-10 md:p-14 flex justify-center items-center'>
           <div className='w-full h-full flex-col flex text-center justify-center items-center gap-10'>
             <div>
-              <p className='font-extrabold text-4xl lg:text-7xl text-secondary'>
+              <p className='font-extrabold text-4xl lg:text-7xl text-secondary dark:text-primary'>
                 LEARN. MANAGE. GROW.
               </p>
             </div>

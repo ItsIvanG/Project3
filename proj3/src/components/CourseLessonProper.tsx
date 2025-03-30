@@ -108,10 +108,13 @@ export default function CourseLessonProper() {
   }, [courseId]);
 
   return (
-    <div className="bg-secondary px-4 md:px-10 xl:px-20 w-full mx-auto flex flex-col">
-      <div className="w-full bg-primary h-10 rounded-t-lg flex items-center px-5">
-        <h2 className="font-bold text-base md:text-xl text-secondary">
+
+    <div className='bg-secondary px-4 md:px-10 xl:px-20 w-full mx-auto flex flex-col'>
+      <div className='w-full bg-primary dark:bg-black h-10 rounded-t-lg flex items-center px-5'>
+        <h2 className='font-bold text-base md:text-xl text-secondary dark:text-primary'>
+
           {data.courseTitle}
+
         </h2>
       </div>
       <div className="w-full h-fit flex flex-col lg:flex-row gap-10 lg:gap-0">

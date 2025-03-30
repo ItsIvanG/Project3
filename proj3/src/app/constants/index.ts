@@ -181,6 +181,16 @@ export const ALL_COURSES = [
   },
 ];
 
+import {
+  BiVideo,
+  BiHelpCircle,
+  BiTask,
+  BiFile,
+  BiDownload,
+  BiMobileAlt,
+  BiTrophy,
+} from 'react-icons/bi';
+
 export const CourseInfos: CourseInfoProps = {
   courseInfoHeader: {
     id: '1',
@@ -213,13 +223,13 @@ export const CourseInfos: CourseInfoProps = {
     { title: 'Chapter 3', createdAt: '2024-03-04', type: 'Document' },
   ],
   courseIncludes: [
-    { icon: '/video.png', inclusion: '26.5 hours on-demand video' },
-    { icon: '/question.png', inclusion: '1 practice test' },
-    { icon: '/assign.png', inclusion: 'Assignments' },
-    { icon: '/article.png', inclusion: '1 article' },
-    { icon: '/download.png', inclusion: '193 downloadable resources' },
-    { icon: '/mobile.png', inclusion: 'Access on mobile and TV' },
-    { icon: '/trophy.png', inclusion: 'Certificate of completion' },
+    { icon: BiVideo, inclusion: '26.5 hours on-demand video' },
+    { icon: BiHelpCircle, inclusion: '1 practice test' },
+    { icon: BiTask, inclusion: 'Assignments' },
+    { icon: BiFile, inclusion: '1 article' },
+    { icon: BiDownload, inclusion: '193 downloadable resources' },
+    { icon: BiMobileAlt, inclusion: 'Access on mobile and TV' },
+    { icon: BiTrophy, inclusion: 'Certificate of completion' },
   ],
 };
 
@@ -367,9 +377,9 @@ export const DashboardInfos: DashboardStats = {
     },
   ],
   statscard: [
-    { icon: '/course.png', title: 'Course Completed', value: '3' },
-    { icon: '/lesson.png', title: 'Lessons Viewed', value: '9' },
-    { icon: '/cert.png', title: 'Certificates Earned', value: '3' },
+    { icon: BsPatchCheck, title: 'Course Completed', value: '3' },
+    { icon: MdOutlinePlayLesson, title: 'Lessons Viewed', value: '9' },
+    { icon: PiCertificate, title: 'Certificates Earned', value: '3' },
   ],
 };
 
@@ -418,6 +428,7 @@ import {
   BsAward,
   BsTag,
   BsLightbulb,
+  BsPatchCheck,
 } from 'react-icons/bs';
 import {
   FaFacebookF,
@@ -425,6 +436,8 @@ import {
   FaInstagram,
   FaTwitter,
 } from 'react-icons/fa';
+import { MdOutlinePlayLesson } from 'react-icons/md';
+import { PiCertificate } from 'react-icons/pi';
 
 export const FEATURES: Feature[] = [
   {
@@ -473,18 +486,16 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
   {
     title: 'Explore',
     links: [
-      { label: 'Course', href: '#visitor_courses' },
+      { label: 'Courses', href: '#visitor_courses' },
       { label: 'About Us', href: '#about' },
-      { label: 'Bundles', href: '/' },
+      // { label: 'Bundles', href: '/' },
     ],
   },
   {
-    title: 'Featured Programs',
+    title: 'Policies',
     links: [
-      { label: 'Business Analytics', href: '/' },
-      { label: 'Data Analyst', href: '/' },
-      { label: 'Digital Marketing', href: '/' },
-      { label: 'Intro to Programming', href: '/' },
+      { label: 'Privacy Policy', href: '/privacypolicy' },
+      { label: 'Terms of Use', href: '/terms' },
     ],
   },
 ];
@@ -515,6 +526,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
 export const courseNavigation: CourseNavigation = {
   courseTitle: 'Introduction to Programming',
   courseChapters: [
+
     // {
     //   chapterTitle: '',
     //   subchapters: [
@@ -534,6 +546,7 @@ export const courseNavigation: CourseNavigation = {
     //   ],
     //   chapterProgressPercent: 0,
     // },
+
   ],
 };
 
