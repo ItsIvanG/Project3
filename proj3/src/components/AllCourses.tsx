@@ -1,11 +1,10 @@
+"use client";
 
-'use client';
-
-import { ALL_COURSES } from '@/app/constants';
-import { Star, Users, MonitorPlay } from 'lucide-react';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import type { CourseCardProps } from '@/lib/definitions';
-import { useRouter } from 'next/navigation';
+import { ALL_COURSES } from "@/app/constants";
+import { Star, Users, MonitorPlay } from "lucide-react";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import type { CourseCardProps } from "@/lib/definitions";
+import { useRouter } from "next/navigation";
 import {
   ReusableSelect,
   Select,
@@ -14,7 +13,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from './ui/select';
+} from "./ui/select";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -22,11 +21,10 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from './ui/dropdown-menu';
-import { Button } from './ui/button';
-import React from 'react';
-import { VisitorsMotto } from './VisitorsMotto';
-
+} from "./ui/dropdown-menu";
+import { Button } from "./ui/button";
+import React, { useEffect, useState } from "react";
+import { VisitorsMotto } from "./VisitorsMotto";
 
 function CourseCard({
   id,
@@ -83,12 +81,10 @@ function CourseCard({
                 key={i}
                 className={`w-4 h-4 ${
                   i < Math.floor(rating)
-
                     ? "fill-yellow-400 text-yellow-400"
                     : i < rating
                     ? "fill-none text-yellow-400"
                     : "fill-yellow-400 text-yellow-400"
-
                 }`}
               />
             ))}
@@ -153,22 +149,19 @@ export function AllCourses() {
   }, []);
 
   return (
-
-    <div className='bg-secondary px-10 lg:px-16 xl:px-28 py-32 mx-auto flex flex-col'>
-      <div className='flex flex-col justify-center items-center gap-10 w-full'>
-        <div className='w-full h-fit bg-primary dark:bg-black p-10 md:p-14 flex justify-center items-center'>
-          <div className='w-full h-full flex-col flex text-center justify-center items-center gap-10'>
+    <div className="bg-secondary px-10 lg:px-16 xl:px-28 py-32 mx-auto flex flex-col">
+      <div className="flex flex-col justify-center items-center gap-10 w-full">
+        <div className="w-full h-fit bg-primary dark:bg-black p-10 md:p-14 flex justify-center items-center">
+          <div className="w-full h-full flex-col flex text-center justify-center items-center gap-10">
             <div>
-              <p className='font-extrabold text-4xl lg:text-7xl text-secondary dark:text-primary'>
-
+              <p className="font-extrabold text-4xl lg:text-7xl text-secondary dark:text-primary">
                 LEARN. MANAGE. GROW.
               </p>
             </div>
           </div>
         </div>
 
-        <div className='flex flex-col md:flex-row justify-between w-full md:items-end gap-3'>
-
+        <div className="flex flex-col md:flex-row justify-between w-full md:items-end gap-3">
           <div>
             <h2 className="font-bold text-3xl md:text-5xl text-primary">
               All Courses
@@ -178,38 +171,37 @@ export function AllCourses() {
             </p>
           </div>
 
-          <div className='flex flex-col lg:flex-row gap-3'>
+          <div className="flex flex-col lg:flex-row gap-3">
             <ReusableSelect
               items={[
-                'All Categories',
-                'Web Development',
-                'Business',
-                'Machine Learning',
-                'Data Science',
-                'Cybersecurity',
+                "All Categories",
+                "Web Development",
+                "Business",
+                "Machine Learning",
+                "Data Science",
+                "Cybersecurity",
               ].map((name) => ({ name, action: () => {} }))}
             />
             <ReusableSelect
               items={[
-                'All Courses',
-                'Most Popular',
-                'Highest Rated',
-                'Recently Uploaded',
+                "All Courses",
+                "Most Popular",
+                "Highest Rated",
+                "Recently Uploaded",
               ].map((name) => ({ name, action: () => {} }))}
             />
           </div>
         </div>
       </div>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full'>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
         {ALL_COURSES.map((course: CourseCardProps) => (
           <div
             key={course.id}
-            className='transition-transform duration-300 hover:scale-x-100'
+            className="transition-transform duration-300 hover:scale-x-100"
           >
             <CourseCard {...course} />
           </div>
         ))}
-
       </div>
     </div>
   );

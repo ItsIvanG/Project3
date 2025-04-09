@@ -1,26 +1,24 @@
-
-'use client';
-import { Star, Users, MonitorPlay } from 'lucide-react';
-import { Card } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { useRouter } from 'next/navigation';
-import { useUserStore } from '@/store';
-import type { CourseInclusion, CourseInfoProps } from '@/lib/definitions';
-import { CourseInfos } from '@/app/constants';
-import { Button } from './ui/button';
-import { useState } from 'react';
-import { IoIosArrowForward } from 'react-icons/io';
-import CourseResource from './CourseResource';
-import CourseInfosCard from './CourseInfosCard';
+"use client";
+import { Star, Users, MonitorPlay } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { useParams, useRouter } from "next/navigation";
+import { useUserStore } from "@/store";
+import type { CourseInclusion, CourseInfoProps } from "@/lib/definitions";
+import { CourseInfos } from "@/app/constants";
+import { Button } from "./ui/button";
+import { useEffect, useState } from "react";
+import { IoIosArrowForward } from "react-icons/io";
+import CourseResource from "./CourseResource";
+import CourseInfosCard from "./CourseInfosCard";
+import Image from "next/image";
 
 // Updated CourseIncludes to properly render icons as components
 function CourseIncludes({ icon: IconComponent, inclusion }: CourseInclusion) {
   return (
-
     <div className="ml-4 flex flex-row mb-2 items-center">
-      <Image className="mr-4" src={icon} alt={"•"} height={0} width={26} />
+      {/* <Image className="mr-4" src={icon} alt={"•"} height={0} width={26} /> */}
       <span className="text-xs sm:text-sm md:text-base lg:text-lg">
-
         {inclusion}
       </span>
     </div>
@@ -28,7 +26,6 @@ function CourseIncludes({ icon: IconComponent, inclusion }: CourseInclusion) {
 }
 
 export default function CourseInfo() {
-
   const router = useRouter();
   const { id: courseId } = useParams(); // ✅ Correct way to get [id] from URL
 
@@ -103,7 +100,6 @@ export default function CourseInfo() {
   if (error) return <p className="text-red-500">{error}</p>;
   if (!data) return <p>No course data available</p>;
 
-
   const { courseInfoHeader, courseIncludes, courseResources, expOutcomes } =
     data;
 
@@ -126,7 +122,6 @@ export default function CourseInfo() {
           Expected Outcomes:
         </p>
         {expOutcomes.map((outcome, index) => (
-
           <div key={index} className="ml-4">
             •{" "}
             <span className="ml-2 text-xs sm:text-sm md:text-base lg:text-lg">
@@ -155,15 +150,12 @@ export default function CourseInfo() {
 
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-3 ">
           {courseResources.map(({ title, createdAt, url, type }, index) => (
-
             <CourseResource
               key={index}
               title={title}
               createdAt={createdAt}
               type={type}
-
               url={url}
-
             />
           ))}
         </div>
