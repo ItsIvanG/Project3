@@ -152,7 +152,7 @@ const ReusableSelect = ({
 }) => {
   return (
     <Select defaultValue={items[0].name}>
-      <SelectTrigger className='w-full md:w-[200px] bg-secondary border-primary/90'>
+      <SelectTrigger className='w-full lg:w-[200px] bg-secondary border-primary/90'>
         <SelectValue placeholder='' />
       </SelectTrigger>
       <SelectContent>

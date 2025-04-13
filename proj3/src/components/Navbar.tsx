@@ -118,18 +118,6 @@ export function Navbar() {
         </div>
         {/* Right side (Search Bar & Auth Buttons) */}
         <div className='hidden lg:flex items-center gap-4 lg:gap-7'>
-          {/* Search Bar */}
-          <div className='relative flex items-center'>
-            <div className='absolute left-3 bg-primary rounded-full p-1 flex items-center justify-center z-10'>
-              <FiSearch className='text-secondary text-lg' />
-            </div>
-            <Input
-              type='text'
-              placeholder='Search course'
-              className='pl-12 rounded-full bg-secondary border border-primary text-primary'
-            />
-          </div>
-
           {/* Auth Buttons */}
           {!isLoggedIn ? (
             <>
@@ -158,20 +146,7 @@ export function Navbar() {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className='flex lg:hidden items-center justify-between w-full'>
-          <div className='flex-1'></div>
-          {/* Search Bar */}
-          <div className='relative flex items-center'>
-            <div className='absolute left-3 bg-primary rounded-full p-1 flex items-center justify-center z-10'>
-              <FiSearch className='text-secondary text-xs' />
-            </div>
-            <Input
-              type='text'
-              placeholder='Search course'
-              className='pl-10 text-xs rounded-full bg-secondary border border-primary text-primary placeholder:text-muted-foreground'
-            />
-          </div>
-
+        <div className='flex lg:hidden items-center justify-end w-full'>
           <Button
             onClick={toggleMenu}
             className='text-primary text-2xl'
@@ -192,21 +167,21 @@ export function Navbar() {
       >
         {/* Mobile Auth Section */}
         {isLoggedIn ? (
-          <div className='flex justify-center items-center w-full py-3 border-b'>
+          <div className='flex justify-start items-center w-full py-3 border-b'>
             <UserBadge name={name} pic='hahah' role={role} />
           </div>
         ) : (
           <>
             <Link
               href='/login'
-              className='px-6 py-2 rounded-md text-md font-normal text-primary hover:bg-primary/5 w-full text-center'
+              className='px-6 py-2 rounded-md text-md font-normal text-primary hover:bg-primary/5 w-full text-start'
               onClick={() => setIsOpen(false)}
             >
               Sign In
             </Link>
             <Link
               href='/signup'
-              className='px-6 py-2 rounded-md text-md font-normal bg-primary text-secondary hover:bg-primary/90 w-full text-center'
+              className='p-2 rounded-md text-md font-normal bg-primary text-secondary hover:bg-primary/90 w-full text-start'
               onClick={() => setIsOpen(false)}
             >
               Sign Up
@@ -218,14 +193,14 @@ export function Navbar() {
           <Link
             key={nav.key}
             href={nav.href}
-            className='py-2 text-md font-normal text-primary rounded-md hover:bg-primary/5 w-full text-center'
+            className='px-2 py-2 text-md font-normal text-primary rounded-md hover:bg-primary/5 w-full text-start'
             onClick={() => setIsOpen(false)} // Close menu on link click
           >
             {nav.label}
           </Link>
         ))}
         {/* ✅ ModeToggle for Mobile */}
-        <div className='flex flex-row items-center justify-center gap-2 border-t py-3 w-full'>
+        <div className='flex flex-row items-center justify-start gap-2 border-t py-3 w-full'>
           <ModeToggle /> Theme
         </div>
       </div>
