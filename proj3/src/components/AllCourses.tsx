@@ -1,3 +1,4 @@
+\
 'use client';
 
 import { ALL_COURSES } from '@/app/constants';
@@ -5,6 +6,7 @@ import { Star, Users, MonitorPlay } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import type { CourseCardProps } from '@/lib/definitions';
 import { useRouter } from 'next/navigation';
+
 import {
   ReusableSelect,
   Select,
@@ -13,7 +15,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from './ui/select';
+} from "./ui/select";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -21,12 +23,14 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+
 } from './ui/dropdown-menu';
 import { Button } from './ui/button';
 import React, { useEffect, useMemo, useState } from 'react';
 import { VisitorsMotto } from './VisitorsMotto';
 import { FiSearch } from 'react-icons/fi';
 import { Input } from './ui/input';
+
 
 function CourseCard({
   id,
@@ -83,10 +87,12 @@ function CourseCard({
                 key={i}
                 className={`w-4 h-4 ${
                   i < Math.floor(rating)
+
                     ? 'fill-yellow-400 text-yellow-400'
                     : i < rating
                     ? 'fill-none text-yellow-400'
                     : 'fill-yellow-400 text-yellow-400'
+
                 }`}
               />
             ))}
@@ -150,6 +156,7 @@ export function AllCourses() {
     fetchCourses();
   }, []);
 
+
   const [generalFilter, setGeneralFilter] = useState<
     'allcourses' | 'mostpopular' | 'highestrating'
   >('allcourses');
@@ -193,13 +200,16 @@ export function AllCourses() {
           <div className='w-full h-full flex-col flex text-center justify-center items-center gap-10'>
             <div>
               <p className='font-extrabold text-4xl lg:text-7xl text-secondary dark:text-primary'>
+
                 LEARN. MANAGE. GROW.
               </p>
             </div>
           </div>
         </div>
 
+
         <div className='flex flex-col lg:flex-row justify-between w-full lg:items-end gap-3 mb-5'>
+
           <div>
             <h2 className='font-bold text-3xl md:text-5xl text-primary'>
               All Courses
@@ -243,15 +253,18 @@ export function AllCourses() {
                   },
                 })
               )}
+
             />
           </div>
         </div>
       </div>
+
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full'>
         {generalFilteredCourses.map((course: CourseCardProps) => (
+
           <div
             key={course.id}
-            className='transition-transform duration-300 hover:scale-x-100'
+            className="transition-transform duration-300 hover:scale-x-100"
           >
             <CourseCard {...course} />
           </div>
