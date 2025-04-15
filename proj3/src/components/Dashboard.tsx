@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ChartPieDonut } from './ui/chart-pie-donut';
 import { DashboardStats, EnrolledCourse } from '@/lib/definitions';
 import { StatsCard } from '@/lib/definitions';
@@ -13,6 +13,8 @@ import { useRouter } from 'next/navigation';
 import { GrNext } from 'react-icons/gr';
 import RecentlyEnrolledCourses from './RecentlyEnrolledCourses';
 import Link from 'next/link';
+import { Input } from './ui/input';
+import { FiSearch } from 'react-icons/fi';
 
 function StatsCardComponent({ icon, title, value }: StatsCard) {
   const IconComponent = icon; // Correctly treating the icon as a component reference
@@ -47,6 +49,50 @@ export default function Dashboard() {
 
   const { recentlyEnrolled, chart, statscard } = data;
 
+  const [generalFilter, setGeneralFilter] = useState<
+    'all' | 'notyetstarted' | 'inprogress' | 'completed'
+  >('all');
+
+  const [searchFilter, setSearchFilter] = useState<string>('');
+
+  const generalFilteredCourses = useMemo(() => {
+    let baseFiles: EnrolledCourse[] = [];
+    if (generalFilter === 'all') {
+      baseFiles = recentlyEnrolled;
+    }
+
+    if (generalFilter === 'notyetstarted') {
+      const formattedCourses = recentlyEnrolled.filter(
+        (course) => course.finishedPercentage === 0
+      );
+      baseFiles = formattedCourses;
+    }
+
+    if (generalFilter === 'inprogress') {
+      const formattedCourses = recentlyEnrolled.filter(
+        (course) =>
+          course.finishedPercentage > 0 && course.finishedPercentage < 100
+      );
+      baseFiles = formattedCourses;
+    }
+
+    if (generalFilter === 'completed') {
+      const formattedCourses = recentlyEnrolled.filter(
+        (course) => course.finishedPercentage === 100
+      );
+      baseFiles = formattedCourses;
+    }
+
+    if (searchFilter) {
+      baseFiles = baseFiles.filter((course) =>
+        Object.values(course).some((value) =>
+          String(value).toLowerCase().includes(searchFilter!.toLowerCase())
+        )
+      );
+    }
+    return baseFiles;
+  }, [generalFilter, recentlyEnrolled, searchFilter]);
+
   return (
     <div className='w-full px-10 lg:px-16 xl:px-28 py-32 mx-auto flex flex-col gap-10'>
       <p className='font-bold text-3xl md:text-5xl text-primary'>Dashboard</p>
@@ -55,30 +101,54 @@ export default function Dashboard() {
           <p className='font-bold text-xl md:text-3xl'>
             Recently Enrolled Courses
           </p>
-          <div className='w-full sm:w-auto flex justify-end'>
+          <div className='w-full lg:w-auto flex flex-col lg:flex-row justify-end gap-3'>
+            {/* Search Bar */}
+            <div className='relative flex items-center'>
+              <div className='absolute left-3 bg-primary rounded-full p-1 flex items-center justify-center z-10'>
+                <FiSearch className='text-secondary text-lg' />
+              </div>
+              <Input
+                type='text'
+                value={searchFilter}
+                onChange={(e) => {
+                  const value = e.currentTarget.value;
+                  setSearchFilter(value);
+                }}
+                placeholder='Search'
+                className='pl-12 rounded-full bg-secondary border border-primary text-primary'
+              />
+            </div>
             <ReusableSelect
               items={[
                 {
                   name: 'All',
-                  action: () => {},
+                  action: () => {
+                    setGeneralFilter('all');
+                  },
                 },
                 {
                   name: 'Not yet started',
-                  action: () => {},
+                  action: () => {
+                    setGeneralFilter('notyetstarted');
+                  },
                 },
                 {
                   name: 'In progress',
-                  action: () => {},
+                  action: () => {
+                    setGeneralFilter('inprogress');
+                  },
                 },
                 {
                   name: 'Completed',
-                  action: () => {},
+                  action: () => {
+                    setGeneralFilter('completed');
+                  },
                 },
               ]}
             />
           </div>
           <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5'>
-            {recentlyEnrolled.map((myCourse, index) => (
+            {generalFilteredCourses.map((myCourse, index) => (
               <RecentlyEnrolledCourses
                 key={index}
                 courses={{ ...myCourse }}

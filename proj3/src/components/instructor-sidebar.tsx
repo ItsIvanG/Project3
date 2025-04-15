@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Inbox, Settings, LogOut } from 'lucide-react';
+import { Inbox, Settings, LogOut, File } from 'lucide-react';
 import Image from 'next/image';
 import {
   Sidebar,
@@ -23,7 +23,7 @@ const items = [
   {
     title: 'Files',
     url: 'files',
-    icon: Settings,
+    icon: File,
   },
   {
     title: 'Settings',
