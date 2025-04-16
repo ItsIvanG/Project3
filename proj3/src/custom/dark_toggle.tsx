@@ -20,11 +20,11 @@ export function ModeToggle() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" size="icon">
-            {resolvedTheme === "dark" ? (
+            {/* {resolvedTheme === "dark" ? (
               <Moon className="h-[1.2rem] w-[1.2rem] transition-all rotate-0 scale-100 dark:-rotate-90 dark:scale-0" />
-            ) : (
-              <Sun className="h-[1.2rem] w-[1.2rem] transition-all rotate-0 scale-100 dark:hidden" />
-            )}
+            ) : ( */}
+            <Sun className="h-[1.2rem] w-[1.2rem] transition-all rotate-0 scale-100 dark:hidden" />
+            {/* )} */}
             <span className="sr-only">Toggle theme</span>
           </Button>
         </DropdownMenuTrigger>
