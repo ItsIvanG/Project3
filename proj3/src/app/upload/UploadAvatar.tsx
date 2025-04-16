@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/hooks/use-toast"; // ShadCN toast
-import { useUserStore } from "@/store"; // Assuming you have a store hook
+import { toast } from "@/hooks/use-toast";
+import { useUserStore } from "@/store";
 
 const S3_BUCKET = "proj3files";
 const REGION = "ap-southeast-1";
@@ -23,13 +22,10 @@ interface ChildProps {
   sendDataToParent: (data: string) => void;
 }
 
-export default function UploadResource({ sendDataToParent }: ChildProps) {
-  const searchParams = useSearchParams();
-  const lessonId = searchParams.get("lessonId"); // Extract lesson_id from URL
-
+export default function UploadProfilePicture({ sendDataToParent }: ChildProps) {
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
-  const roleId = useUserStore((state) => state.roleId); // Assuming you have a store hook
+  const accountId = useUserStore((state) => state.accountId);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -41,16 +37,7 @@ export default function UploadResource({ sendDataToParent }: ChildProps) {
     if (!file) {
       toast({
         title: "Error",
-        description: "Please select a file!",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    if (!lessonId) {
-      toast({
-        title: "Error",
-        description: "Lesson ID not found in URL!",
+        description: "Please select a profile picture!",
         variant: "destructive",
       });
       return;
@@ -59,11 +46,9 @@ export default function UploadResource({ sendDataToParent }: ChildProps) {
     setUploading(true);
 
     try {
-      const fileName = `${Date.now()}-${file.name}`;
-      const fileType = file.name.split(".").pop() || "unknown";
+      const fileName = `avatar-${accountId}-${Date.now()}-${file.name}`;
       const fileBuffer = await file.arrayBuffer();
 
-      // Upload to S3
       const command = new PutObjectCommand({
         Bucket: S3_BUCKET,
         Key: fileName,
@@ -75,12 +60,11 @@ export default function UploadResource({ sendDataToParent }: ChildProps) {
 
       const fileUrl = `https://${S3_BUCKET}.s3.${REGION}.amazonaws.com/${fileName}`;
 
-      // Send data to API
-      await sendResourceToAPI(file.name, fileType, fileUrl, Number(lessonId));
+      await sendProfileToAPI(fileUrl);
 
-      sendDataToParent(fileUrl); // Send URL to parent component
+      //   sendDataToParent(fileUrl);
 
-      toast({ title: "Success", description: "File uploaded successfully!" });
+      toast({ title: "Success", description: "Profile picture uploaded!" });
     } catch (error) {
       console.error("Upload error:", error);
       toast({
@@ -93,42 +77,35 @@ export default function UploadResource({ sendDataToParent }: ChildProps) {
     }
   };
 
-  const sendResourceToAPI = async (
-    fileName: string,
-    fileType: string,
-    fileUrl: string,
-    lessonId: number
-  ) => {
+  const sendProfileToAPI = async (fileUrl: string) => {
     try {
       const response = await fetch(
-        "https://rp2mrfczwf.execute-api.ap-southeast-1.amazonaws.com/init/resource",
+        "https://rp2mrfczwf.execute-api.ap-southeast-1.amazonaws.com/init/edit_user",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            action: "add_resource",
-            data: {
-              file_name: fileName,
-              file_type: fileType,
-              file_url: fileUrl,
-              uploaded_by: roleId,
-              lesson_id: lessonId,
-            },
+            edit_user_avatar_id: accountId,
+            profile_picture: fileUrl,
           }),
         }
       );
 
       const result = await response.json();
 
-      console.log("API response:", result);
-      if (result.status !== "success") throw new Error("API request failed");
+      if (!response.ok) {
+        throw new Error(result?.error || "API request failed");
+      }
 
-      toast({ title: "Success", description: "Resource added successfully!" });
+      toast({
+        title: "Success",
+        description: "Profile picture updated in API!",
+      });
     } catch (error) {
       console.error("API error:", error);
       toast({
         title: "Error",
-        description: "Failed to save resource!",
+        description: "Failed to update profile picture!",
         variant: "destructive",
       });
     }
@@ -136,7 +113,7 @@ export default function UploadResource({ sendDataToParent }: ChildProps) {
 
   return (
     <div className="flex gap-2">
-      <Input type="file" onChange={handleFileChange} />
+      <Input type="file" accept="image/*" onChange={handleFileChange} />
       <Button onClick={uploadToS3} disabled={uploading}>
         {uploading ? "Uploading..." : "Upload"}
       </Button>

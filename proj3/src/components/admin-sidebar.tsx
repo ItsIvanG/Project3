@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Inbox, Settings, LogOut, File } from "lucide-react";
+import { Inbox, Settings, LogOut, File, Home, User } from "lucide-react";
 import Image from "next/image";
 import {
   Sidebar,
@@ -16,9 +16,14 @@ import Link from "next/link";
 
 const items = [
   {
-    title: "Courses",
+    title: "Home",
     url: "panel",
-    icon: Inbox,
+    icon: Home,
+  },
+  {
+    title: "Accounts",
+    url: "accounts",
+    icon: User,
   },
   {
     title: "Files",
@@ -48,7 +53,7 @@ export function AppSidebar() {
               className="w-full h-auto max-w-[150px] object-contain m-3"
             />
           </Link>
-          <SidebarGroupLabel>INSTRUCTOR</SidebarGroupLabel>
+          <SidebarGroupLabel>ADMIN</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (

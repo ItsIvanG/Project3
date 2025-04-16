@@ -1,19 +1,19 @@
-'use client';
-import { LoginAcc } from '@/lib/definitions';
-import React, { useState } from 'react';
-import { CiUser, CiLock } from 'react-icons/ci';
-import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
-import { BsEnvelope } from 'react-icons/bs';
-import { FcGoogle } from 'react-icons/fc';
-import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
-import axios from 'axios';
-import { Checkbox } from './ui/checkbox';
-import { Button } from './ui/button';
-import Link from 'next/link';
-import { Input } from './ui/input';
-import { toast } from '@/hooks/use-toast';
-import { useRouter } from 'next/navigation';
-import { useUserStore } from '../store';
+"use client";
+import { LoginAcc } from "@/lib/definitions";
+import React, { useState } from "react";
+import { CiUser, CiLock } from "react-icons/ci";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import { BsEnvelope } from "react-icons/bs";
+import { FcGoogle } from "react-icons/fc";
+import { SubmitHandler, useForm, FormProvider } from "react-hook-form";
+import axios from "axios";
+import { Checkbox } from "./ui/checkbox";
+import { Button } from "./ui/button";
+import Link from "next/link";
+import { Input } from "./ui/input";
+import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
+import { useUserStore } from "../store";
 
 export default function Login() {
   // const { toast } = useToast();
@@ -27,7 +27,7 @@ export default function Login() {
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const methods = useForm<LoginAcc>({
-    mode: 'onSubmit',
+    mode: "onSubmit",
   });
 
   const {
@@ -38,29 +38,29 @@ export default function Login() {
   } = methods;
 
   const onSubmit: SubmitHandler<LoginAcc> = async (data) => {
-    console.log('Form submitted:', data);
+    console.log("Form submitted:", data);
     try {
       const response = await fetch(
-        process.env.NEXT_PUBLIC_API_URL + '/init/auth/signin',
+        process.env.NEXT_PUBLIC_API_URL + "/init/auth/signin",
         {
-          method: 'POST', // Ensure the method is POST
+          method: "POST", // Ensure the method is POST
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(data), // Stringify the data to send as JSON
         }
       );
       if (response.status !== 200) {
-        throw new Error('Failed to create account');
+        throw new Error("Failed to create account");
       }
       const responseData = await response.json(); // Parse the JSON response
-      console.log('Response below', responseData);
+      console.log("Response below", responseData);
 
       toast({
         title: JSON.stringify(
           responseData?.body?.message ||
             responseData?.body ||
-            'No response message'
+            "No response message"
         ),
       });
 
@@ -71,53 +71,55 @@ export default function Login() {
         // Set role-specific ID dynamically
         const roleIdKey = `${responseData?.body?.role}_id`; // e.g., "student_id", "instructor_id", "admin_id"
         setRoleId(responseData?.body?.[roleIdKey]);
-        console.log('Logged in with ID: ', accountId);
+        console.log("Logged in with ID: ", accountId);
       }
 
-      if (responseData?.body?.role === 'instructor') {
-        router.push('/instructor/panel');
-      } else if (responseData?.body?.role === 'student') {
-        router.push('/');
+      if (responseData?.body?.role === "instructor") {
+        router.push("/instructor/panel");
+      } else if (responseData?.body?.role === "student") {
+        router.push("/");
+      } else if (responseData?.body?.role === "admin") {
+        router.push("/admin/panel");
       }
       // reset(); // Reset the form after successful submission
     } catch (error) {
-      console.error('Error creating account', error);
+      console.error("Error creating account", error);
     }
   };
 
   return (
-    <div className='flex flex-col justify-center items-start h-fit md:px-20 w-[90%] xl:w-full xl:px-0'>
-      <div className='relative xl:static shadow-lg xl:shadow-none w-full h-fit bg-secondary flex items-center flex-col p-10 lg:p-20 rounded-2xl min-h-[500px] xl:min-h-[700px] '>
-        <div className=' h-10 flex justify-start xl:absolute top-6  xl:right-8  w-full xl:w-auto '>
-          <Link href='/'>
-            <img src='/logo.png' className='object-contain h-8' />
+    <div className="flex flex-col justify-center items-start h-fit md:px-20 w-[90%] xl:w-full xl:px-0">
+      <div className="relative xl:static shadow-lg xl:shadow-none w-full h-fit bg-secondary flex items-center flex-col p-10 lg:p-20 rounded-2xl min-h-[500px] xl:min-h-[700px] ">
+        <div className=" h-10 flex justify-start xl:absolute top-6  xl:right-8  w-full xl:w-auto ">
+          <Link href="/">
+            <img src="/logo.png" className="object-contain h-8" />
           </Link>
         </div>
-        <div className='relative w-full flex flex-col justify-start items-start md:gap-2 min-h-[75px] pt-10'>
-          <p className='font-bold text-2xl md:text-5xl text-primary'>
+        <div className="relative w-full flex flex-col justify-start items-start md:gap-2 min-h-[75px] pt-10">
+          <p className="font-bold text-2xl md:text-5xl text-primary">
             Welcome back.
           </p>
-          <p className='font-normal text-xs md:text-base text-primary md:ml-2'>
+          <p className="font-normal text-xs md:text-base text-primary md:ml-2">
             Continue learning and growing. Your future starts now.
           </p>
         </div>
-        <div className='relative flex flex-col justify-start items-start w-full gap-4 md:gap-6'>
+        <div className="relative flex flex-col justify-start items-start w-full gap-4 md:gap-6">
           <FormProvider {...methods}>
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className='flex flex-col gap-4 md:gap-6 mt-8 items-center w-full '
+              className="flex flex-col gap-4 md:gap-6 mt-8 items-center w-full "
               noValidate
             >
               {/* Email */}
-              <div className='w-full flex flex-col items-start relative'>
-                <BsEnvelope className='absolute left-3 top-1/2 transform -translate-y-1/2 text-primary' />
+              <div className="w-full flex flex-col items-start relative">
+                <BsEnvelope className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary" />
                 <Input
                   className={`w-full h-[30px] md:h-[44px] text-xs md:text-base border ${
-                    errors.email ? 'border-red-500' : 'border-primary'
+                    errors.email ? "border-red-500" : "border-primary"
                   } focus:outline-none focus:border-2 bg-secondary text-primary placeholder-primary/50 rounded-xl p-4 pl-9`}
-                  placeholder='Email'
-                  {...register('email', {
-                    required: 'Email is required',
+                  placeholder="Email"
+                  {...register("email", {
+                    required: "Email is required",
                     // pattern: {
                     //   value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
                     //   message: "Invalid email address",
@@ -125,26 +127,26 @@ export default function Login() {
                   })}
                 />
                 {errors.email && (
-                  <p className='absolute mt-0 text-[10px] text-red-500 top-full'>
+                  <p className="absolute mt-0 text-[10px] text-red-500 top-full">
                     {errors.email.message}
                   </p>
                 )}
               </div>
 
               {/* Password */}
-              <div className='w-full flex flex-col items-start relative'>
+              <div className="w-full flex flex-col items-start relative">
                 {/* Lock Icon */}
-                <CiLock className='absolute left-3 top-1/2 transform -translate-y-1/2 text-primary' />
+                <CiLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary" />
 
                 {/* Password Input Field */}
                 <Input
-                  type={showPassword ? 'text' : 'password'} // Toggle between "text" and "password"
+                  type={showPassword ? "text" : "password"} // Toggle between "text" and "password"
                   className={`w-full h-[30px] md:h-[44px] text-xs md:text-base border ${
-                    errors.password ? 'border-red-500' : 'border-primary'
+                    errors.password ? "border-red-500" : "border-primary"
                   } focus:outline-none focus:border-2 bg-secondary text-primary placeholder-primary/50 rounded-xl p-4 pl-9 pr-10`} // 🔹 Added "pr-10" to create space for the eye icon
-                  placeholder='Enter your password'
-                  {...register('password', {
-                    required: 'Password is required',
+                  placeholder="Enter your password"
+                  {...register("password", {
+                    required: "Password is required",
                     // minLength: {
                     //   value: 8,
                     //   message: "Password must be at least 8 characters long",
@@ -154,10 +156,10 @@ export default function Login() {
 
                 {/* Eye Icon for Toggle */}
                 <Button
-                  size='icon'
-                  variant='ghost'
-                  type='button'
-                  className='absolute right-3 top-1/2 transform -translate-y-1/2 text-primary'
+                  size="icon"
+                  variant="ghost"
+                  type="button"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-primary"
                   onClick={() => setShowPassword((prev: boolean) => !prev)}
                 >
                   {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
@@ -165,23 +167,23 @@ export default function Login() {
 
                 {/* Error Message */}
                 {errors.password && (
-                  <p className='absolute mt-1 text-[10px] text-red-500 top-full'>
+                  <p className="absolute mt-1 text-[10px] text-red-500 top-full">
                     {errors.password.message}
                   </p>
                 )}
               </div>
 
               {/* Remember Me & Forgot Password */}
-              <div className='w-full flex items-center justify-between'>
+              <div className="w-full flex items-center justify-between">
                 {/* Remember Me Checkbox */}
-                <div className='flex items-center space-x-2'>
+                <div className="flex items-center space-x-2">
                   <Checkbox
-                    id='remember'
-                    className='border-primary data-[state=checked]:bg-primary'
+                    id="remember"
+                    className="border-primary data-[state=checked]:bg-primary"
                   />
                   <label
-                    htmlFor='remember'
-                    className='text-xs text-primary font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+                    htmlFor="remember"
+                    className="text-xs text-primary font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   >
                     Remember me
                   </label>
@@ -189,8 +191,8 @@ export default function Login() {
 
                 {/* Forgot Password Link */}
                 <Link
-                  href='/forgotpass'
-                  className='text-xs text-primary underline hover:font-semibold'
+                  href="/forgotpass"
+                  className="text-xs text-primary underline hover:font-semibold"
                 >
                   Forgot password?
                 </Link>
@@ -199,7 +201,7 @@ export default function Login() {
               {/* Submit Button */}
               <Button
                 //href to /student homepage
-                className='flex w-full h-[30px] md:h-[44px] items-center justify-center rounded-xl text-secondary text-xs md:text-base font-semibold'
+                className="flex w-full h-[30px] md:h-[44px] items-center justify-center rounded-xl text-secondary text-xs md:text-base font-semibold"
               >
                 Sign in
               </Button>
@@ -218,12 +220,12 @@ export default function Login() {
               Google
             </Button>
           </div> */}
-          <div className='flex justify-center items-center w-full flex-row gap-1'>
-            <p className='text-xs font-normal text-primary'>
+          <div className="flex justify-center items-center w-full flex-row gap-1">
+            <p className="text-xs font-normal text-primary">
               Don't have an account?
             </p>
-            <a href='/signup'>
-              <p className='text-xs font-semibold text-primary'>SIGN UP</p>
+            <a href="/signup">
+              <p className="text-xs font-semibold text-primary">SIGN UP</p>
             </a>
           </div>
         </div>

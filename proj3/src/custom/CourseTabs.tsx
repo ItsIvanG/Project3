@@ -19,9 +19,11 @@ import { Textarea } from "@/components/ui/textarea";
 import UploadThumbnail from "@/app/upload/uploadThumbnail";
 import UploadResource from "@/app/upload/UploadResource";
 import CourseResource from "@/components/CourseResource";
+import UploadVideo from "@/app/upload/UploadVideo";
 
 export default function CourseTabs({ course }) {
   const [activeTab, setActiveTab] = useState("details");
+  const [videoURL, setVideoURL] = useState("");
   const [courseDetails, setCourseDetails] = useState(course || {});
   const [thumbnailPreview, setThumbnailPreview] = useState(
     course?.course_thumbnail || ""
@@ -49,7 +51,11 @@ export default function CourseTabs({ course }) {
       ...prevDetails,
       lessonDetails: {
         ...prevDetails.lessonDetails,
-        [name]: value,
+        [name]:
+          name === "lesson_video"
+            ? prevDetails.lessonDetails.lesson_video
+            : value,
+        lesson_video: videoURL, // always force lesson_video to be synced from videoURL
       },
     }));
   };
@@ -168,7 +174,21 @@ export default function CourseTabs({ course }) {
   };
 
   const fetchResources = async () => {};
+  useEffect(() => {
+    if (lessonDetails?.lessonDetails?.lesson_video) {
+      setVideoURL(lessonDetails.lessonDetails.lesson_video);
+    }
+  }, [lessonDetails]);
 
+  const handleVideoUploadSuccess = (newURL: string) => {
+    setVideoURL(newURL);
+
+    // Optionally, also update lessonDetails state or call a backend update here
+  };
+  const onVideoUploadComplete = (uploadedURL: string) => {
+    handleVideoUploadSuccess(uploadedURL);
+    // You might also want to PATCH or PUT this to your DB here
+  };
   return (
     <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
       <p className=" text-2xl font-bold">{courseDetails.course_name}</p>
@@ -340,6 +360,36 @@ export default function CourseTabs({ course }) {
                     placeholder={`E.g. This module, Introduction to Programming, is essential for anyone looking to develop problem-solving skills and logical thinking through coding. It provides the fundamental knowledge needed to understand how computers execute instructions, enabling you to write, analyze, and improve simple programs. `}
                     className="h-40"
                   />
+                </div>
+                <div>
+                  <Card className="w-full mx-auto">
+                    <CardHeader>
+                      <CardTitle>Lesson Video</CardTitle>
+                    </CardHeader>
+
+                    <CardContent className="space-y-4">
+                      {/* Optional: Include this if editing the video URL is needed */}
+                      {/* 
+    <div>
+      <Label htmlFor="lesson_video">Video URL</Label>
+      <Input
+        id="lesson_video"
+        name="lesson_video"
+        value={lessonDetails.lessonDetails.lesson_video || ""}
+        onChange={handleLessonInputChange}
+        placeholder="Video URL"
+      />
+    </div>
+    */}
+
+                      <UploadVideo sendDataToParent={onVideoUploadComplete} />
+                      <video
+                        className="w-full rounded-lg shadow-md"
+                        controls
+                        src={videoURL}
+                      />
+                    </CardContent>
+                  </Card>
                 </div>
                 <div>
                   <Card>

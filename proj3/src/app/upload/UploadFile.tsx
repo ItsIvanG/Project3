@@ -1,12 +1,18 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/hooks/use-toast"; // ShadCN toast
-import { useUserStore } from "@/store"; // Assuming you have a store hook
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { toast } from "@/hooks/use-toast";
+import { useUserStore } from "@/store";
 
 const S3_BUCKET = "proj3files";
 const REGION = "ap-southeast-1";
@@ -23,13 +29,11 @@ interface ChildProps {
   sendDataToParent: (data: string) => void;
 }
 
-export default function UploadResource({ sendDataToParent }: ChildProps) {
-  const searchParams = useSearchParams();
-  const lessonId = searchParams.get("lessonId"); // Extract lesson_id from URL
-
+export default function UploadFileModal({ sendDataToParent }: ChildProps) {
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
-  const roleId = useUserStore((state) => state.roleId); // Assuming you have a store hook
+  const [open, setOpen] = useState(false);
+  const roleId = useUserStore((state) => state.roleId);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -47,15 +51,6 @@ export default function UploadResource({ sendDataToParent }: ChildProps) {
       return;
     }
 
-    if (!lessonId) {
-      toast({
-        title: "Error",
-        description: "Lesson ID not found in URL!",
-        variant: "destructive",
-      });
-      return;
-    }
-
     setUploading(true);
 
     try {
@@ -63,7 +58,6 @@ export default function UploadResource({ sendDataToParent }: ChildProps) {
       const fileType = file.name.split(".").pop() || "unknown";
       const fileBuffer = await file.arrayBuffer();
 
-      // Upload to S3
       const command = new PutObjectCommand({
         Bucket: S3_BUCKET,
         Key: fileName,
@@ -75,10 +69,10 @@ export default function UploadResource({ sendDataToParent }: ChildProps) {
 
       const fileUrl = `https://${S3_BUCKET}.s3.${REGION}.amazonaws.com/${fileName}`;
 
-      // Send data to API
-      await sendResourceToAPI(file.name, fileType, fileUrl, Number(lessonId));
+      await sendFileToAPI(file.name, fileType, fileUrl);
 
-      sendDataToParent(fileUrl); // Send URL to parent component
+      sendDataToParent(fileUrl);
+      setOpen(false);
 
       toast({ title: "Success", description: "File uploaded successfully!" });
     } catch (error) {
@@ -93,53 +87,61 @@ export default function UploadResource({ sendDataToParent }: ChildProps) {
     }
   };
 
-  const sendResourceToAPI = async (
+  const sendFileToAPI = async (
     fileName: string,
     fileType: string,
-    fileUrl: string,
-    lessonId: number
+    fileUrl: string
   ) => {
     try {
       const response = await fetch(
-        "https://rp2mrfczwf.execute-api.ap-southeast-1.amazonaws.com/init/resource",
+        "https://rp2mrfczwf.execute-api.ap-southeast-1.amazonaws.com/init/file",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            action: "add_resource",
-            data: {
-              file_name: fileName,
-              file_type: fileType,
-              file_url: fileUrl,
-              uploaded_by: roleId,
-              lesson_id: lessonId,
-            },
+            operation: "create",
+            file_name: fileName,
+            file_type: `application/${fileType}`,
+            file_url: fileUrl,
+            file_owner: roleId, // Update dynamically if needed
+            file_permission: "everyone",
           }),
         }
       );
 
       const result = await response.json();
 
-      console.log("API response:", result);
-      if (result.status !== "success") throw new Error("API request failed");
+      if (!response.ok) {
+        throw new Error(result?.error || "API request failed");
+      }
 
-      toast({ title: "Success", description: "Resource added successfully!" });
+      toast({ title: "Success", description: "File metadata saved to API!" });
     } catch (error) {
       console.error("API error:", error);
       toast({
         title: "Error",
-        description: "Failed to save resource!",
+        description: "Failed to save file metadata!",
         variant: "destructive",
       });
     }
   };
 
   return (
-    <div className="flex gap-2">
-      <Input type="file" onChange={handleFileChange} />
-      <Button onClick={uploadToS3} disabled={uploading}>
-        {uploading ? "Uploading..." : "Upload"}
-      </Button>
-    </div>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button variant="default">Upload File</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Upload File to Repository</DialogTitle>
+        </DialogHeader>
+        <div className="flex gap-2 mt-4">
+          <Input type="file" onChange={handleFileChange} />
+          <Button onClick={uploadToS3} disabled={uploading}>
+            {uploading ? "Uploading..." : "Upload"}
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }

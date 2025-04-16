@@ -101,19 +101,13 @@ export default function UploadResource({ sendDataToParent }: ChildProps) {
   ) => {
     try {
       const response = await fetch(
-        "https://rp2mrfczwf.execute-api.ap-southeast-1.amazonaws.com/init/resource",
+        "https://rp2mrfczwf.execute-api.ap-southeast-1.amazonaws.com/init/lessons",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            action: "add_resource",
-            data: {
-              file_name: fileName,
-              file_type: fileType,
-              file_url: fileUrl,
-              uploaded_by: roleId,
-              lesson_id: lessonId,
-            },
+            edit_lesson_video_id: lessonId,
+            lesson_video: fileUrl,
           }),
         }
       );

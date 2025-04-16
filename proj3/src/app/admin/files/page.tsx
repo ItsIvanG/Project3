@@ -15,7 +15,7 @@ import {
   X,
 } from "lucide-react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/instructor-sidebar";
+import { AppSidebar } from "@/components/admin-sidebar";
 import { useUserStore } from "@/store";
 import UserBadge from "@/custom/UserBadge";
 import { Button } from "@/components/ui/button";
