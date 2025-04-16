@@ -117,6 +117,26 @@ export default function Page() {
                 <Card className="mt-5">
                   <CardContent className="space-y-4 p-6">
                     <form onSubmit={handleSubmit} className="space-y-4">
+                      <div className="flex gap-4">
+                        <div className="flex-1">
+                          <Label>First Name</Label>
+                          <Input
+                            name="fname"
+                            value={formData.fname}
+                            onChange={handleChange}
+                            required
+                          />
+                        </div>
+                        <div className="flex-1">
+                          <Label>Last Name</Label>
+                          <Input
+                            name="lname"
+                            value={formData.lname}
+                            onChange={handleChange}
+                            required
+                          />
+                        </div>
+                      </div>
                       <div>
                         <Label>Email</Label>
                         <Input
@@ -146,24 +166,7 @@ export default function Page() {
                           required
                         />
                       </div>
-                      <div>
-                        <Label>First Name</Label>
-                        <Input
-                          name="fname"
-                          value={formData.fname}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-                      <div>
-                        <Label>Last Name</Label>
-                        <Input
-                          name="lname"
-                          value={formData.lname}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
+
                       <div>
                         <Label>Profile Picture</Label>
                         <UploadAvatar />

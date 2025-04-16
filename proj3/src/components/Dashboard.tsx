@@ -65,22 +65,30 @@ export default function Dashboard() {
         const raw = await res.json();
         const parsed = JSON.parse(raw.body);
 
+        const totalFinishedLessons = parsed.totalFinishedLessons;
+        const totalRemainingLessons = parsed.totalRemainingLessons;
+
         // Transform recentlyEnrolled into your EnrolledCourse shape
         const transformedData: DashboardStats = {
-          chart: parsed.chart,
+          chart: [
+            { name: "Finished Lessons", value: totalFinishedLessons },
+            { name: "Remaining Lessons", value: totalRemainingLessons },
+          ],
           statscard: parsed.statscard.map((card: any) => ({
             ...card,
-            icon: IconMap[card.icon] || BarChart, // fallback if icon name not found
+            icon: IconMap[card.icon] || BarChart,
           })),
           recentlyEnrolled: parsed.recentlyEnrolled.map((course: any) => ({
-            id: String(course.enrollment_id),
-            imgSrc: `/placeholder.jpg`,
-            author: course.student_name,
+            id: String(course.course_id),
+            imgSrc: course.thumbnail,
+            author: course.created_by_instructor,
             title: course.course_name,
             finishedPercentage: course.finishedPercentage,
             finishedOverTotal: `${course.finishedPercentage}% done`,
           })),
         };
+
+        console.log("Transformed Data: ", transformedData);
 
         setData(transformedData);
       } catch (error) {
