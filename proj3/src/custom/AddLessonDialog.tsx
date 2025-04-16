@@ -29,6 +29,7 @@ export default function AddLessonDialog({ courseId = "", refreshLessons }) {
     setError("");
 
     const payload = {
+      create_lesson: "true",
       lesson_name: lessonName,
       course_id: courseId,
       lesson_description: lessonDescription,
