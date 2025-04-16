@@ -1,4 +1,3 @@
-
 import { UserCircle } from "lucide-react"; // Placeholder icon
 import { Button } from "@/components/ui/button";
 import React, { Fragment, useState } from "react";
@@ -8,7 +7,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-
 } from "@/components/ui/dropdown-menu";
 import { IoSettingsOutline } from "react-icons/io5";
 import { LiaSignOutAltSolid } from "react-icons/lia";
@@ -17,17 +15,16 @@ import { useRouter } from "next/navigation";
 import SignOutDialog from "./SignOutDialog"; // Import the new component
 
 const UserBadge = ({ name = "Guest", role = "", pic = "" }) => {
-
   const [isSignOutDialogOpen, setIsSignOutDialogOpen] = useState(false);
   const router = useRouter();
 
   const handleSettings = () => {
-    if (role === 'instructor') {
-      router.push('/instructor/panel');
-    } else if (role === 'student') {
-      router.push('/student/panel');
-    } else if (role === 'admin') {
-      router.push('/admin/panel');
+    if (role === "instructor") {
+      router.push("/instructor/panel");
+    } else if (role === "student") {
+      router.push("/student/settings");
+    } else if (role === "admin") {
+      router.push("/admin/panel");
     }
   };
 
@@ -35,11 +32,11 @@ const UserBadge = ({ name = "Guest", role = "", pic = "" }) => {
     <Fragment>
       <DropdownMenu>
         <DropdownMenuTrigger>
-          <div className='flex items-center space-x-5 w-fit p-0'>
-            <UserCircle className='w-7 h-7' />
-            <div className='flex flex-col text-left'>
-              <span className='font-medium px-2'>{name}</span>
-              <span className='font-light px-2 text-xs uppercase'>
+          <div className="flex items-center space-x-5 w-fit p-0">
+            <UserCircle className="w-7 h-7" />
+            <div className="flex flex-col text-left">
+              <span className="font-medium px-2">{name}</span>
+              <span className="font-light px-2 text-xs uppercase">
                 {role.toUpperCase()}
               </span>
             </div>
@@ -47,11 +44,11 @@ const UserBadge = ({ name = "Guest", role = "", pic = "" }) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem onClick={handleSettings}>
-            <IoSettingsOutline className='mr-2' />
+            <IoSettingsOutline className="mr-2" />
             Settings
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setIsSignOutDialogOpen(true)}>
-            <LiaSignOutAltSolid className='mr-2' />
+            <LiaSignOutAltSolid className="mr-2" />
             Sign out
           </DropdownMenuItem>
         </DropdownMenuContent>
